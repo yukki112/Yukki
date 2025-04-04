@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="styles.css">
+
+  <title>Portfolio</title>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="left">
+      <a href="#">Yukki's Personal Website</a>
+    </div>
+
+    <div class="right">
+    
+      
+      <a href="https://www.instagram.com/wya.yukki/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
+      
+    </div>
+  </nav>
+
+  <main>
+    <!-- SECTION 1: Hero -->
+    <section class="hero-section">
+
+      <div class="headshot"> 
+        <video autoplay loop playsinline controls>
+            <source src="images/Minji.mp4" type="video/mp4">
+        </video>
+    </div>
+
+      <div class="text">
+        <h2>Hi, I'm Yukki <br> (or whatever you wanna call me)</h2> <br>
+        <p>Hi there! I'm Yukki. I’m a big fan of NewJeans, and my bias is Kim Minji. When I’m not coding, you can find me playing Roblox, League of Legends, Valorant, and Mobile Legends. I’m also passionate about coding and always looking for ways to improve my skills!</p>
+
+        <div class="links">
+          <a href="#skills">
+            <i class="fa-solid fa-heart"></i>
+            <span>Iloveyou</span>
+            <i class="fa-solid fa-heart"></i>
+          </a>
+          
+          
+          <a href="https://github.com/yukki112">
+            <i class="fa-brands fa-github"></i>
+            <span>Github</span>
+          </a>
+
+          <a href="https://www.instagram.com/wya.yukki/">
+            <i class="fa-brands fa-instagram"></i>
+            <span>Instagram</span>
+          </a>
+
+          <a href="https://discord.com/users/904149441794170942">
+            <i class="fa-brands fa-discord"></i>
+            <span>Discord</span>
+          </a>
+        </div>
+      </div>
+
+     
+    
+    </section>
+
+    <!-- SECTION 2: Skills -->
+    <section id="skills" class="skills-section">
+      <h2>Skills</h2>
+      <div class="text">
+        I know how to code in HTML, CSS, JavaScript, PHP, and MySQL I enjoy creating websites, building interactive features, and solving coding challenges. I'm always looking to learn more and improve my skills!
+      </div>
+
+      <div class="cells">
+        <div class="cell">
+          <img src="images/html-logo.webp" alt="html logo">
+          <span>HTML</span>
+        </div>
+        
+        <div class="cell">
+          <img src="images/css-logo.webp" alt="css logo">
+          <span>CSS</span>
+        </div>
+        
+        <div class="cell">
+          <img src="images/javascript-logo.webp" alt="javascript logo">
+          <span>JavaScript</span>
+        </div>
+        
+        <div class="cell">
+          <img src="images/PHP.png" alt="node logo">
+          <span>PHP</span>
+        </div>
+        
+        <div class="cell">
+          <img src="images/SQL.png" alt="react logo">
+          <span>MySQL</span>
+        </div>
+      </div>
+    </section>
+
+
+
+      <header class="recommended-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-4">
+            <h1 class="mb-0">Minji edits</h1>
+        </div>
+    
+        <div class="sorting d-flex align-items-center gap-3">
+            <div class="search-container">
+                <i class="ri-search-line search-icon"></i>
+                <input type="text" class="search-bar" placeholder="Search...">
+            </div>
+            
+            <button class="default">Default</button>
+            <button class="a-z">Sort A-Z</button>
+            
+        </div>
+    </header>
+    
+            
+        <section id="ui" class="product-grid">
+          <div class="product-card">
+              <video class="hover-video" src="videos/Minji.mp4" loop playsinline style="cursor: pointer;"></video>
+            <div class="product-socials">
+              <a href="https://www.tiktok.com/@newjeans_official" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+              <a href="https://www.instagram.com/newjeans_official/" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+            </div>
+            <div class="product-info">
+                <h2>Minji Flatline</h2>
+                <p class="location">Justin Bieber - Flatline</p>
+            </div>
+        </div>
+
+        <div class="product-card">
+          <video class="hover-video" src="videos/Minji 1.mp4" loop playsinline style="cursor: pointer;"></video>
+          <div class="product-socials">
+            <a href="https://www.tiktok.com/@newjeans_official" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+            <a href="https://www.instagram.com/newjeans_official/" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+          </div>
+          <div class="product-info">
+              <h2>Minjinextdoor</h2>
+              <p class="location">PARTYNEXTDOOR - MAKE IT TO THE MORNING</p>
+          </div>
+      </div>
+            
+            
+      <div class="product-card">
+        <video class="hover-video" src="videos/Minji 2.mp4" loop playsinline style="cursor: pointer;"></video>
+        <div class="product-socials">
+          <a href="https://www.tiktok.com/@newjeans_official" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+          <a href="https://www.instagram.com/newjeans_official/" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+        </div>
+        <div class="product-info">
+            <h2>Minji in FANTASY</h2>
+            <p class="location">Bazzi - Fantasy</p>
+        </div>
+    </div>
+
+    <div class="product-card">
+      <video class="hover-video" src="videos/Minji 3.mp4" loop playsinline style="cursor: pointer;"></video>
+      <div class="product-socials">
+        <a href="https://www.tiktok.com/@newjeans_official" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+        <a href="https://www.instagram.com/newjeans_official/" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+      </div>
+      <div class="product-info">
+          <h2>Minji x Pillowtalk</h2>
+          <p class="location">ZAYN - PILLOWTALK</p>
+      </div>
+  </div>
+
+
+  <div class="product-card">
+    <video class="hover-video" src="videos/Minji 4.mp4" loop playsinline style="cursor: pointer;"></video>
+    <div class="product-socials">
+      <a href="https://www.tiktok.com/@newjeans_official" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+      <a href="https://www.instagram.com/newjeans_official/" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+    </div>
+    <div class="product-info">
+        <h2>Minji boo</h2>
+        <p class="location">Usher, Alicia Keys - My Boo</p>
+    </div>
+</div>
+           
+           
+
+            
+        </section>
+
+  
+
+    <!-- SECTION 4: Contact -->
+    <section id="footer">
+    <footer>
+      <div class="footerContainer">
+          <div class="socialIcons">
+              <a href="https://www.instagram.com/wya.yukki/"><i class="fa-brands fa-instagram"></i></a>
+              <a href="mailto:stephenviray12@gmail.com"><i class="fa-brands fa-google-plus"></i></a>
+              <a href="https://www.facebook.com/katengbayan"><i class="fa-brands fa-facebook"></i></a>
+          </div>
+      
+  </footer>
+</section>
+  </main>
+
+  <script>
+    function toggleDropdown() {
+        const dropdown = document.querySelector(".dropdown-menu");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+    document.addEventListener("click", function(event) {
+        if (!event.target.closest(".dropdown")) {
+            document.querySelector(".dropdown-menu").style.display = "none";
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const firstImage = document.querySelector(".product-card img");
+        
+        if (firstImage) {
+            firstImage.onload = function () {
+                let width = firstImage.clientWidth;
+                let height = firstImage.clientHeight;
+
+                document.querySelectorAll(".product-card img").forEach(img => {
+                    img.style.width = width + "px";
+                    img.style.height = height + "px";
+                    img.style.objectFit = "cover";
+                });
+            };
+        }
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+const productGrid = document.querySelector(".product-grid");
+const productCards = Array.from(document.querySelectorAll(".product-card"));
+const azButton = document.querySelector(".sorting .a-z");
+const defaultButton = document.querySelector(".sorting .default");
+const priceButton = document.querySelector(".sorting .list-view");
+
+
+const originalOrder = [...productCards];
+
+
+azButton.addEventListener("click", function () {
+    productCards.sort((a, b) => {
+        const nameA = a.querySelector("h2").textContent.toLowerCase();
+        const nameB = b.querySelector("h2").textContent.toLowerCase();
+        return nameA.localeCompare(nameB);
+    });
+
+    productGrid.innerHTML = "";
+    productCards.forEach(card => productGrid.appendChild(card));
+});
+
+
+defaultButton.addEventListener("click", function () {
+    productGrid.innerHTML = "";
+    originalOrder.forEach(card => productGrid.appendChild(card));
+});
+
+
+priceButton.addEventListener("click", function () {
+    productCards.sort((a, b) => {
+        const priceA = parseFloat(a.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
+        const priceB = parseFloat(b.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
+        return priceA - priceB;
+    });
+
+    productGrid.innerHTML = "";
+    productCards.forEach(card => productGrid.appendChild(card));
+});
+});
+</script>
+
+
+
+<script>
+document.querySelectorAll('.sorting button').forEach(button => {
+button.addEventListener('click', function() {
+document.querySelectorAll('.sorting button').forEach(btn => {
+    btn.style.backgroundColor = '#fff';
+    btn.style.color = 'black';
+});
+
+this.style.backgroundColor = '#213555';
+this.style.color = '#fff';
+});
+});
+
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+const searchBar = document.querySelector(".search-bar");
+const productCards = document.querySelectorAll(".product-card");
+const productGrid = document.querySelector(".product-grid");
+
+// Create the "No products found" message
+let noResultsMessage = document.querySelector(".no-results");
+if (!noResultsMessage) {
+    noResultsMessage = document.createElement("div");
+    noResultsMessage.textContent = "No products found.";
+    noResultsMessage.classList.add("no-results");
+    noResultsMessage.style.cssText = "opacity: 0; visibility: hidden; transition: opacity 0.3s ease;";
+    productGrid.appendChild(noResultsMessage);
+}
+
+searchBar.addEventListener("input", function () {
+    const searchText = this.value.toLowerCase().trim();
+    let hasResults = false;
+
+    productCards.forEach(card => {
+        const productName = card.querySelector("h2").textContent.toLowerCase();
+        if (productName.includes(searchText)) {
+            card.style.display = "block";
+            setTimeout(() => {
+                card.style.opacity = "1";
+            }, 10);
+            hasResults = true;
+        } else {
+            card.style.opacity = "0";
+            setTimeout(() => {
+                card.style.display = "none";
+            }, 200);
+        }
+    });
+
+    // Show or hide the "No products found" message
+    if (hasResults) {
+        noResultsMessage.style.opacity = "0";
+        setTimeout(() => {
+            noResultsMessage.style.visibility = "hidden";
+        }, 200);
+    } else {
+        noResultsMessage.style.visibility = "visible";
+        setTimeout(() => {
+            noResultsMessage.style.opacity = "1";
+        }, 10);
+    }
+});
+});
+
+</script>
+
+<script>
+  // Enable sound for all videos after first interaction
+  document.addEventListener('click', () => {
+      document.querySelectorAll('.hover-video').forEach(video => {
+          video.muted = false;
+      });
+  }, { once: true });
+
+  // Add hover behavior to each video
+  document.querySelectorAll('.hover-video').forEach(video => {
+      video.addEventListener('mouseenter', () => {
+          video.play();
+      });
+
+      video.addEventListener('mouseleave', () => {
+          video.pause();
+          video.currentTime = 0;
+      });
+  });
+</script>
+
+
+</body>
+</html>
