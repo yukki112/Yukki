@@ -446,7 +446,9 @@ footer{
   text-align: center;
   transition: opacity 0.2s ease-in-out;
 }
-
+.product-card a{
+  pointer-events: none;
+}
 
 .product-card:hover {
   transform: scale(1.05);
@@ -491,7 +493,7 @@ footer{
 /* Social Icons */
 .product-socials {
   position: absolute;
-  bottom: 85px;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
