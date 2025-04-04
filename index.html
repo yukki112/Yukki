@@ -172,6 +172,7 @@
         </div>
     </div>
 
+
     <div class="product-card">
       <video class="hover-video" src="videos/Minji 3.mp4" loop playsinline style="cursor: pointer;"></video>
       <div class="product-socials">
@@ -383,23 +384,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Enable sound for all videos after first user interaction
-    document.addEventListener(
-        "click",
-        () => {
-            videos.forEach(video => {
-                video.muted = false;
-            });
-        },
-        { once: true } // Ensures this event runs only once
-    );
-
-    // Add hover behavior to each video
+    // Ensure videos play on hover
     videos.forEach(video => {
+        video.muted = true; // Start muted to avoid autoplay restrictions
+
         video.addEventListener("mouseenter", () => {
-            if (video.readyState >= 2) {
-                video.play().catch(err => console.warn("Autoplay failed:", err));
-            }
+            video.play().catch(err => console.warn("Autoplay failed:", err));
         });
 
         video.addEventListener("mouseleave", () => {
@@ -407,6 +397,13 @@ document.addEventListener("DOMContentLoaded", () => {
             video.currentTime = 0;
         });
     });
+
+    // Allow unmuting on user interaction
+    document.addEventListener("click", () => {
+        videos.forEach(video => {
+            video.muted = false; // Unmute all videos after first click
+        });
+    }, { once: true }); // Runs only once
 });
 
 </script>
