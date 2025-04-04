@@ -134,17 +134,7 @@
     
             
         <section id="ui" class="product-grid">
-          <div class="product-card">
-              <video class="hover-video" src="videos/Minji.mp4" loop playsinline style="cursor: pointer;"></video>
-            <div class="product-socials">
-              <a href="https://www.tiktok.com/@newjeans_official" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-              <a href="https://www.instagram.com/newjeans_official/" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-            </div>
-            <div class="product-info">
-                <h2>Minji Flatline</h2>
-                <p class="location">Justin Bieber - Flatline</p>
-            </div>
-        </div>
+
 
         <div class="product-card">
           <video class="hover-video" src="videos/Minji 1.mp4" loop playsinline style="cursor: pointer;"></video>
@@ -158,6 +148,17 @@
           </div>
       </div>
             
+      <div class="product-card">
+        <video class="hover-video" src="videos/Minji.mp4" loop playsinline style="cursor: pointer;"></video>
+      <div class="product-socials">
+        <a href="https://www.tiktok.com/@newjeans_official" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+        <a href="https://www.instagram.com/newjeans_official/" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+      </div>
+      <div class="product-info">
+          <h2>Minji Flatline</h2>
+          <p class="location">Justin Bieber - Flatline</p>
+      </div>
+  </div>
             
       <div class="product-card">
         <video class="hover-video" src="videos/Minji 2.mp4" loop playsinline style="cursor: pointer;"></video>
@@ -373,28 +374,42 @@ searchBar.addEventListener("input", function () {
 });
 
 </script>
-
 <script>
-  // Enable sound for all videos after first interaction
-  document.addEventListener('click', () => {
-      document.querySelectorAll('.hover-video').forEach(video => {
-          video.muted = false;
-      });
-  }, { once: true });
+document.addEventListener("DOMContentLoaded", () => {
+    const videos = document.querySelectorAll(".hover-video");
 
-  // Add hover behavior to each video
-  document.querySelectorAll('.hover-video').forEach(video => {
-      video.addEventListener('mouseenter', () => {
-          video.play();
-      });
+    if (videos.length === 0) {
+        console.warn("No videos found with class .hover-video");
+        return;
+    }
 
-      video.addEventListener('mouseleave', () => {
-          video.pause();
-          video.currentTime = 0;
-      });
-  });
+    // Enable sound for all videos after first user interaction
+    document.addEventListener(
+        "click",
+        () => {
+            videos.forEach(video => {
+                video.muted = false;
+            });
+        },
+        { once: true } // Ensures this event runs only once
+    );
+
+    // Add hover behavior to each video
+    videos.forEach(video => {
+        video.addEventListener("mouseenter", () => {
+            if (video.readyState >= 2) {
+                video.play().catch(err => console.warn("Autoplay failed:", err));
+            }
+        });
+
+        video.addEventListener("mouseleave", () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+    });
+});
+
 </script>
-
 
 </body>
 </html>
