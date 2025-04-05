@@ -502,16 +502,13 @@ footer{
   color: gray;
 }
 audio {
-  width: 100%;
-  max-width: 250px;
-  height: 34px;
-  margin-top: 5px;
-  display: block;
-  filter: invert(1) hue-rotate(180deg);
-  background-color: black;
-  border: 2px solid black;
-  border-radius: 20px;
-  font-family: 'winky sans';
+  
+    width: 100%;
+    max-width: 250px;
+    height: 35px;
+    margin-top: 5px;
+    display: block;
+
 }
 
 
