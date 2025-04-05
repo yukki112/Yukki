@@ -446,9 +446,7 @@ footer{
   text-align: center;
   transition: opacity 0.2s ease-in-out;
 }
-.product-card a{
-  pointer-events: none;
-}
+
 
 .product-card:hover {
   transform: scale(1.05);
@@ -460,6 +458,7 @@ footer{
     height: 180px;
     object-fit: cover;
     border-radius: 10px;
+    pointer-events: none;
 }
 
 .product-card video {
@@ -628,6 +627,8 @@ hr {
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+
 
 
 /* Existing styles remain unchanged */
