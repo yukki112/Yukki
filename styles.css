@@ -510,7 +510,7 @@ audio {
   filter: invert(1) hue-rotate(180deg);
   background-color: black;
   border: 2px solid black;
-  border-radius: 800px;
+  border-radius: 20px;
   font-family: 'winky sans';
 }
 
