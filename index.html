@@ -396,7 +396,7 @@
               </a>
             </div>
             <div class="product-info">
-              <h2>Make it to the morning</h2>
+              <h1>Make it to the morning</h1>
               <audio controls src="audios/Make.mp3"></audio>
             </div>
           </div>
@@ -600,7 +600,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const firstImage = document.querySelector(".product-card img");
-        
+
         if (firstImage) {
             firstImage.onload = function () {
                 let width = firstImage.clientWidth;
@@ -618,115 +618,109 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-const productGrid = document.querySelector(".product-grid");
-const productCards = Array.from(document.querySelectorAll(".product-card"));
-const azButton = document.querySelector(".sorting .a-z");
-const defaultButton = document.querySelector(".sorting .default");
-const priceButton = document.querySelector(".sorting .list-view");
+    const productGrid = document.querySelector(".product-grid");
+    const productCards = Array.from(document.querySelectorAll(".product-card"));
+    const azButton = document.querySelector(".sorting .a-z");
+    const defaultButton = document.querySelector(".sorting .default");
+    const priceButton = document.querySelector(".sorting .list-view");
 
+    const originalOrder = [...productCards];
 
-const originalOrder = [...productCards];
+    azButton.addEventListener("click", function () {
+        productCards.sort((a, b) => {
+            const nameA = a.querySelector("h2").textContent.toLowerCase();
+            const nameB = b.querySelector("h2").textContent.toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
 
-
-azButton.addEventListener("click", function () {
-    productCards.sort((a, b) => {
-        const nameA = a.querySelector("h2").textContent.toLowerCase();
-        const nameB = b.querySelector("h2").textContent.toLowerCase();
-        return nameA.localeCompare(nameB);
+        productGrid.innerHTML = "";
+        productCards.forEach(card => productGrid.appendChild(card));
     });
 
-    productGrid.innerHTML = "";
-    productCards.forEach(card => productGrid.appendChild(card));
-});
-
-
-defaultButton.addEventListener("click", function () {
-    productGrid.innerHTML = "";
-    originalOrder.forEach(card => productGrid.appendChild(card));
-});
-
-
-priceButton.addEventListener("click", function () {
-    productCards.sort((a, b) => {
-        const priceA = parseFloat(a.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
-        const priceB = parseFloat(b.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
-        return priceA - priceB;
+    defaultButton.addEventListener("click", function () {
+        productGrid.innerHTML = "";
+        originalOrder.forEach(card => productGrid.appendChild(card));
     });
 
-    productGrid.innerHTML = "";
-    productCards.forEach(card => productGrid.appendChild(card));
-});
+    priceButton.addEventListener("click", function () {
+        productCards.sort((a, b) => {
+            const priceA = parseFloat(a.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
+            const priceB = parseFloat(b.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
+            return priceA - priceB;
+        });
+
+        productGrid.innerHTML = "";
+        productCards.forEach(card => productGrid.appendChild(card));
+    });
 });
 </script>
-
-
 
 <script>
 document.querySelectorAll('.sorting button').forEach(button => {
-button.addEventListener('click', function() {
-document.querySelectorAll('.sorting button').forEach(btn => {
-    btn.style.backgroundColor = '#fff';
-    btn.style.color = 'black';
-});
+    button.addEventListener('click', function() {
+        document.querySelectorAll('.sorting button').forEach(btn => {
+            btn.style.backgroundColor = '#fff';
+            btn.style.color = 'black';
+        });
 
-this.style.backgroundColor = '#000';
-this.style.color = '#fff';
+        this.style.backgroundColor = '#000';
+        this.style.color = '#fff';
+    });
 });
-});
-
 </script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-const searchBar = document.querySelector(".search-bar");
-const productCards = document.querySelectorAll(".product-card");
-const productGrid = document.querySelector(".product-grid");
+    const searchBar = document.querySelector(".search-bar");
+    const productCards = document.querySelectorAll("#minji .product-card"); // Only target cards within the #minji section
+    const productGrid = document.querySelector(".product-grid");
 
-// Create the "No products found" message
-let noResultsMessage = document.querySelector(".no-results");
-if (!noResultsMessage) {
-    noResultsMessage = document.createElement("div");
-    noResultsMessage.textContent = "No products found.";
-    noResultsMessage.classList.add("no-results");
-    noResultsMessage.style.cssText = "opacity: 0; visibility: hidden; transition: opacity 0.3s ease;";
-    productGrid.appendChild(noResultsMessage);
-}
+    // Create the "No products found" message
+    let noResultsMessage = document.querySelector(".no-results");
+    if (!noResultsMessage) {
+        noResultsMessage = document.createElement("div");
+        noResultsMessage.textContent = "No products found.";
+        noResultsMessage.classList.add("no-results");
+        noResultsMessage.style.cssText = "opacity: 0; visibility: hidden; transition: opacity 0.3s ease;";
+        productGrid.appendChild(noResultsMessage);
+    }
 
-searchBar.addEventListener("input", function () {
-    const searchText = this.value.toLowerCase().trim();
-    let hasResults = false;
+    searchBar.addEventListener("input", function () {
+        const searchText = this.value.toLowerCase().trim();
+        let hasResults = false;
 
-    productCards.forEach(card => {
-        const productName = card.querySelector("h2").textContent.toLowerCase();
-        if (productName.includes(searchText)) {
-            card.style.display = "block";
+        productCards.forEach(card => {
+            const productName = card.querySelector("h2").textContent.toLowerCase();
+            if (productName.includes(searchText)) {
+                card.style.display = "block";
+                setTimeout(() => {
+                    card.style.opacity = "1";
+                }, 10);
+                hasResults = true;
+            } else {
+                card.style.opacity = "0";
+                setTimeout(() => {
+                    card.style.display = "none";
+                }, 200);
+            }
+        });
+
+        // Show or hide the "No products found" message
+        if (hasResults) {
+            noResultsMessage.style.opacity = "0";
             setTimeout(() => {
-                card.style.opacity = "1";
-            }, 10);
-            hasResults = true;
-        } else {
-            card.style.opacity = "0";
-            setTimeout(() => {
-                card.style.display = "none";
+                noResultsMessage.style.visibility = "hidden";
             }, 200);
+        } else {
+            noResultsMessage.style.visibility = "visible";
+            setTimeout(() => {
+                noResultsMessage.style.opacity = "1";
+            }, 10);
         }
     });
-
-    // Show or hide the "No products found" message
-    if (hasResults) {
-        noResultsMessage.style.opacity = "0";
-        setTimeout(() => {
-            noResultsMessage.style.visibility = "hidden";
-        }, 200);
-    } else {
-        noResultsMessage.style.visibility = "visible";
-        setTimeout(() => {
-            noResultsMessage.style.opacity = "1";
-        }, 10);
-    }
 });
-});
-
 </script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const videos = document.querySelectorAll(".hover-video");
@@ -757,8 +751,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, { once: true }); // Runs only once
 });
-
 </script>
+
 
 </body>
 </html>
