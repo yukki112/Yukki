@@ -96,6 +96,7 @@ nav .right a span {
 
 .hero-section .text p {
   font-family: 'inter';
+  font-size: 20px;
 
 }
 
@@ -125,7 +126,7 @@ nav .right a span {
 }
 
 .hero-section .headshot video {
-  width: 390px; /* Adjust the width as needed */
+  width: 550px; /* Adjust the width as needed */
   height: auto; /* Keeps aspect ratio */
   border-radius: 10%;
 }
@@ -147,6 +148,7 @@ nav .right a span {
   text-align: center;
   margin-bottom: 20px;
   font-family: 'inter';
+  
 }
 
 .skills-section .cells {
@@ -883,5 +885,33 @@ hr {
   .projects-section .text {
     font-size: 18px;
     margin-bottom: 18px;
+  }
+}
+
+
+/* For Tablets and Smaller Screens */
+@media (max-width: 768px) {
+  .hero-section .headshot video {
+      width: 370px; /* Make the video width a percentage of its container */
+      height: auto; /* Maintain aspect ratio */
+      border-radius: 10%; /* Keep rounded corners */
+  }
+}
+
+
+@media (max-width: 820px) {
+  .hero-section .headshot video {
+      width: 370px; /* Make the video width a percentage of its container */
+      height: auto; /* Maintain aspect ratio */
+      border-radius: 10%; /* Keep rounded corners */
+  }
+}
+
+/* For Mobile Devices (Small Screens) */
+@media (max-width: 480px) {
+  .hero-section .headshot video {
+      width: 370px; /* Full width on mobile for better fit */
+      height: auto; /* Maintain aspect ratio */
+      border-radius: 10%; /* Keep rounded corners */
   }
 }
