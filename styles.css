@@ -95,8 +95,10 @@ nav .right a span {
 }
 
 .hero-section .text p {
-  font-family: 'inter';
-  font-size: 20px;
+  font-family: 'winky sans';
+  font-weight: 100;
+  font-size: 15px;
+
 
 }
 
@@ -913,5 +915,17 @@ hr {
       width: 370px; /* Full width on mobile for better fit */
       height: auto; /* Maintain aspect ratio */
       border-radius: 10%; /* Keep rounded corners */
+  }
+}
+
+@media (max-width: 820px) {
+  .recommended-header h1 {
+    font-size: 50px; /* Adjusted size for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .recommended-header h1 {
+    font-size: 40px; /* Adjusted size for mobile */
   }
 }
