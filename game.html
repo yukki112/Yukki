@@ -12,8 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <link rel="stylesheet" href="contact.css">
+ 
+  <link rel="stylesheet" href="game.css">
 
   <title>Yukk's personal website</title>
 </head>
@@ -50,7 +50,6 @@
         <span>Games</span>
       </a>
       
-      
       <a href="https://www.instagram.com/wya.yukki/" target="_blank" rel="noopener noreferrer">
         <i class="fa-brands fa-instagram"></i>
         <span>Instagram</span>
@@ -59,123 +58,42 @@
     </div>
   </nav>
 <hr>
-  <main>
-    <div class="container">
-		<main class="row">
-			<section class="col left">
-                <section id="skills" class="skills-section">
-                    <h2>-`♡´- Contact me</h2>
-                    <div class="text">
-                        Got a project in mind, want to collab, or just wanna chat about code, games, or NewJeans? Feel free to reach out!
-                    </div>
-                    <div class="contactInfo">
-                        <!-- Row 1 -->
-                        <div class="iconRow">
-                            <div class="iconGroup">
-                                <div class="icon">
-                                    <i class="fa-brands fa-google-plus"></i>
-                                </div>
-                                <div class="details">
-                                    <span>Email</span>
-                                    <span>Stephenviray12@gmail.com</span>
-                                </div>
-                            </div>
-                    
-                            <div class="iconGroup">
-                                <div class="icon">
-                                    <i class="fa-brands fa-instagram"></i>
-                                </div>
-                                <div class="details">
-                                    <span>Instagram</span>
-                                    <span>wya.yukki</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <!-- Row 2 -->
-                        <div class="iconRow">
-                            <div class="iconGroup">
-                                <div class="icon">
-                                    <i class="fa-brands fa-discord"></i>
-                                </div>
-                                <div class="details">
-                                    <span>Discord</span>
-                                    <span>Yukiulala</span>
-                                </div>
-                            </div>
-                    
-                            <div class="iconGroup">
-                                <div class="icon">
-                                    <i class="fa-brands fa-tiktok"></i>
-                                </div>
-                                <div class="details">
-                                    <span>Tiktok</span>
-                                    <span>user17452816481</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-				<div class="socialMedia">
-                    <a href="mailto:stephenviray12@gmail.com"target="_blank"><i class="fa-brands fa-google-plus"></i></a>
-                    <a href="https://www.instagram.com/wya.yukki/ "target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://discord.com/users/904149441794170942"target="_blank"><i class="fa-brands fa-discord"></i></a>
-                    <a href="https://www.tiktok.com/@user17452816481"target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-				</div>
-			</section>
-			<section class="col right">
-				<form class="messageForm">
-					
-					<div class="inputGroup halfWidth">
-						<input type="text" name="" required="required">
-						<label>Your Name</label>
-					</div>
-
-					<div class="inputGroup halfWidth">
-						<input type="email" name="" required="required">
-						<label>Email</label>
-					</div>
-
-					<div class="inputGroup fullWidth">
-						<input type="text" name="" required="required">
-						<label>Subject</label>
-					</div>
-
-					<div class="inputGroup fullWidth">
-						<textarea required="required"></textarea>
-						<label>Say Something</label>
-					</div>
-
-					<div class="inputGroup fullWidth">
-						<button>Send Message</button>
-					</div>
-
-				</form>
-
-			</section>
-        </section>
-
-		</main>
-	</div>
-    <section id="footer">
-        <footer>
-          <div class="footerContainer">
-              <div class="socialIcons">
-                  <a href="mailto:stephenviray12@gmail.com"target="_blank"><i class="fa-brands fa-google-plus"></i></a>
-                  <a href="https://www.instagram.com/wya.yukki/ "target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                  <a href="https://discord.com/users/904149441794170942"target="_blank"><i class="fa-brands fa-discord"></i></a>
-                  <a href="https://www.tiktok.com/@user17452816481"target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                  <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58?si=2130265f60404cab"target="_blank"><i class="fa-brands fa-spotify"></i></a>
-              </div>
-              <div class="footerBottom">
-                <p><span class="designer">Yukki &copy; 2025</span></p>
-            </div>
-      </footer>
-  
-</section>
+<main>
+    <section class="hero-section">
+      <div class="game">
+        <div class="controls">
+          <button>Start</button>
+          <div class="stats">
+            <div class="moves">0 moves</div>
+            <div class="timer">Time: 0 sec</div>
+          </div>
+        </div>
+        <div class="board-container">
+          <div class="board" data-dimension="4"></div>
+          <div class="win">You won!</div>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- ⬇ Moved footer OUTSIDE the main -->
+  <footer>
+    <div class="footerContainer">
+      <div class="socialIcons">
+        <a href="mailto:stephenviray12@gmail.com" target="_blank"><i class="fa-brands fa-google-plus"></i></a>
+        <a href="https://www.instagram.com/wya.yukki/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://discord.com/users/904149441794170942" target="_blank"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://www.tiktok.com/@user17452816481" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58?si=2130265f60404cab" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+      </div>
+      <div class="footerBottom">
+        <p><span class="designer">Yukki &copy; 2025</span></p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="script.js"></script>
   <script>
     function toggleDropdown() {
         const dropdown = document.querySelector(".dropdown-menu");
