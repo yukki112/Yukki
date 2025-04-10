@@ -104,14 +104,51 @@
   color: #fdfdfd;
   font-weight: 100;
   font-family: 'Winky Sans';
-
+  font-size: 5vw; /* Adjust font size based on viewport width */
 }
 
 .header2 {
   color: rgb(255, 255, 255);
-    font-weight: 100;
-    font-family: 'Winky Sans';
+  font-weight: 100;
+  font-family: 'Winky Sans';
+  font-size: 4.5vw; /* Adjust font size based on viewport width */
 }
+
+/* Media query for tablets and small screens (up to 768px width) */
+@media screen and (max-width: 768px) {
+  .header1 {
+    font-size: 6vw; /* Adjust font size for smaller screens */
+  }
+
+  .header2 {
+    font-size: 5.5vw; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Media query for mobile screens (up to 600px width, covering most phones including LG Velvet) */
+@media screen and (max-width: 600px) {
+  .header1 {
+    font-size: 7vw; /* Slightly larger font size for readability */
+  }
+
+  .header2 {
+    font-size: 6.5vw; /* Slightly larger font size for readability */
+  }
+}
+
+/* Media query for small mobile screens (up to 480px width) */
+@media screen and (max-width: 480px) {
+  .header1 {
+    font-size: 8vw; /* Still large, but not too big */
+  }
+
+  .header2 {
+    font-size: 7.5vw; /* Still large, but not too big */
+  }
+}
+
+
+
 
 .errorInput {
   color: var(--danger-color);
