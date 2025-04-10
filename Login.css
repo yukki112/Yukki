@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;1,6..72,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200;1,6..72,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200;1,6..72,200&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+/* General Styles */
+.loginContainer {
+  background-color: #000000;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.d-lg-flex {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.polygon1 {
+  position: relative;
+  background-blend-mode: overlay;
+  width: 710px;
+  height: auto;
+  z-index: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+
+@media (max-width: 768px) {
+  .polygon1 {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.logo {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin-left: 170px;
+  border-radius: 20px;
+}
+
+@media (max-width: 992px) {
+  .logo {
+    margin-left: 100px;
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    margin-left: 50px;
+    width: 65%;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo {
+    margin-left: 20px;
+    width: 90%;
+  }
+}
+
+.form-container {
+  flex: 1;
+  padding: 1.5rem;
+  max-height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+}
+
+
+/* Buttons */
+.buttonTemplate {
+  font-size: 20px !important;
+  padding: 9px 0px !important;
+  color: var(--white) !important;
+  background-color: #333 !important;
+}
+
+/* Others */
+.loginLineBreak {
+  border-bottom: 2px solid var(--white);
+  display: block;
+  margin: auto;
+}
+
+.inputField {
+  color: var(--white);
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  border-radius: 0.375rem !important;
+}
+
+.header1 {
+  color: #fdfdfd;
+  font-weight: 100;
+  font-family: 'Winky Sans';
+
+}
+
+.header2 {
+  color: rgb(255, 255, 255);
+    font-weight: 100;
+    font-family: 'Winky Sans';
+}
+
+.errorInput {
+  color: var(--danger-color);
+}
+
+/* Dropdown */
+.dropdownMenu {
+  font-size: 20px !important;
+  border-radius: 0.375rem !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background-color: #fcfcfc !important;
+  border: none !important;
+}
+
+.dropdown ul li button:focus {
+  background-color: #fcfcfc !important;
+}
+
+/* Password */
+.passwordContainer {
+  position: relative !important;
+}
+
+.fa-eye {
+  display: none;
+  position: absolute;
+  top: 28%;
+  right: 4%;
+  cursor: pointer;
+  color: var(--gray);
+}
+
+.fa-eye-slash {
+  position: absolute !important;
+  top: 31% !important;
+  right: 4% !important;
+  cursor: pointer;
+  color: var(--gray);
+}
+
+
+.custom-alert {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: 30px;
+  text-align: center;
+  z-index: 9999;
+  width: 90%;
+  max-width: 400px;
+}
+
+.success-alert .icon,
+.error-alert .icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.success-alert .icon {
+  color: green;
+}
+
+.error-alert .icon {
+  color: red;
+}
+
+.custom-alert h3 {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.custom-alert p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.custom-alert button {
+  background: #28a745; /* green for success */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.error-alert button {
+  background: #dc3545; /* red for error */
+}
+
+.circle-loader {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+}
+
+.checkmark {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+}
+
+.circle {
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  animation: drawCircle 1s ease-out forwards;
+}
+
+.check {
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: drawCheck 0.5s 1s ease-out forwards;
+}
+
+.x-mark {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: drawX 0.5s 1s ease-out forwards;
+}
+
+.circle-loader.success {
+  color: green;
+}
+
+.circle-loader.error {
+  color: red;
+}
+
+@keyframes drawCircle {
+  to {
+      stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCheck {
+  to {
+      stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawX {
+  to {
+      stroke-dashoffset: 0;
+  }
+}
