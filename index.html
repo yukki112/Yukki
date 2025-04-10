@@ -41,7 +41,7 @@
                     <form action="login.php" method="post" id="loginForm">
 
                         <div class="mb-3">
-                            <label for="username" class="form-label fw-semibold fs-6" style="color: white;">Username</label>
+                            <label for="username" class="form-label fw-semibold fs-6" style="color: rgb(241, 241, 241);">Username</label>
                             <input type="text" class="inputField input-form form-control px-3 fs-6 fw-normal" id="username" name="username"  style="background-color: white; color: black;">
                         </div>
 
@@ -109,7 +109,7 @@
         });
 
         function goToIndex() {
-            window.location.href = "yukki/index.html";
+            window.location.href = "Yukki/index.html";
         }
 
         function closeError() {
@@ -120,7 +120,7 @@
 <script>
     // If already logged in, redirect and replace history so user can't go "back"
     if (localStorage.getItem("isLoggedIn") === "true") {
-        window.location.replace("yukki/index.html");
+        window.location.replace("Yukki/index.html");
     }
 </script>
 
