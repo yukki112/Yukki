@@ -2,6 +2,179 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200;1,6..72,200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200;1,6..72,200&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
 
+/* Container for the login form */
+.login-wrapper {
+  max-width: 420px;
+  margin: 50px auto;
+  background-color: #000000;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Login title */
+.login-title {
+  font-size: 50px;
+  color: #ffffff;
+  margin-bottom: 30px;
+  font-family: 'Winky Sans', sans-serif;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+/* Label and Input Field Styling */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+  position: relative;
+}
+
+/* Icon inside the input fields */
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: #bdc3c7;
+}
+
+/* Input fields styling */
+.input-field {
+  width: 100%;
+  padding: 15px 15px 15px 50px;
+  font-size: 16px;
+  border: 1px solid #bdc3c7;
+  border-radius: 20px;
+  background-color: #ecf0f1;
+  color: #000000;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Focused input field */
+.input-field:focus {
+  outline: none;
+  border-color: #ffffff;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Password field with icon */
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 45px;
+}
+
+/* Password icon inside the field */
+.password-field i {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  color: #bdc3c7;
+  cursor: pointer;
+}
+
+/* Submit button styling */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  background-color: #3498db;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Submit button hover effect */
+.submit-btn:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media screen and (max-width: 480px) {
+  .login-wrapper {
+    padding: 40px 20px;
+    max-width: 90%;
+  }
+
+  .login-title {
+    font-size: 60px;
+  }
+
+  .input-field {
+    width: 100%;
+  }
+
+  .submit-btn {
+    font-size: 16px;
+  }
+}
+
+/* Note icon styles */
+.credentials-icon-container {
+  position: relative;
+  height: 100%;
+  margin-top: 120px;
+}
+
+.credentials-note-icon {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffffff; /* White color */
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.credentials-note-icon:hover {
+  transform: scale(1.1) translateX(-50%);
+  color: #ffffff; /* White color */
+}
+
+.credentials-hint {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+  margin-top: 5px;
+}
+
+/* Modal styles */
+.modal-header {
+  background-color: #ffffff; 
+}
+
+.credential-item {
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
+
+.modal-footer .btn-warning {
+  background-color: #ffffff; /* White background for the button */
+  border-color: #ffffff; /* White border for the button */
+  color: #000000; /* Black text on the button */
+}
+
+.modal-footer .btn-warning:hover {
+  background-color: #f8f9fa; /* Light background on hover */
+  color: #000000; /* Ensure the text stays black on hover */
+}
+
 
 /* General Styles */
 .loginContainer {
@@ -10,6 +183,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .d-lg-flex {
@@ -31,8 +205,6 @@
   box-sizing: border-box;
 }
 
-
-
 @media (max-width: 768px) {
   .polygon1 {
     width: 100%;
@@ -42,9 +214,9 @@
 
 .logo {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   height: auto;
-  margin-left: 170px;
+  margin-left: 200px;
   border-radius: 20px;
 }
 
@@ -77,7 +249,6 @@
   width: 100%;
 }
 
-
 /* Buttons */
 .buttonTemplate {
   font-size: 20px !important;
@@ -98,57 +269,54 @@
   padding-top: 12px !important;
   padding-bottom: 12px !important;
   border-radius: 0.375rem !important;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .header1 {
   color: #fdfdfd;
   font-weight: 100;
   font-family: 'Winky Sans';
-  font-size: 5vw; /* Adjust font size based on viewport width */
+  font-size: 5vw;
 }
 
 .header2 {
   color: rgb(255, 255, 255);
   font-weight: 100;
   font-family: 'Winky Sans';
-  font-size: 4.5vw; /* Adjust font size based on viewport width */
+  font-size: 4.5vw;
 }
 
-/* Media query for tablets and small screens (up to 768px width) */
 @media screen and (max-width: 768px) {
   .header1 {
-    font-size: 6vw; /* Adjust font size for smaller screens */
+    font-size: 6vw;
   }
 
   .header2 {
-    font-size: 5.5vw; /* Adjust font size for smaller screens */
+    font-size: 5.5vw;
   }
 }
 
-/* Media query for mobile screens (up to 600px width, covering most phones including LG Velvet) */
 @media screen and (max-width: 600px) {
   .header1 {
-    font-size: 7vw; /* Slightly larger font size for readability */
+    font-size: 7vw;
   }
 
   .header2 {
-    font-size: 6.5vw; /* Slightly larger font size for readability */
+    font-size: 6.5vw;
   }
 }
 
-/* Media query for small mobile screens (up to 480px width) */
 @media screen and (max-width: 480px) {
   .header1 {
-    font-size: 8vw; /* Still large, but not too big */
+    font-size: 8vw;
   }
 
   .header2 {
-    font-size: 7.5vw; /* Still large, but not too big */
+    font-size: 7.5vw;
   }
 }
-
-
-
 
 .errorInput {
   color: var(--danger-color);
@@ -190,7 +358,6 @@
   color: var(--gray);
 }
 
-
 .custom-alert {
   display: none;
   position: fixed;
@@ -199,7 +366,7 @@
   transform: translate(-50%, -50%);
   background: white;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   padding: 30px;
   text-align: center;
   z-index: 9999;
@@ -232,7 +399,7 @@
 }
 
 .custom-alert button {
-  background: #28a745; /* green for success */
+  background: #28a745;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -242,7 +409,7 @@
 }
 
 .error-alert button {
-  background: #dc3545; /* red for error */
+  background: #dc3545;
 }
 
 .circle-loader {
@@ -289,18 +456,27 @@
 
 @keyframes drawCircle {
   to {
-      stroke-dashoffset: 0;
+    stroke-dashoffset: 0;
   }
 }
 
 @keyframes drawCheck {
   to {
-      stroke-dashoffset: 0;
+    stroke-dashoffset: 0;
   }
 }
 
 @keyframes drawX {
   to {
-      stroke-dashoffset: 0;
+    stroke-dashoffset: 0;
   }
 }
+
+/* Make input fields responsive */
+@media screen and (max-width: 480px) {
+  .input-field {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
