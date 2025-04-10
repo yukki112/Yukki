@@ -49,7 +49,7 @@
                             <label for="password" class="form-label fw-semibold fs-6" style="color: white;">Password</label>
                             <div id="login">
                                 <div class="passwordContainer">
-                                    <input type="password" class="inputField input-form form-control px-3 fs-6 fw-normal" id="passwordInput" name="password" >
+                                    <input type="password" class="inputField input-form form-control px-3 fs-6 fw-normal" id="passwordInput" name="password">
                                     <i class="fa-solid fa-eye-slash" id="togglePassword" style="cursor: pointer;"></i>
                                 </div>
                             </div>
@@ -122,6 +122,20 @@
     if (localStorage.getItem("isLoggedIn") === "true") {
         window.location.replace("Yukki/index.html");
     }
+</script>
+<script>
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('passwordInput');
+        const icon = this;
+        
+        // Toggle the type attribute
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        
+        // Toggle the eye icon
+        icon.classList.toggle('fa-eye-slash');
+        icon.classList.toggle('fa-eye');
+    });
 </script>
 
 
