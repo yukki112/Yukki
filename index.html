@@ -1,184 +1,766 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Login.css" />
-    <link rel="stylesheet" href="Main.css" />
-    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <title>Login</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="styles.css">
+
+  <title>Yukk's personal website</title>
 </head>
-
 <body>
-    <div class="loginContainer">
-        <div class="d-lg-flex position-relative">
-            <div class="d-flex logoContainer">
-                <div class="polygon1 position-relative">
-                    <video class="logo" autoplay loop playsinline controls>
-                        <source src="Yukki/images/Minji.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="polygon2"></div>
-            </div>
-            <div class="form-container d-flex justify-content-center w-100 p-3 p-lg-5">
-                <div class="m-auto">
-                    <div class="form-header1 ps-2 mb-5">
-                        <div class="credentials-icon-container text-center mb-4">
-                            <div class="credentials-note-icon" data-bs-toggle="modal" data-bs-target="#credentialsModal">
-                                <i class="fas fa-key"></i>
-                                <span class="credentials-hint">Click for login details</span>
-                            </div>
-                        </div>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="left">
+      <a href="index.html">Yukki</a>
+    </div>
+    
 
-                        <div class="modal fade" id="credentialsModal" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-warning">
-                                        <h5 class="modal-title">Login Credentials</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="credential-item">
-                                            <i class="fas fa-user me-2"></i>
-                                            <strong>Username:</strong> yukki
-                                        </div>
-                                        <div class="credential-item mt-3">
-                                            <i class="fas fa-lock me-2"></i>
-                                            <strong>Password:</strong> minji
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
-                    
-                    <div class="login-wrapper">
-                        <h2 class="login-title">Login</h2>
-                    
-                        <form class="login-form" id="loginForm">
-                            <div class="input-group">
-                                <div class="input-icon">
-                                    <i class="fa-solid fa-user"></i>
-                                </div>
-                                <div class="password-field">
-                                    <input type="text" class="input-field" id="username" name="username" placeholder="Enter your username">
-                                </div>
-                            </div>
-                    
-                            <div class="input-group">
-                                <div class="input-icon">
-                                    <i class="fa-solid fa-lock"></i>
-                                </div>
-                                <div class="password-field">
-                                    <input type="password" class="input-field" id="passwordInput" name="password" placeholder="Enter your password">
-                                    <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
-                                </div>
-                            </div>
-                    
-                            <div class="form-footer">
-                                <button type="submit" class="submit-btn">Login</button>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <!-- Success Alert -->
-                    <div id="successAlert" class="custom-alert success-alert" style="display: none;">
-                        <div class="circle-loader success">
-                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                                <circle class="circle" cx="26" cy="26" r="25" fill="none"/>
-                                <path class="check" fill="none" d="M14 27l7 7 16-16"/>
-                            </svg>
-                        </div>
-                        <h3>You can now Access Yukki's Profile!</h3>
-                        <p>You’ve successfully logged in.</p>
-                        <button onclick="goToIndex()">Continue</button>
-                    </div>
 
-                    <!-- Error Alert -->
-                    <div id="errorAlert" class="custom-alert error-alert" style="display: none;">
-                        <div class="circle-loader error">
-                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                                <circle class="circle" cx="26" cy="26" r="25" fill="none"/>
-                                <path class="check x-mark" fill="none" d="M16 16l20 20M36 16l-20 20"/>
-                            </svg>
-                        </div>
-                        <h3>Uh, oh! You can't access Yukki's Profile</h3>
-                        <p>Incorrect username or password.</p>
-                        <button onclick="closeError()">Retry</button>
-                    </div>
-                </div>
+
+    <div class="right">
+      <a href="index.html" rel="noopener noreferrer">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+      <a href="About.html" rel="noopener noreferrer">
+        <i class="fa-solid fa-user"></i>
+        <span>About</span>
+      </a>
+      <a href="contact.html"  rel="noopener noreferrer">
+        <i class="fa-solid fa-phone"></i>
+        <span>Contacts</span>
+      </a>
+      <a href="project.html" target="_blank" rel="noopener noreferrer">
+        <i class="fa-solid fa-folder-open"></i>
+        <span>Projects</span>
+      </a>
+
+      
+      <a href="#" onclick="logout()">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+      
+      
+    </div>
+  </nav>
+<hr>
+  <main>
+    <!-- SECTION 1: Hero -->
+    <section class="hero-section">
+
+      <div class="headshot"> 
+        <video autoplay loop playsinline controls>
+            <source src="videos/holy.mp4" type="video/mp4">
+        </video>
+    </div>
+
+      <div class="text">
+        <h2>I'm Yukki (or whatever you wanna call me)</h2> <br>
+        <p>I'm Yukki! A big fan of NewJeans and Partynextdoor, with my biases being Kim Minji and Danielle Marsh. I enjoy playing Roblox, League of Legends, Valorant, and Mobile Legends.</p>
+
+        <div class="links">
+          <a href="#">
+           
+            <span>Partynextdoor</span>
+          </a>
+          <a href="#">
+           
+            <span>Kim Minji</span>
+          </a>
+          <a href="#">
+          
+            <span>Danielle Marsh</span>
+          </a>
+          
+          
+          
+        </div>
+      </div>
+    </section>
+    <hr>
+    <br> <br> 
+   
+    <!-- SECTION 2: Skills -->
+    <section id="skills" class="skills-section">
+      <h2>-`♡´- </h2>
+      <div class="text">
+       I'm not good but i know how to code in HTML, CSS, JavaScript, PHP, and MySQL. I'm always looking to learn more and improve my skills!
+      </div>
+
+      <div class="cells">
+        <div class="cell">
+          <img src="images/html-logo.webp" alt="html logo">
+          <span>HTML</span>
+        </div>
+        
+        <div class="cell">
+          <img src="images/css-logo.webp" alt="css logo">
+          <span>CSS</span>
+        </div>
+        
+        <div class="cell">
+          <img src="images/javascript-logo.webp" alt="javascript logo">
+          <span>JavaScript</span>
+        </div>
+        
+        <div class="cell">
+          <img src="images/PHP.png" alt="node logo">
+          <span>PHP</span>
+        </div>
+        
+        <div class="cell">
+          <img src="images/SQL.png" alt="react logo">
+          <span>MySQL</span>
+        </div>
+      </div>
+    </section>
+
+    <br> 
+<hr>
+      <header class="recommended-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-4">
+            <h1 class="mb-0">"Idols Edit and pics"</h1>
+        </div>
+    
+        <div class="sorting d-flex align-items-center gap-3">
+            <div class="search-container">
+                <i class="ri-search-line search-icon"></i>
+                <input type="text" class="search-bar" placeholder="Search...">
             </div>
+            
+        </div>
+    </header>
+    
+            
+        <section id="minji" class="product-grid">
+        <div class="product-card">
+          <video class="hover-video" src="videos/Minji 1.mp4" loop playsinline style="cursor: pointer;"></video>
+          <div class="product-socials">
+            <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+        <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+          </div>
+          <div class="product-info">
+              <h2>Minjinextdoor</h2>
+              <p class="location">PARTYNEXTDOOR - MAKE IT TO THE MORNING</p>
+          </div>
+      </div>
+            
+      <div class="product-card">
+        <video class="hover-video" src="videos/Minji.mp4" loop playsinline style="cursor: pointer;"></video>
+      <div class="product-socials">
+        <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+        <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+      </div>
+      <div class="product-info">
+          <h2>Minji Flatline</h2>
+          <p class="location">Justin Bieber - Flatline</p>
+      </div>
+  </div>
+            
+
+      <div class="product-card">
+        <video class="hover-video" src="videos/minjishi.mp4" loop playsinline style="cursor: pointer;"></video>
+        <div class="product-socials">
+          <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+        <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+        </div>
+        <div class="product-info">
+            <h2>Minji be my GF</h2>
+            <p class="location">:P</p>
         </div>
     </div>
 
+    <div class="product-card">
+      <video class="hover-video" src="videos/fantasy.mp4" loop playsinline style="cursor: pointer;"></video>
+      <div class="product-socials">
+        <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+        <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+      </div>
+      <div class="product-info">
+          <h2>Minji in her Fanstasy</h2>
+          <p class="location">Bazzi - Fantasy</p>
+      </div>
+  </div>
 
-    <section id="footer">
-        <footer>
-          <div class="footerContainer">
-              <div class="socialIcons">
-                  <a href="mailto:stephenviray12@gmail.com"target="_blank"><i class="fa-brands fa-google-plus"></i></a>
-                  <a href="https://www.instagram.com/wya.yukki/ "target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                  <a href="https://discord.com/users/904149441794170942"target="_blank"><i class="fa-brands fa-discord"></i></a>
-                  <a href="https://www.tiktok.com/@user17452816481"target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                  <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58?si=2130265f60404cab"target="_blank"><i class="fa-brands fa-spotify"></i></a>
-              </div>
-              <div class="footerBottom">
-                <p><span class="designer">Yukki &copy; 2025</span></p>
+  <div class="product-card">
+    <video class="hover-video" src="videos/pillowtalk.mp4" loop playsinline style="cursor: pointer;"></video>
+    <div class="product-socials">
+      <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+      <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+    </div>
+    <div class="product-info">
+        <h2>Minji x Zayn</h2>
+        <p class="location">ZAYN - PILLOWTALK</p>
+    </div>
+</div>
+
+<div class="product-card">
+  <video class="hover-video" src="videos/boo.mp4" loop playsinline style="cursor: pointer;"></video>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+        <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Minji boo</h2>
+      <p class="location">Usher - My boo (ft. Alicia Keys)</p>
+  </div>
+</div>
+
+<div class="product-card">
+  <video class="hover-video" src="videos/herway.mp4" loop playsinline style="cursor: pointer;"></video>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Minji in her way</h2>
+      <p class="location">PARTYNEXTDOOR - Her Way</p>
+  </div>
+</div>
+
+<div class="product-card">
+  <video class="hover-video" src="videos/tiredminji.mp4" loop playsinline style="cursor: pointer;"></video>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Tired minji</h2>
+      <p class="location">she's wants to sleep</p>
+  </div>
+</div>
+
+<div class="product-card">
+  <video class="hover-video" src="videos/spin.mp4" loop playsinline style="cursor: pointer;"></video>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Minji x Drake/21savage </h2>
+      <p class="location">Drake, 21 Savage - Spin Bout U</p>
+  </div>
+</div>
+
+<div class="product-card">
+  <video class="hover-video" src="videos/yeat.mp4" loop playsinline style="cursor: pointer;"></video>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Minji Luvs it</h2>
+      <p class="location">Yeat - ILUV</p>
+  </div>
+</div>
+
+
+<div class="product-card">
+  <video class="hover-video" src="videos/sigma.mp4" loop playsinline style="cursor: pointer;"></video>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Minji Sigma mode</h2>
+      <p class="location">🗿🗿🗿🗿</p>
+  </div>
+</div>
+
+<div class="product-card">
+  <video class="hover-video" src="videos/minha.mp4" loop playsinline style="cursor: pointer;"></video>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Minji x Hanni</h2>
+      <p class="location">🥵🥵</p>
+  </div>
+</div>
+
+
+    <div class="product-card">
+      <a href="#">
+      <img src="images/3.jpg" alt="Product Image"> </a>
+      <div class="product-socials">
+        <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+      </div>
+      <div class="product-info">
+          <h2>Minji na maganda</h2>
+          <p class="location">5k isang kurtina</p>
+      </div>
+    </div>  
+       
+
+<div class="product-card">
+  <a href="#">
+  <img src="images/4.jpg" alt="Product Image"> </a>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Minji na kumakamot ng ulo</h2>
+      <p class="location">I love Kim Minji</p>
+  </div>
+</div>
+
+<div class="product-card">
+  <a href="#">
+  <img src="images/10.jpg" alt="Product Image"> </a>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Minji na aso</h2>
+      <p class="location">+9999 aura</p>
+  </div>
+</div>
+
+<div class="product-card">
+  <a href="#"></a>
+  <img src="images/14.jpg" alt="Product Image"> </a>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Minji na galit 😡🤬</h2>
+      <p class="location">galit sa lahat</p>
+  </div>
+</div>
+
+
+<div class="product-card">
+  <video class="hover-video" src="videos/shit.mp4" loop playsinline style="cursor: pointer;"></video>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>New jeans</h2>
+      <p class="location">PARTYNEXTDOOR - Some Of Your Love</p>
+  </div>
+</div>
+
+<div class="product-card">
+  <video class="hover-video" src="videos/god.mp4" loop playsinline style="cursor: pointer;"></video>
+  <div class="product-socials">
+    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
+    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
+  </div>
+  <div class="product-info">
+      <h2>Partynextdoor</h2>
+      <p class="location">(Party for short)</p>
+  </div>
+</div>
+        </section>
+
+
+    
+        <br> <br> <br>
+        <hr>
+      <header class="skills-section">
+        <br> <br>
+          <h2>˶>⩊<˶</h2>
+          <div class="text">
+           "Music Gallery"
+          </div>
+        </div>
+      </header>
+
+        <section id="musics" class="product-grid">
+          <div class="product-card">
+            <a href="#" target="_blank">
+              <img src="images/pnd.png" alt="Product Image">
+            </a>
+            <div class="product-socials">
+              <a href="https://open.spotify.com/track/12VH4g5pTMZmrUVzfJq7F7?si=52a45b3c23ea45cf" target="_blank" data-tooltip="Spotify">
+                <i class="ri-spotify-fill"></i>
+              </a>
+              <a href="https://www.youtube.com/watch?v=Zzl20a6AmRE" target="_blank" data-tooltip="YouTube">
+                <i class="ri-youtube-fill"></i>
+              </a>
             </div>
-      </footer>
+            <div class="product-info">
+              <h1>Make it to the morning</h1>
+              <audio controls src="audios/Make.mp3"></audio>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <a href="#" target="_blank">
+              <img src="images/fatd.png" alt="Product Image">
+            </a>
+            <div class="product-socials">
+              <a href="https://open.spotify.com/track/1yeB8MUNeLo9Ek1UEpsyz6?si=3ee201475ac84f10" target="_blank" data-tooltip="Spotify">
+                <i class="ri-spotify-fill"></i>
+              </a>
+              <a href="https://www.youtube.com/watch?v=F7o0upORtCw" target="_blank" data-tooltip="YouTube">
+                <i class="ri-youtube-fill"></i>
+              </a>
+            </div>
+            <div class="product-info">
+              <h2>Rich baby daddy</h2>
+              <audio controls src="audios/rich.mp3"></audio>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <a href="#" target="_blank">
+              <img src="images/ldos.png" alt="Product Image">
+            </a>
+            <div class="product-socials">
+              <a href="https://open.spotify.com/track/14SaZBTjxlorHJQxXh01Hu?si=faeefba5f94e4bab" target="_blank" data-tooltip="Spotify">
+                <i class="ri-spotify-fill"></i>
+              </a>
+              <a href="https://www.youtube.com/watch?v=TP3moIiyZFI" target="_blank" data-tooltip="YouTube">
+                <i class="ri-youtube-fill"></i>
+              </a>
+            </div>
+            <div class="product-info">
+              <h2>Girls need love</h2>
+              <audio controls src="audios/girls.mp3"></audio>
+            </div>
+          </div>
+          
+            <div class="product-card">
+              <a href="#" target="_blank">
+                  <img src="images/njz.jpg" alt="Product Image">
+              </a>
+              <div class="product-socials">
+                  <a href="https://open.spotify.com/track/65FftemJ1DbbZ45DUfHJXE?si=89a38cbdec2f4bfd" target="_blank" data-tooltip="Spotify">
+                      <i class="ri-spotify-fill"></i>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=sVTy_wmn5SU" target="_blank" data-tooltip="YouTube">
+                    <i class="ri-youtube-fill"></i>
+                  </a>
+              </div>
+              <div class="product-info">
+                  <h2>OMG</h2>
+                  <audio controls>
+                      <source src="audios/omg.mp3" type="audio/mp3">
+                  </audio>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <a href="#" target="_blank">
+                  <img src="images/PND1.jpg" alt="Product Image">
+              </a>
+              <div class="product-socials">
+                  <a href="https://open.spotify.com/track/5fEB6ZmVkg63GZg9qO86jh?si=1ff2ca5c733a43e4" target="_blank" data-tooltip="Spotify">
+                      <i class="ri-spotify-fill"></i>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=lXYq9ImJIN8" target="_blank" data-tooltip="YouTube">
+                    <i class="ri-youtube-fill"></i>
+                  </a>
+              </div>
+              <div class="product-info">
+                  <h2>Break from toronto</h2>
+                  <audio controls>
+                      <source src="audios/break.mp3" type="audio/mp3">
+                  </audio>
+              </div>
+            </div>
+
+
+            <div class="product-card">
+              <a href="#" target="_blank">
+                  <img src="images/post.png" alt="Product Image">
+              </a>
+              <div class="product-socials">
+                  <a href="https://open.spotify.com/track/0e7ipj03S05BNilyu5bRzt?si=bbf030df014641a0" target="_blank" data-tooltip="Spotify">
+                      <i class="ri-spotify-fill"></i>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=UceaB4D0jpo" target="_blank" data-tooltip="YouTube">
+                    <i class="ri-youtube-fill"></i>
+                  </a>
+              </div>
+              <div class="product-info">
+                  <h2>Rockstar</h2>
+                  <audio controls>
+                      <source src="audios/rock.mp3" type="audio/mp3">
+                  </audio>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <a href="#" target="_blank">
+                  <img src="images/tecca.jpeg" alt="Product Image">
+              </a>
+              <div class="product-socials">
+                  <a href="https://open.spotify.com/track/1lOe9qE0vR9zwWQAOk6CoO?si=7214cf34f191485c" target="_blank" data-tooltip="Spotify">
+                      <i class="ri-spotify-fill"></i>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=1XzY2ij_vL4" target="_blank" data-tooltip="YouTube">
+                    <i class="ri-youtube-fill"></i>
+                  </a>
+              </div>
+              <div class="product-info">
+                  <h2>Ransom</h2>
+                  <audio controls>
+                      <source src="audios/ransom.mp3" type="audio/mp3">
+                  </audio>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <a href="#" target="_blank">
+                  <img src="images/over.png" alt="Product Image">
+              </a>
+              <div class="product-socials">
+                  <a href="https://open.spotify.com/track/43IMaycr34ZR5kS8mlL5hH?si=5b58ff08a2244da5" target="_blank" data-tooltip="Spotify">
+                      <i class="ri-spotify-fill"></i>
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=nw_CvBvQ9ZQ" target="_blank" data-tooltip="YouTube">
+                    <i class="ri-youtube-fill"></i>
+                  </a>
+              </div>
+              <div class="product-info">
+                  <h2>Just might</h2>
+                  <audio controls>
+                      <source src="audios/jm.mp3" type="audio/mp3">
+                  </audio>
+              </div>
+            </div>
+
+
+            <div class="product-card">
+              <a href="#" target="_blank">
+                  <img src="images/PND2.jpg" alt="Product Image">
+              </a>
+              <div class="product-socials">
+                  <a href="https://www.youtube.com/watch?v=YhanSA7Pm5A&list=RDYhanSA7Pm5A&start_radio=1" target="_blank" data-tooltip="Youtube">
+                    <i class="ri-youtube-fill"></i>
+
+                  </a>
+              </div>
+              <div class="product-info">
+                  <h2>Some Of Your Love</h2>
+                  <audio controls>
+                      <source src="audios/some.mp3" type="audio/mp3">
+                  </audio>
+              </div>
+            </div>
+            
+            
+          </section>
+        </section>
+        
+        
+          
+
+                    </section>
+
+    <!-- SECTION 4: Contact -->
+    <section id="footer">
+    <footer>
+      <div class="footerContainer">
+          <div class="socialIcons">
+              <a href="mailto:stephenviray12@gmail.com"target="_blank"><i class="fa-brands fa-google-plus"></i></a>
+              <a href="https://www.instagram.com/wya.yukki/ "target="_blank"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://discord.com/users/904149441794170942"target="_blank"><i class="fa-brands fa-discord"></i></a>
+              <a href="https://www.tiktok.com/@user17452816481"target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+              <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58?si=2130265f60404cab"target="_blank"><i class="fa-brands fa-spotify"></i></a>
+          </div>
+          <div class="footerBottom">
+            <p><span class="designer">Yukki &copy; 2025</span></p>
+        </div>
+  </footer>
   
 </section>
+  </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script>
+    function toggleDropdown() {
+        const dropdown = document.querySelector(".dropdown-menu");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+    document.addEventListener("click", function(event) {
+        if (!event.target.closest(".dropdown")) {
+            document.querySelector(".dropdown-menu").style.display = "none";
+        }
+    });
+</script>
 
-    <script>
-        // Handle the form submission
-        document.getElementById("loginForm").addEventListener("submit", function (e) {
-            e.preventDefault();
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const firstImage = document.querySelector(".product-card img");
 
-            const username = document.getElementById("username").value.trim().toLowerCase();
-            const password = document.getElementById("passwordInput").value;
+        if (firstImage) {
+            firstImage.onload = function () {
+                let width = firstImage.clientWidth;
+                let height = firstImage.clientHeight;
 
-            if (username === "yukki" && password === "minji") {
-                document.getElementById("successAlert").style.display = "block";  // Show success alert
+                document.querySelectorAll(".product-card img").forEach(img => {
+                    img.style.width = width + "px";
+                    img.style.height = height + "px";
+                    img.style.objectFit = "cover";
+                });
+            };
+        }
+    });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const productGrid = document.querySelector(".product-grid");
+    const productCards = Array.from(document.querySelectorAll(".product-card"));
+    const azButton = document.querySelector(".sorting .a-z");
+    const defaultButton = document.querySelector(".sorting .default");
+    const priceButton = document.querySelector(".sorting .list-view");
+
+    const originalOrder = [...productCards];
+
+    azButton.addEventListener("click", function () {
+        productCards.sort((a, b) => {
+            const nameA = a.querySelector("h2").textContent.toLowerCase();
+            const nameB = b.querySelector("h2").textContent.toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+
+        productGrid.innerHTML = "";
+        productCards.forEach(card => productGrid.appendChild(card));
+    });
+
+    defaultButton.addEventListener("click", function () {
+        productGrid.innerHTML = "";
+        originalOrder.forEach(card => productGrid.appendChild(card));
+    });
+
+    priceButton.addEventListener("click", function () {
+        productCards.sort((a, b) => {
+            const priceA = parseFloat(a.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
+            const priceB = parseFloat(b.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
+            return priceA - priceB;
+        });
+
+        productGrid.innerHTML = "";
+        productCards.forEach(card => productGrid.appendChild(card));
+    });
+});
+</script>
+
+<script>
+document.querySelectorAll('.sorting button').forEach(button => {
+    button.addEventListener('click', function() {
+        document.querySelectorAll('.sorting button').forEach(btn => {
+            btn.style.backgroundColor = '#fff';
+            btn.style.color = 'black';
+        });
+
+        this.style.backgroundColor = '#000';
+        this.style.color = '#fff';
+    });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBar = document.querySelector(".search-bar");
+    const productCards = document.querySelectorAll("#minji .product-card"); // Only target cards within the #minji section
+    const productGrid = document.querySelector(".product-grid");
+
+    // Create the "No products found" message
+    let noResultsMessage = document.querySelector(".no-results");
+    if (!noResultsMessage) {
+        noResultsMessage = document.createElement("div");
+        noResultsMessage.textContent = "No products found.";
+        noResultsMessage.classList.add("no-results");
+        noResultsMessage.style.cssText = "opacity: 0; visibility: hidden; transition: opacity 0.3s ease;";
+        productGrid.appendChild(noResultsMessage);
+    }
+
+    searchBar.addEventListener("input", function () {
+        const searchText = this.value.toLowerCase().trim();
+        let hasResults = false;
+
+        productCards.forEach(card => {
+            const productName = card.querySelector("h2").textContent.toLowerCase();
+            if (productName.includes(searchText)) {
+                card.style.display = "block";
+                setTimeout(() => {
+                    card.style.opacity = "1";
+                }, 10);
+                hasResults = true;
             } else {
-                document.getElementById("errorAlert").style.display = "block";  // Show error alert
+                card.style.opacity = "0";
+                setTimeout(() => {
+                    card.style.display = "none";
+                }, 200);
             }
         });
 
-        // Redirect to the "Yukki" page after successful login
-        function goToIndex() {
-            window.location.href = "Yukki/index.html";  // Change this to your desired URL
+        // Show or hide the "No products found" message
+        if (hasResults) {
+            noResultsMessage.style.opacity = "0";
+            setTimeout(() => {
+                noResultsMessage.style.visibility = "hidden";
+            }, 200);
+        } else {
+            noResultsMessage.style.visibility = "visible";
+            setTimeout(() => {
+                noResultsMessage.style.opacity = "1";
+            }, 10);
         }
+    });
+});
+</script>
 
-        // Close the error alert
-        function closeError() {
-            document.getElementById("errorAlert").style.display = "none";
-        }
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const videos = document.querySelectorAll(".hover-video");
 
-        // Password toggle visibility
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('passwordInput');
-            const icon = this;
-            
-            // Toggle the type attribute
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            
-            // Toggle the eye icon
-            icon.classList.toggle('fa-eye-slash');
-            icon.classList.toggle('fa-eye');
+    if (videos.length === 0) {
+        console.warn("No videos found with class .hover-video");
+        return;
+    }
+
+    // Ensure videos play on hover
+    videos.forEach(video => {
+        video.muted = true; // Start muted to avoid autoplay restrictions
+
+        video.addEventListener("mouseenter", () => {
+            video.play().catch(err => console.warn("Autoplay failed:", err));
         });
-    </script>
-</body>
 
+        video.addEventListener("mouseleave", () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+    });
+
+    // Allow unmuting on user interaction
+    document.addEventListener("click", () => {
+        videos.forEach(video => {
+            video.muted = false; // Unmute all videos after first click
+        });
+    }, { once: true }); // Runs only once
+});
+</script>
+
+
+<script>
+  function logout() {
+    localStorage.removeItem("isLoggedIn");
+    window.location.replace("../index.html");
+  }
+</script>
+
+</body>
 </html>
-    
