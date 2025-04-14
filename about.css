@@ -89,14 +89,14 @@ nav .right a span {
 }
 
 .hero-section .text h2 {
-  font-size: 60px;
+  font-size: 30px;
   font-family: 'Winky Sans';
   font-weight: 600;
 }
 
 .hero-section .text p {
   font-family: 'winky sans';
-  font-size: 20px;
+  font-size: 17px;
 
 }
 
@@ -125,9 +125,16 @@ nav .right a span {
   justify-content: right;
 }
 .hero-section .headshot img {
-    width: 600px; /* Adjust the width as needed */
+    width: 400px; /* Adjust the width as needed */
     height: auto; /* Keeps aspect ratio */
     border-radius: 10%;
+  }
+
+  .hero-section .headshots img {
+    width:500px; /* Adjust the width as needed */
+    height: auto; /* Keeps aspect ratio */
+    border-radius: 10%;
+    object-fit: cover;
   }
   
 
@@ -147,7 +154,7 @@ nav .right a span {
 
 .skills-section h2 {
   text-align: center;
-  font-size: 60px;
+  font-size: 70px;
   font-family: 'Winky Sans';
 }
 
@@ -782,7 +789,7 @@ hr {
 @media (max-width: 850px) {
   /* SECTION 1: Hero */
   .hero-section .text h2 {
-    font-size: 35px;
+    font-size: 30px;
   }
 }
 
@@ -803,8 +810,16 @@ hr {
   .hero-section {
     flex-direction: column-reverse;
   }
-
+  .hero-section .headshot {
+    order: 1;
+  }
+  .hero-section .headshots {
+    order: 1;
+  }
   .hero-section .headshot img {
+    width: 390px;
+  }
+  .hero-section .headshots img {
     width: 390px;
   }
 
@@ -855,6 +870,9 @@ hr {
   /* SECTION 2: Skills */
   .skills-section {
     padding: 0 20px;
+  }
+  .skills-section h2 {
+    font-size: 50px;
   }
 
   .skills-section .cells .cell span {
