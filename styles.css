@@ -787,6 +787,10 @@ hr {
     flex-direction: column-reverse;
   }
 
+  .hero-section .headshot {
+    order: 1;
+  }
+
   .hero-section .headshot img {
     width: 300px;
   }
