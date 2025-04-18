@@ -21,7 +21,7 @@
 
   <nav>
     <div class="left">
-      <a href="index.html">Yukki</a>
+      <a href="index.html" id="profileTrigger">Yukki</a>
     </div>
     
 
@@ -611,7 +611,16 @@
 
 
 
-
+                    <div id="bugGameContainer">
+                      <div id="gameStats">
+                        <div>Score: <span id="score">0</span></div>
+                        <div>Time: <span id="time">30</span>s</div>
+                      </div>
+                      <div id="bugGame">
+                        <div id="gameTitle">Whack a Danielle</div>
+                      </div>
+                      <button id="closeGame">Close Game</button>
+                    </div>
 
 
     <section id="footer">
@@ -823,6 +832,150 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   </script>
+
+<script>
+  // Whack-a-Bug Game
+  document.addEventListener('DOMContentLoaded', function() {
+    const profileTrigger = document.getElementById('profileTrigger');
+    const bugGameContainer = document.getElementById('bugGameContainer');
+    const bugGame = document.getElementById('bugGame');
+    const scoreDisplay = document.getElementById('score');
+    const timeDisplay = document.getElementById('time');
+    const closeGameBtn = document.getElementById('closeGame');
+    
+    let clickCount = 0;
+    let lastClickTime = 0;
+    let gameActive = false;
+    let score = 0;
+    let timeLeft = 30;
+    let gameTimer;
+    let bugTimer;
+    
+    // Detect rapid clicks on profile link
+    profileTrigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const now = Date.now();
+      if (now - lastClickTime < 500) { // 500ms between clicks
+        clickCount++;
+        if (clickCount >= 4) { // 5 clicks (starts from 0)
+          startGame();
+          clickCount = 0;
+        }
+      } else {
+        clickCount = 1; // Reset if too slow
+      }
+      lastClickTime = now;
+    });
+    
+    function startGame() {
+      if (gameActive) return;
+      
+      gameActive = true;
+      score = 0;
+      timeLeft = 30;
+      scoreDisplay.textContent = score;
+      timeDisplay.textContent = timeLeft;
+      bugGameContainer.style.display = 'flex';
+      bugGame.innerHTML = '<div id="gameTitle">Whack a Danielle</div>'; // Reset title when game starts
+      
+      // Start timer
+      gameTimer = setInterval(function() {
+        timeLeft--;
+        timeDisplay.textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }, 1000);
+      
+      // Start bug spawning
+      bugTimer = setInterval(spawnBug, 800);
+    }
+    
+    function spawnBug() {
+      if (!gameActive) return;
+      
+      const bug = document.createElement('div');
+      bug.className = 'bug';
+      
+      // Random position
+      const maxX = bugGame.clientWidth - 50;
+      const maxY = bugGame.clientHeight - 50;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      
+      bug.style.left = `${x}px`;
+      bug.style.top = `${y}px`;
+      
+      // Random size variation
+      const size = 30 + Math.random() * 40;
+      bug.style.width = `${size}px`;
+      bug.style.height = `${size}px`;
+      
+      // Click to squash
+      bug.addEventListener('click', function() {
+        if (!bug.classList.contains('squashed')) {
+          bug.classList.add('squashed');
+          score++;
+          scoreDisplay.textContent = score;
+          
+          // Remove after animation
+          setTimeout(() => {
+            bug.remove();
+          }, 300);
+        }
+      });
+      
+      // Remove after 1.5-3 seconds if not clicked
+      const lifeTime = 1500 + Math.random() * 1500;
+      setTimeout(() => {
+        if (bug.parentNode && !bug.classList.contains('squashed')) {
+          bug.remove();
+        }
+      }, lifeTime);
+      
+      bugGame.appendChild(bug);
+    }
+    
+    function endGame() {
+      gameActive = false;
+      clearInterval(gameTimer);
+      clearInterval(bugTimer);
+      
+      // Show final score
+      alert(`Game Over! Your score: ${score}`);
+    }
+    
+    closeGameBtn.addEventListener('click', function() {
+      bugGameContainer.style.display = 'none';
+      if (gameActive) {
+        endGame();
+      }
+    });
+  });
+</script>
+
+<Script>
+  // Make game responsive
+function adjustGameSize() {
+  const bugGame = document.getElementById('bugGame');
+  const header = document.getElementById('gameHeader');
+  
+  // Adjust for mobile landscape
+  if (window.innerHeight < window.innerWidth && window.innerWidth < 768) {
+    bugGame.style.height = '70%';
+    header.style.width = '70%';
+  } else {
+    bugGame.style.height = '60%';
+    header.style.width = '90%';
+  }
+}
+
+// Call on load and resize
+window.addEventListener('load', adjustGameSize);
+window.addEventListener('resize', adjustGameSize);
+</Script>
 
 </body>
 </html>

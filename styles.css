@@ -768,8 +768,8 @@ hr {
   line-height: 2;
   font-family: "winky sans";
   font-size: 18px;
-  white-space: normal; /* Changed from pre-line to normal */
-  word-break: break-word; /* Optional: helps prevent overflow */
+  white-space: normal;  
+  word-break: break-word;
 }
 
 
@@ -779,6 +779,91 @@ hr {
 
 }
 
+
+  /* Whack-a-Bug Game Styles */
+  #bugGameContainer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #bugGame {
+    position: relative;
+    width: 80%;
+    height: 70%;
+    background-color: #222;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .bug {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('images/danipaku.jpg'); /* Using your profile pic as bug */
+    background-size: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+  
+  .bug:hover {
+    transform: scale(1.1);
+  }
+  
+  .bug.squashed {
+    transform: scale(0);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  
+  #gameStats {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'winky sans';
+  }
+  
+  #closeGame {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+  }
+  
+  #closeGame:hover {
+    background-color: #ff6b81;
+  }
+
+  #gameTitle {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    font-family: 'winky sans';
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    pointer-events: none;
+  }
 
 @media (max-width: 768px) {
   .modal-content {
@@ -1137,5 +1222,65 @@ hr {
 @media (max-width: 480px) {
   .recommended-header h1 {
     font-size: 40px; 
+  }
+}
+
+
+
+
+@media (max-width: 768px) {
+  #bugGame {
+    width: 95%;
+    height: 50%;
+  }
+  
+  #gameHeader {
+    width: 95%;
+    flex-direction: column;
+  }
+  
+  #gameStats {
+    flex-direction: row;
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  
+  #gameTitle {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    order: -1;
+    width: 100%;
+  }
+  
+  .bug {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  #bugGame {
+    height: 45%;
+  }
+  
+  #gameStats {
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+  
+  #gameTitle {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .bug {
+    width: 25px;
+    height: 25px;
+  }
+  
+  #closeGame {
+    padding: 6px 12px;
+    font-size: 0.8rem;
   }
 }

@@ -21,7 +21,7 @@
   <!-- NAVBAR -->
   <nav>
     <div class="left">
-      <a href="#">Yukki</a>
+      <a href="index.html" id="profileTrigger">Yukki</a>
     </div>
     
 
@@ -90,7 +90,7 @@
 
 
     <section id="skills" class="skills-section">
-        <h2>💖 Things I Like</h2>
+        <h2>Things i Like (optional)</h2>
     </section>
     <!-- SECTION 1: Hero -->
     <section class="hero-section">
@@ -169,80 +169,6 @@
             <img src="images/ekoc.png" alt="irelia">
           </div>
       </section>
-<hr>
-
-<section id="skills" class="skills-section">
-    <h2>🧠 Personality</h2>
-</section>
-<!-- SECTION 1: Hero -->
-<section class="hero-section">
-    <div class="headshots">
-        <img src="images/Minjishi.png" alt="Minji Danielle">
-      </div>
-  <div class="text">
-    <h2>My Personality (maybe)</h2> <br>
-    <p>* MBTI: INTJ / INFP depending on the mood <br>
-       * Zodiac: "Aquarius" Your favorite overthinker <br>
-       * Vibe: Dark!!! <br>
-       * Love Language: Acts of service (like helping you debug your code 😎)
-       
-    </p>
-    </div>
-  </div>
-
-</section>
-<hr>
-<section id="skills" class="skills-section">
-    <h2>😎 Fun Facts</h2>
-</section>
-<!-- SECTION 1: Hero -->
-<section class="hero-section">
-   
-  <div class="text">
-    <h2>Fun Facts even my self didin't know Lmaooo</h2> <br>
-    <p>* I drink water (i'm lying) <br>
-       * I can eat rice with ANYTHING and be happy <br>
-       * I've accidentally debugged something by doing nothing and it just worked Lmaoo<br>
-       * I once played League all night and forgot what sunlight felt like <br>
-       * Sometimes I listen to the same song on repeat for hours (NewJeans and PartyNextDoor supremacy) <br>
-       * I rage in games but still say “gg” like a civilized demon <br>
-       * If I had a peso for every time I forgot a semicolon, I'd be rich <br>
-       * I memorize song lyrics faster than I memorize exam stuff <br>
-       * I drink Coke like it’s a buff potion <br>
-       * I dream that minji is my wife <br>
-       * My attention span is either 5 seconds or 5 hours, no in-between <br>
-       * I screenshot memes and forget to look at them later <br>
-       * I once opened VS Code just to feel like I’m doing something productive <br>
-       * My playlist can go from chill to emotional damage real fast <br>
-
-
-       
-    </p>
-    </div>
-  </div>
-  <div class="headshots">
-    <img src="images/monkey.png" alt="monkney">
-  </div>
-
-</section>
-<hr>
-<section id="skills" class="skills-section">
-    <h2>🔗 Connect With Me</h2>
-</section>
-<!-- SECTION 1: Hero -->
-<section class="hero-section">
-    <div class="headshots">
-        <img src="images/peace.jpg" alt="Minji Danielle">
-      </div>    
-  <div class="text">
-    <h2>I love Minji if you don't know</h2> <br>
-    <p>If you’re into games, vibes, or just wanna talk, listen to music — I’m your person. Let’s play, and grow together. 🔥
-    </p>
-    </div>
-  </div>
-</section>
-
-
 
 
 
@@ -289,6 +215,17 @@
 
 
 
+
+<div id="bugGameContainer">
+  <div id="gameStats">
+    <div>Score: <span id="score">0</span></div>
+    <div>Time: <span id="time">30</span>s</div>
+  </div>
+  <div id="bugGame">
+    <div id="gameTitle">Whack a Danielle</div>
+  </div>
+  <button id="closeGame">Close Game</button>
+</div>
 
 
 
@@ -514,6 +451,150 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   </script>
+
+<script>
+  // Whack-a-Bug Game
+  document.addEventListener('DOMContentLoaded', function() {
+    const profileTrigger = document.getElementById('profileTrigger');
+    const bugGameContainer = document.getElementById('bugGameContainer');
+    const bugGame = document.getElementById('bugGame');
+    const scoreDisplay = document.getElementById('score');
+    const timeDisplay = document.getElementById('time');
+    const closeGameBtn = document.getElementById('closeGame');
+    
+    let clickCount = 0;
+    let lastClickTime = 0;
+    let gameActive = false;
+    let score = 0;
+    let timeLeft = 30;
+    let gameTimer;
+    let bugTimer;
+    
+    // Detect rapid clicks on profile link
+    profileTrigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const now = Date.now();
+      if (now - lastClickTime < 500) { // 500ms between clicks
+        clickCount++;
+        if (clickCount >= 4) { // 5 clicks (starts from 0)
+          startGame();
+          clickCount = 0;
+        }
+      } else {
+        clickCount = 1; // Reset if too slow
+      }
+      lastClickTime = now;
+    });
+    
+    function startGame() {
+      if (gameActive) return;
+      
+      gameActive = true;
+      score = 0;
+      timeLeft = 30;
+      scoreDisplay.textContent = score;
+      timeDisplay.textContent = timeLeft;
+      bugGameContainer.style.display = 'flex';
+      bugGame.innerHTML = '<div id="gameTitle">Whack a Danielle</div>'; // Reset title when game starts
+      
+      // Start timer
+      gameTimer = setInterval(function() {
+        timeLeft--;
+        timeDisplay.textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }, 1000);
+      
+      // Start bug spawning
+      bugTimer = setInterval(spawnBug, 800);
+    }
+    
+    function spawnBug() {
+      if (!gameActive) return;
+      
+      const bug = document.createElement('div');
+      bug.className = 'bug';
+      
+      // Random position
+      const maxX = bugGame.clientWidth - 50;
+      const maxY = bugGame.clientHeight - 50;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      
+      bug.style.left = `${x}px`;
+      bug.style.top = `${y}px`;
+      
+      // Random size variation
+      const size = 30 + Math.random() * 40;
+      bug.style.width = `${size}px`;
+      bug.style.height = `${size}px`;
+      
+      // Click to squash
+      bug.addEventListener('click', function() {
+        if (!bug.classList.contains('squashed')) {
+          bug.classList.add('squashed');
+          score++;
+          scoreDisplay.textContent = score;
+          
+          // Remove after animation
+          setTimeout(() => {
+            bug.remove();
+          }, 300);
+        }
+      });
+      
+      // Remove after 1.5-3 seconds if not clicked
+      const lifeTime = 1500 + Math.random() * 1500;
+      setTimeout(() => {
+        if (bug.parentNode && !bug.classList.contains('squashed')) {
+          bug.remove();
+        }
+      }, lifeTime);
+      
+      bugGame.appendChild(bug);
+    }
+    
+    function endGame() {
+      gameActive = false;
+      clearInterval(gameTimer);
+      clearInterval(bugTimer);
+      
+      // Show final score
+      alert(`Game Over! Your score: ${score}`);
+    }
+    
+    closeGameBtn.addEventListener('click', function() {
+      bugGameContainer.style.display = 'none';
+      if (gameActive) {
+        endGame();
+      }
+    });
+  });
+</script>
+
+<Script>
+  // Make game responsive
+function adjustGameSize() {
+  const bugGame = document.getElementById('bugGame');
+  const header = document.getElementById('gameHeader');
+  
+  // Adjust for mobile landscape
+  if (window.innerHeight < window.innerWidth && window.innerWidth < 768) {
+    bugGame.style.height = '70%';
+    header.style.width = '70%';
+  } else {
+    bugGame.style.height = '60%';
+    header.style.width = '90%';
+  }
+}
+
+// Call on load and resize
+window.addEventListener('load', adjustGameSize);
+window.addEventListener('resize', adjustGameSize);
+</Script>
 
   
 </body>
