@@ -48,7 +48,7 @@
       
       <a href="#">
         <i class="fa-solid fa-heart"></i>
-        <span>≽^• ˕ • ྀི≼</span>
+        <span>Personal</span>
       </a>
       
     </div>
@@ -246,8 +246,40 @@
 
 
 
-
-
+<div id="personalModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="modal-body">
+      <div class="modal-image">
+        <img src="images/Dannnii.jpg" alt="Your Photo">
+      </div>
+      <div class="modal-info">
+        <h2>this is so me fr</h2>
+        <div class="info-columns">
+          <div class="info-column">
+            <p><strong>First Name:</strong> <span class="info-box">?</span></p>
+            <p><strong>Last Name:</strong> <span class="info-box">?</span></p>
+            <p><strong>Nickname:</strong> <span class="info-box">Yukki</span></p>
+            <p><strong>Gender:</strong> <span class="info-box">Male</span></p>
+            <p><strong>Birthday:</strong> <span class="info-box">Feburary 10 </span></p>
+            <p><strong>Zodiac:</strong> <span class="info-box">Aquarius ♒️ </span></p>
+            <p><strong>Age:</strong> <span class="info-box">SECRET!! 😛</span></p>
+            <p><strong>Email:</strong> <span class="info-box">Stephenviray12@gmail.com</span></p>
+          </div>
+          <div class="info-column">
+            <p><strong>Course:</strong> <span class="info-box">Information Technology</span></p>
+            <p><strong>School:</strong> <span class="info-box">BCP</span></p>
+            <p><strong>Year Level:</strong> <span class="info-box">?</span></p>
+            <p><strong>Languages:</strong> <span class="info-box">English, Filipino</span></p>
+            <p><strong>Contact:</strong> <span class="info-box">09984319585</span></p>
+            <p><strong>Location:</strong> <span class="info-box">Quezon City</span></p>
+            <p><strong>Github:</strong> <span class="info-box"><a href="https://github.com/yukki112" target="_blank">https://github.com/yukki112</a></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -454,6 +486,34 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
+
+
+<script>
+  // Get the modal and the link that opens it
+  const modal = document.getElementById("personalModal");
+  const heartLink = document.querySelector('a[href="#"] i.fa-heart').parentElement;
+  
+  // Get the <span> element that closes the modal
+  const closeBtn = document.getElementsByClassName("close")[0];
+  
+  // When the user clicks the heart link, open the modal 
+  heartLink.onclick = function(event) {
+    event.preventDefault();
+    modal.style.display = "block";
+  }
+  
+  // When the user clicks on (x), close the modal
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  </script>
 
   
 </body>

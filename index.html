@@ -18,7 +18,7 @@
   <title>Ilove Minji</title>
 </head>
 <body>
-  <!-- NAVBAR -->
+
   <nav>
     <div class="left">
       <a href="index.html">Yukki</a>
@@ -48,7 +48,7 @@
       
       <a href="#">
         <i class="fa-solid fa-heart"></i>
-        <span>≽^• ˕ • ྀི≼</span>
+        <span>Personal</span>
       </a>
       
       
@@ -56,7 +56,7 @@
   </nav>
 <hr>
   <main>
-    <!-- SECTION 1: Hero -->
+
     <section class="hero-section">
 
       <div class="headshot"> 
@@ -91,7 +91,7 @@
     <hr>
     <br> <br> 
    
-    <!-- SECTION 2: Skills -->
+
     <section id="skills" class="skills-section">
       <h2>-`♡´- </h2>
       <div class="text">
@@ -572,7 +572,48 @@
 
                     </section>
 
-    <!-- SECTION 4: Contact -->
+                 
+                    <div id="personalModal" class="modal">
+                      <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div class="modal-body">
+                          <div class="modal-image">
+                            <img src="images/Dannnii.jpg" alt="Your Photo">
+                          </div>
+                          <div class="modal-info">
+                            <h2>this is so me fr</h2>
+                            <div class="info-columns">
+                              <div class="info-column">
+                                <p><strong>First Name:</strong> <span class="info-box">?</span></p>
+                                <p><strong>Last Name:</strong> <span class="info-box">?</span></p>
+                                <p><strong>Nickname:</strong> <span class="info-box">Yukki</span></p>
+                                <p><strong>Gender:</strong> <span class="info-box">Male</span></p>
+                                <p><strong>Birthday:</strong> <span class="info-box">Feburary 10 </span></p>
+                                <p><strong>Zodiac:</strong> <span class="info-box">Aquarius ♒️ </span></p>
+                                <p><strong>Age:</strong> <span class="info-box">SECRET!! 😛</span></p>
+                                <p><strong>Email:</strong> <span class="info-box">Stephenviray12@gmail.com</span></p>
+                              </div>
+                              <div class="info-column">
+                                <p><strong>Course:</strong> <span class="info-box">Information Technology</span></p>
+                                <p><strong>School:</strong> <span class="info-box">BCP</span></p>
+                                <p><strong>Year Level:</strong> <span class="info-box">?</span></p>
+                                <p><strong>Languages:</strong> <span class="info-box">English, Filipino</span></p>
+                                <p><strong>Contact:</strong> <span class="info-box">09984319585</span></p>
+                                <p><strong>Location:</strong> <span class="info-box">Quezon City</span></p>
+                                <p><strong>Github:</strong> <span class="info-box"><a href="https://github.com/yukki112" target="_blank">https://github.com/yukki112</a></span></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
     <section id="footer">
     <footer>
       <div class="footerContainer">
@@ -678,10 +719,10 @@ document.querySelectorAll('.sorting button').forEach(button => {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const searchBar = document.querySelector(".search-bar");
-    const productCards = document.querySelectorAll("#minji .product-card"); // Only target cards within the #minji section
+    const productCards = document.querySelectorAll("#minji .product-card");
     const productGrid = document.querySelector(".product-grid");
 
-    // Create the "No products found" message
+
     let noResultsMessage = document.querySelector(".no-results");
     if (!noResultsMessage) {
         noResultsMessage = document.createElement("div");
@@ -711,7 +752,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Show or hide the "No products found" message
+ 
         if (hasResults) {
             noResultsMessage.style.opacity = "0";
             setTimeout(() => {
@@ -736,9 +777,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Ensure videos play on hover
     videos.forEach(video => {
-        video.muted = true; // Start muted to avoid autoplay restrictions
+        video.muted = true; 
 
         video.addEventListener("mouseenter", () => {
             video.play().catch(err => console.warn("Autoplay failed:", err));
@@ -750,16 +790,39 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Allow unmuting on user interaction
+
     document.addEventListener("click", () => {
         videos.forEach(video => {
-            video.muted = false; // Unmute all videos after first click
+            video.muted = false; 
         });
-    }, { once: true }); // Runs only once
+    }, { once: true }); 
 });
 </script>
 
+<script>
+  const modal = document.getElementById("personalModal");
+  const heartLink = document.querySelector('a[href="#"] i.fa-heart').parentElement;
+  
 
+  const closeBtn = document.getElementsByClassName("close")[0];
+  
+
+  heartLink.onclick = function(event) {
+    event.preventDefault();
+    modal.style.display = "block";
+  }
+  
+
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  </script>
 
 </body>
 </html>
