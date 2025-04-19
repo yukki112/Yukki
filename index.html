@@ -58,35 +58,64 @@
   <main>
 
     <section class="hero-section">
-
-      <div class="headshot"> 
-        <video autoplay loop playsinline controls>
+      <div class="circular-gallery">
+        <!-- Main Center Video (Larger & Unmuted) -->
+        <div class="center-video">
+          <video autoplay loop playsinline controls>
             <source src="videos/Minji.mp4" type="video/mp4">
-        </video>
-    </div>
+          </video>
+        </div>
+        
+        <!-- Surrounding Items (10 items - muted) -->
+        <div class="gallery-item" style="--angle: 0deg">
+          <img src="images/3.jpg" alt="Minji 1">
+        </div>
+        <div class="gallery-item" style="--angle: 36deg">
+          <img src="images/4.jpg" alt="Minji 2">
+        </div>
+        <div class="gallery-item" style="--angle: 72deg">
+             <img src="images/7.jpg" alt="Minji 3">
+        </div>
+        <div class="gallery-item" style="--angle: 108deg">
+          <img src="images/10.jpg" alt="Minji 4">
+        </div>
+        <div class="gallery-item" style="--angle: 144deg">
+          <img src="images/123.jpg" alt="Minji 5">
+        </div>
+        <div class="gallery-item" style="--angle: 180deg">
+          <img src="images/14.jpg" alt="Minji 6">
+        </div>
+        <div class="gallery-item" style="--angle: 216deg">
+          <img src="images/11.jpg" alt="Minji 7">
+        </div>
+        <div class="gallery-item" style="--angle: 252deg">
+          <img src="images/peace.jpg" alt="minji 8">
+        </div>
+        <div class="gallery-item" style="--angle: 288deg">
+          <img src="images/shades.jpg" alt="minji 9">
+        </div>
+        <div class="gallery-item" style="--angle: 324deg">
+          <img src="images/1.jpg" alt="minji 10">
+        </div>
+      </div>
 
       <div class="text">
         <h2>I'm Yukki (or whatever you wanna call me)</h2> <br>
         <p>I'm Yukki! A big fan of NewJeans and Partynextdoor, with my biases being Kim Minji and Danielle Marsh. I enjoy playing Roblox, League of Legends, Valorant, and Mobile Legends.</p>
 
         <div class="links">
-          <a href="#">
-           
+          <a href="https://www.instagram.com/partynextdoor/" target="_blank">
             <span>Partynextdoor</span>
           </a>
-          <a href="#">
-           
+          <a href="https://www.instagram.com/newjeans_official/" target="_blank"> 
             <span>Kim Minji</span>
           </a>
-          <a href="#">
-          
+          <a href="https://www.instagram.com/newjeans_official/"  target="_blank">
             <span>Danielle Marsh</span>
           </a>
-          
-          
-          
         </div>
       </div>
+
     </section>
     <hr>
     <br> <br> 
@@ -977,5 +1006,38 @@ window.addEventListener('load', adjustGameSize);
 window.addEventListener('resize', adjustGameSize);
 </Script>
 
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const gallery = document.querySelector('.circular-gallery');
+    const videos = document.querySelectorAll('.gallery-item video');
+    
+    // Play center video (unmuted)
+    const centerVideo = document.querySelector('.center-video video');
+    centerVideo.controls = true; // Show controls for center video
+    
+    // Handle surrounding videos (muted)
+    gallery.addEventListener('mouseenter', function() {
+      videos.forEach(video => {
+        video.currentTime = 0;
+        video.play().catch(e => console.log("Video play prevented"));
+      });
+    });
+    
+    gallery.addEventListener('mouseleave', function() {
+      videos.forEach(video => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    });
+    
+    // Enable sound on click for center video
+    centerVideo.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent bubbling
+      this.muted = !this.muted; // Toggle mute on click
+    });
+  });
+</script>
 </body>
 </html>

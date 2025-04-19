@@ -864,6 +864,106 @@ hr {
     z-index: 10;
     pointer-events: none;
   }
+  
+ /* Circular Gallery Styles */
+.circular-gallery {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto 2rem;
+}
+
+.center-video {
+  position: absolute;
+  width: 450px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10%;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  z-index: 10;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+}
+
+.center-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Surrounding Items with Animation */
+.gallery-item {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 10%;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+  box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transition: 
+    transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.4s ease;
+  /* Animation delay will be set individually */
+}
+
+.gallery-item img,
+.gallery-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8%;
+  transition: transform 0.3s ease;
+}
+
+/* Hover Effects with Animation */
+.circular-gallery:hover .center-video {
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0.3;
+  transition: all 0.4s ease;
+}
+
+.circular-gallery:hover .gallery-item {
+  opacity: 1;
+  transform: translate(-50%, -50%) 
+             rotate(var(--angle)) 
+             translate(300px) 
+             rotate(calc(-1 * var(--angle))) 
+             scale(1);
+}
+
+/* Individual animation delays for each item */
+.gallery-item:nth-child(1) { --angle: 0deg; transition-delay: 0ms; }
+.gallery-item:nth-child(2) { --angle: 36deg; transition-delay: 50ms; }
+.gallery-item:nth-child(3) { --angle: 72deg; transition-delay: 100ms; }
+.gallery-item:nth-child(4) { --angle: 108deg; transition-delay: 150ms; }
+.gallery-item:nth-child(5) { --angle: 144deg; transition-delay: 200ms; }
+.gallery-item:nth-child(6) { --angle: 180deg; transition-delay: 250ms; }
+.gallery-item:nth-child(7) { --angle: 216deg; transition-delay: 300ms; }
+.gallery-item:nth-child(8) { --angle: 252deg; transition-delay: 350ms; }
+.gallery-item:nth-child(9) { --angle: 288deg; transition-delay: 400ms; }
+.gallery-item:nth-child(10) { --angle: 324deg; transition-delay: 450ms; }
+
+/* Hover effect on individual items */
+.gallery-item:hover {
+  transform: translate(-50%, -50%) 
+             rotate(var(--angle)) 
+             translate(300px) 
+             rotate(calc(-1 * var(--angle))) 
+             scale(1.1) !important;
+  z-index: 11;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+.gallery-item:hover img,
+.gallery-item:hover video {
+  transform: scale(1.05);
+}
 
 @media (max-width: 768px) {
   .modal-content {
@@ -1283,4 +1383,59 @@ hr {
     padding: 6px 12px;
     font-size: 0.8rem;
   }
+}
+
+
+/* Perfect Fit for Mobile Screens */
+@media only screen and (max-width: 430px) {
+  .circular-gallery {
+    width: 90vw;
+    height: 90vw;
+    max-width: 380px;
+    max-height: 380px;
+    margin: 5vh auto;
+  }
+  
+  .center-video {
+    width: 100vw;
+    height: 100vw;
+    max-width: 340px;
+    max-height: 380px;
+  }
+  
+  .gallery-item {
+    width: 14vw;
+    height: 14vw;
+    max-width: 55px;
+    max-height: 55px;
+    margin-top: -7vw;
+    margin-left: -7vw;
+    border-radius: 12%;
+    border: 2px solid white;
+  }
+  
+  .circular-gallery:hover .center-video {
+    transform: translate(-51%, -58%) scale(0.55);
+  }
+  
+  .circular-gallery:hover .gallery-item {
+    opacity: 1;
+    transform: translate(-5%, -50%) 
+               rotate(var(--angle)) 
+               translate(40vw) 
+               rotate(calc(-1 * var(--angle))) 
+               scale(1);
+  }
+  
+  /* Adjusted Angles for Perfect Circle */
+  .gallery-item:nth-child(1) { --angle: 0deg; }   /* Top */
+  .gallery-item:nth-child(2) { --angle: 36deg; }  /* Top-right */
+  .gallery-item:nth-child(3) { --angle: 72deg; }
+  .gallery-item:nth-child(4) { --angle: 108deg; }
+  .gallery-item:nth-child(5) { --angle: 144deg; } /* Bottom-right */
+  .gallery-item:nth-child(6) { --angle: 180deg; } /* Bottom */
+  .gallery-item:nth-child(7) { --angle: 216deg; } /* Bottom-left */
+  .gallery-item:nth-child(8) { --angle: 252deg; }
+  .gallery-item:nth-child(9) { --angle: 288deg; } /* Top-left */
+  .gallery-item:nth-child(10) { --angle: 324deg; }
 }
