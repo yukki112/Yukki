@@ -13,551 +13,1174 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" type="Image/png" href="images/13.jpg" sizes="16x16">
-  <link rel="stylesheet" href="contact.css">
+  
+  <style>
+    :root {
+      --github-bg: #0d1117;
+      --github-header: #161b22;
+      --github-border: #30363d;
+      --github-text: #c9d1d9;
+      --github-link: #58a6ff;
+      --github-accent: #1f6feb;
+      --github-green: #238636;
+      --github-card: #161b22;
+    }
+    
+    .light-mode {
+      --github-bg: #ffffff;
+      --github-header: #f6f8fa;
+      --github-border: #d0d7de;
+      --github-text: #24292f;
+      --github-link: #0969da;
+      --github-accent: #0969da;
+      --github-green: #1a7f37;
+      --github-card: #f6f8fa;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background-color: var(--github-bg);
+      color: var(--github-text);
+      line-height: 1.5;
+    }
+    
+    /* Header/Nav */
+    .header {
+      background-color: var(--github-header);
+      border-bottom: 1px solid var(--github-border);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      font-weight: 600;
+      font-size: 30px;
+      color: var(--github-text);
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .nav-links a {
+      color: var(--github-text);
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .nav-links a:hover {
+      color: var(--github-link);
+    }
+    
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .search-bar {
+      background-color: var(--github-bg);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: var(--github-text);
+      width: 240px;
+    }
+    
+    .search-bar:focus {
+      outline: none;
+      border-color: var(--github-link);
+      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3);
+    }
+    
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--github-text);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 6px;
+      border-radius: 6px;
+    }
+    
+    .theme-toggle:hover {
+      background-color: var(--github-border);
+    }
+    
+    /* Main Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 16px;
+      display: flex;
+      gap: 32px;
+    }
+    
+    /* Profile Sidebar */
+    .profile-sidebar {
+      width: 296px;
+      flex-shrink: 0;
+    }
+    
+    .profile-avatar {
+      width: 100%;
+      border-radius: 50%;
+      margin-bottom: 16px;
+      border: 1px solid var(--github-border);
+    }
+    
+    .profile-name {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .profile-username {
+      font-size: 20px;
+      color: #8b949e;
+      margin-bottom: 16px;
+    }
+    
+    .profile-bio {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    .profile-stats {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    .profile-stats a {
+      color: var(--github-text);
+      text-decoration: none;
+    }
+    
+    .profile-stats a:hover {
+      color: var(--github-link);
+    }
+    
+    .profile-location, .profile-social {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    .profile-links {
+      margin-top: 16px;
+    }
+    
+    .profile-link {
+      display: block;
+      padding: 8px 0;
+      color: var(--github-link);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .profile-link:hover {
+      text-decoration: underline;
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+    }
+    
+    .nav-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--github-border);
+      margin-bottom: 16px;
+    }
+    
+    .nav-tab {
+      padding: 8px 16px;
+      font-size: 14px;
+      color: var(--github-text);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+    }
+    
+    .nav-tab.active {
+      background-color: var(--github-bg);
+      border-color: var(--github-border);
+      color: var(--github-text);
+    }
+    
+    /* Contact Content */
+    .contact-section {
+      margin-bottom: 32px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--github-border);
+    }
+    
+    .contact-content {
+      background-color: var(--github-card);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      padding: 24px;
+    }
+    
+    .contact-intro {
+      margin-bottom: 32px;
+    }
+    
+    .contact-intro p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    
+    .contact-row {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .contact-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background-color: var(--github-bg);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      flex: 1;
+    }
+    
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--github-header);
+      border-radius: 6px;
+      font-size: 18px;
+    }
+    
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .contact-details span:first-child {
+      font-size: 14px;
+      color: #8b949e;
+    }
+    
+    .contact-details span:last-child {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    
+    /* Contact Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .input-group {
+      position: relative;
+      flex: 1;
+    }
+    
+    .input-group.full-width {
+      width: 100%;
+    }
+    
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background-color: var(--github-bg);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      color: var(--github-text);
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+    
+    .input-group input:focus,
+    .input-group textarea:focus {
+      outline: none;
+      border-color: var(--github-link);
+      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3);
+    }
+    
+    .input-group label {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      font-size: 14px;
+      color: #8b949e;
+      pointer-events: none;
+      transition: all 0.3s;
+    }
+    
+    .input-group input:focus ~ label,
+    .input-group input:valid ~ label,
+    .input-group textarea:focus ~ label,
+    .input-group textarea:valid ~ label {
+      top: -8px;
+      left: 12px;
+      font-size: 12px;
+      background-color: var(--github-card);
+      padding: 0 4px;
+      color: var(--github-link);
+    }
+    
+    .input-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      padding: 12px 24px;
+      background-color: var(--github-green);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .submit-btn:hover {
+      background-color: #2ea043;
+    }
+    
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--github-border);
+      padding: 40px 0 20px;
+      margin-top: 32px;
+      background-color: var(--github-header);
+    }
+    
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
+    
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .footer-bio {
+      font-size: 14px;
+      color: #8b949e;
+      max-width: 300px;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: var(--github-text);
+    }
+    
+    .footer-column a {
+      display: block;
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .footer-column a:hover {
+      color: var(--github-link);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid var(--github-border);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .social-icons a {
+      color: var(--github-text);
+      font-size: 18px;
+    }
+    
+    .social-icons a:hover {
+      color: var(--github-link);
+    }
+    
+    .copyright {
+      font-size: 14px;
+      color: #8b949e;
+    }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+    }
+    
+    .modal-content {
+      background-color: var(--github-card);
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      width: 80%;
+      max-width: 600px;
+      position: relative;
+    }
+    
+    .close {
+      color: var(--github-text);
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close:hover {
+      color: var(--github-link);
+    }
+    
+    .modal-body {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .modal-image {
+      flex: 1;
+    }
+    
+    .modal-image img {
+      width: 100%;
+      border-radius: 6px;
+    }
+    
+    .modal-info {
+      flex: 2;
+    }
+    
+    .modal-info h2 {
+      margin-bottom: 16px;
+    }
+    
+    .info-columns {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .info-column {
+      flex: 1;
+    }
+    
+    .info-column p {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .info-box {
+      background-color: var(--github-bg);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--github-border);
+    }
+    
+    /* Bug Game */
+    #bugGameContainer {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--github-card);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      padding: 20px;
+      z-index: 1001;
+      width: 80%;
+      max-width: 500px;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    #gameStats {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    
+    #bugGame {
+      width: 100%;
+      height: 300px;
+      background-color: var(--github-bg);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #gameTitle {
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+    
+    .bug {
+      position: absolute;
+      background-color: #ff6b6b;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    
+    .bug.squashed {
+      transform: scale(0.1);
+      opacity: 0.5;
+    }
+    
+    #closeGame {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background-color: var(--github-accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .profile-sidebar {
+        width: 100%;
+      }
+      
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-row {
+        flex-direction: column;
+      }
+      
+      .form-row {
+        flex-direction: column;
+      }
+      
+        .nav-links{
+        gap: 35px;
+      }
+       .logo {
+        margin-left: 135px;
+        font-family: 'Poppins', sans-serif;
+      }
+       .search-bar {
+        width: 180px;
+        margin-left: 80px;
+      }
+      .header-container {
+        flex-wrap: wrap;
+        gap: 25px;
+      }
+      
+      .search-bar {
+        width: 180px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .footer-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+      
+      .modal-body {
+        flex-direction: column;
+      }
+      
+      .info-columns {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
 
-  <title>Ilove Minssji</title>
+  <title>Yukki - Contact</title>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <nav>
-    <div class="left">
-        <a href="index.html" id="profileTrigger">Yukki</a>
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo" id="profileTrigger">Yukki</a>
+      <nav class="nav-links">
+        <a href="index.html">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+        <a href="About.html">
+          <i class="fa-solid fa-user"></i>
+          <span>About</span>
+        </a>
+        <a href="contact.html">
+          <i class="fa-solid fa-phone"></i>
+          <span>Contact</span>
+        </a>
+        <a href="project.html">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>Projects</span>
+        </a>
+       
+      </nav>
+      <div class="header-controls">
+        <input type="text" class="search-bar" placeholder="Search...">
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fa-solid fa-moon"></i>
+        </button>
       </div>
-    
-
-
-
-    <div class="right">
-      <a href="index.html" rel="noopener noreferrer">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-      </a>
-      <a href="About.html"rel="noopener noreferrer">
-        <i class="fa-solid fa-user"></i>
-        <span>About</span>
-      </a>
-      <a href="contact.html"  rel="noopener noreferrer">
-        <i class="fa-solid fa-phone"></i>
-        <span>Contacts</span>
-      </a>
-      <a href="project.html" rel="noopener noreferrer">
-        <i class="fa-solid fa-folder-open"></i>
-        <span>Projects</span>
-      </a>
-
-      
-      <a href="#">
-        <i class="fa-solid fa-heart"></i>
-        <span>Personal</span>
-      </a>
-      
     </div>
-  </nav>
-<hr>
-  <main>
-    <div class="container">
-		<main class="row">
-			<section class="col left">
-                <section id="skills" class="skills-section">
-                    <h2>-`♡´- Contact me</h2>
-                    <div class="text">
-                        Got a project in mind, want to collab, or just wanna chat about code, games, or NewJeans? Feel free to reach out!
-                    </div>
-                    <div class="contactInfo">
-                        <!-- Row 1 -->
-                        <div class="iconRow">
-                            <div class="iconGroup">
-                                <div class="icon">
-                                    <i class="fa-brands fa-google-plus"></i>
-                                </div>
-                                <div class="details">
-                                    <span>Email</span>
-                                    <span>yenajigumina12@gmail.com</span>
-                                </div>
-                            </div>
-                    
-                            <div class="iconGroup">
-                                <div class="icon">
-                                    <i class="fa-brands fa-instagram"></i>
-                                </div>
-                                <div class="details">
-                                    <span>Instagram</span>
-                                    <span>wya.yukki</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <!-- Row 2 -->
-                        <div class="iconRow">
-                            <div class="iconGroup">
-                                <div class="icon">
-                                    <i class="fa-brands fa-discord"></i>
-                                </div>
-                                <div class="details">
-                                    <span>Discord</span>
-                                    <span>Yukiulala</span>
-                                </div>
-                            </div>
-                    
-                            <div class="iconGroup">
-                                <div class="icon">
-                                    <i class="fa-brands fa-tiktok"></i>
-                                </div>
-                                <div class="details">
-                                    <span>Tiktok</span>
-                                    <span>user17452816481</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+  </header>
 
-			</section>
-			<section class="col right">
-				<form class="messageForm">
-					
-					<div class="inputGroup halfWidth">
-						<input type="text" name="" required="required">
-						<label>Your Name</label>
-					</div>
+  <div class="container">
+    <aside class="profile-sidebar">
+      <img src="images/13.jpg" alt="Profile Picture" class="profile-avatar">
+      <h1 class="profile-name">Yukki</h1>
+      <h2 class="profile-username">yukki112</h2>
+      <p class="profile-bio">Developer & NewJeans enthusiast. Learning web development and creating awesome projects</p>
+      
+      <div class="profile-stats">
+        <a href="#">
+          <strong>24</strong> followers
+        </a>
+        <a href="#">
+          <strong>12</strong> following
+        </a>
+        <a href="#">
+          <strong>8</strong> repositories
+        </a>
+      </div>
+      
+      <div class="profile-location">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Quezon City</span>
+      </div>
+      
+      <div class="profile-social">
+        <i class="fa-solid fa-envelope"></i>
+        <span>yenajigumina12@gmail.com</span>
+      </div>
+      
+      <div class="profile-links">
+        <a href="https://github.com/yukki112" class="profile-link" target="_blank">
+          <i class="fa-brands fa-github"></i>
+          yukki112
+        </a>
+        <a href="https://www.instagram.com/wya.yukki/" class="profile-link" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+          wya.yukki
+        </a>
+        <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58" class="profile-link" target="_blank">
+          <i class="fa-brands fa-spotify"></i>
+          Yukki
+        </a>
+        <a href="https://www.instagram.com/newjeans_official/" class="profile-link" target="_blank">
+          <i class="fa-solid fa-star"></i>
+          NewJeans
+        </a>
+        <a href="https://www.instagram.com/partynextdoor/" class="profile-link" target="_blank">
+          <i class="fa-solid fa-music"></i>
+          Partynextdoor
+        </a>
+      </div>
+    </aside>
 
-					<div class="inputGroup halfWidth">
-						<input type="email" name="" required="required">
-						<label>Email</label>
-					</div>
+    <main class="main-content">
+      <nav class="nav-tabs">
+        <a href="#" class="nav-tab active">Contact</a>
+      </nav>
 
-					<div class="inputGroup fullWidth">
-						<input type="text" name="" required="required">
-						<label>Subject</label>
-					</div>
-
-					<div class="inputGroup fullWidth">
-						<textarea required="required"></textarea>
-						<label>Say Something</label>
-					</div>
-
-					<div class="inputGroup fullWidth">
-						<button>Send Message</button>
-					</div>
-
-				</form>
-
-			</section>
-        </section>
-
-		</main>
-	</div>
-
-
-    <div id="personalModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <div class="modal-body">
-            <div class="modal-image">
-              <img src="images/Dannnii.jpg" alt="Your Photo">
-            </div>
-            <div class="modal-info">
-              <h2>this is so me fr</h2>
-              <div class="info-columns">
-                <div class="info-column">
-                  <p><strong>First Name:</strong> <span class="info-box">?</span></p>
-                  <p><strong>Last Name:</strong> <span class="info-box">?</span></p>
-                  <p><strong>Nickname:</strong> <span class="info-box">Yukki</span></p>
-                  <p><strong>Gender:</strong> <span class="info-box">Male</span></p>
-                  <p><strong>Birthday:</strong> <span class="info-box">Feburary 10 </span></p>
-                  <p><strong>Zodiac:</strong> <span class="info-box">Aquarius ♒️ </span></p>
-                  <p><strong>Age:</strong> <span class="info-box">SECRET!! 😛</span></p>
-                  <p><strong>Email:</strong> <span class="info-box">yenajigumina12@gmail.com</span></p>
+      <section class="contact-section">
+       
+        <div class="contact-content">
+          <div class="contact-intro">
+            <p>Got a project in mind, want to collab, or just wanna chat about code, games, or NewJeans? Feel free to reach out!</p>
+          </div>
+          
+          <div class="contact-grid">
+            <div class="contact-info">
+              <div class="contact-row">
+                <div class="contact-group">
+                  <div class="contact-icon">
+                    <i class="fa-brands fa-google-plus"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span>Email</span>
+                    <span>yenajigumina12@gmail.com</span>
+                  </div>
                 </div>
-                <div class="info-column">
-                  <p><strong>Course:</strong> <span class="info-box">Information Technology</span></p>
-                  <p><strong>School:</strong> <span class="info-box">BCP</span></p>
-                  <p><strong>Year Level:</strong> <span class="info-box">?</span></p>
-                  <p><strong>Languages:</strong> <span class="info-box">English, Filipino</span></p>
-                  <p><strong>Contact:</strong> <span class="info-box">09984319585</span></p>
-                  <p><strong>Location:</strong> <span class="info-box">Quezon City</span></p>
-                  <p><strong>Github:</strong> <span class="info-box"><a href="https://github.com/yukki112" target="_blank">https://github.com/yukki112</a></span></p>
+                
+                <div class="contact-group">
+                  <div class="contact-icon">
+                    <i class="fa-brands fa-instagram"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span>Instagram</span>
+                    <span>wya.yukki</span>
+                  </div>
                 </div>
               </div>
+              
+              <div class="contact-row">
+                <div class="contact-group">
+                  <div class="contact-icon">
+                    <i class="fa-brands fa-discord"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span>Discord</span>
+                    <span>Yukiulala</span>
+                  </div>
+                </div>
+                
+                <div class="contact-group">
+                  <div class="contact-icon">
+                    <i class="fa-brands fa-tiktok"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span>Tiktok</span>
+                    <span>user17452816481</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <form class="contact-form">
+              <div class="form-row">
+                <div class="input-group">
+                  <input type="text" name="name" required>
+                  <label>Your Name</label>
+                </div>
+                
+                <div class="input-group">
+                  <input type="email" name="email" required>
+                  <label>Email</label>
+                </div>
+              </div>
+              
+              <div class="input-group full-width">
+                <input type="text" name="subject" required>
+                <label>Subject</label>
+              </div>
+              
+              <div class="input-group full-width">
+                <textarea name="message" required></textarea>
+                <label>Say Something</label>
+              </div>
+              
+              <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <div class="footer-logo">Yukki</div>
+          <p class="footer-bio">Developer & NewJeans enthusiast. Learning web development and creating awesome projects.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h3>Explore</h3>
+            <a href="index.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="project.html">Projects</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-column">
+            <h3>Connect</h3>
+            <a href="https://github.com/yukki112" target="_blank">GitHub</a>
+            <a href="https://www.instagram.com/wya.yukki/" target="_blank">Instagram</a>
+            <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58" target="_blank">Spotify</a>
+            <a href="mailto:yenajigumina12@gmail.com">Email</a>
+          </div>
+          <div class="footer-column">
+            <h3>Favorites</h3>
+            <a href="https://www.instagram.com/newjeans_official/" target="_blank">NewJeans</a>
+            <a href="https://www.instagram.com/partynextdoor/" target="_blank">Partynextdoor</a>
+            <a href="#">League of Legends</a>
+            <a href="#">Valorant</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="social-icons">
+          <a href="mailto:yenajigumina12@gmail.com" target="_blank">
+            <i class="fa-brands fa-google-plus"></i>
+          </a>
+          <a href="https://www.instagram.com/wya.yukki/" target="_blank">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://discord.com/users/904149441794170942" target="_blank">
+            <i class="fa-brands fa-discord"></i>
+          </a>
+          <a href="https://www.tiktok.com/@user17452816481" target="_blank">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58" target="_blank">
+            <i class="fa-brands fa-spotify"></i>
+          </a>
+        </div>
+        <div class="copyright">
+          <span>© 2025 Yukki. All rights reserved.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Personal Info Modal -->
+  <div id="personalModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-body">
+        <div class="modal-image">
+          <img src="images/Dannnii.jpg" alt="Your Photo">
+        </div>
+        <div class="modal-info">
+          <h2>this is so me fr</h2>
+          <div class="info-columns">
+            <div class="info-column">
+              <p><strong>First Name:</strong> <span class="info-box">?</span></p>
+              <p><strong>Last Name:</strong> <span class="info-box">?</span></p>
+              <p><strong>Nickname:</strong> <span class="info-box">Yukki</span></p>
+              <p><strong>Gender:</strong> <span class="info-box">Male</span></p>
+              <p><strong>Birthday:</strong> <span class="info-box">Feburary 10 </span></p>
+              <p><strong>Zodiac:</strong> <span class="info-box">Aquarius ♒️ </span></p>
+              <p><strong>Age:</strong> <span class="info-box">SECRET!! 😛</span></p>
+              <p><strong>Email:</strong> <span class="info-box">yenajigumina12@gmail.com</span></p>
+            </div>
+            <div class="info-column">
+              <p><strong>Course:</strong> <span class="info-box">Information Technology</span></p>
+              <p><strong>School:</strong> <span class="info-box">BCP</span></p>
+              <p><strong>Year Level:</strong> <span class="info-box">?</span></p>
+              <p><strong>Languages:</strong> <span class="info-box">English, Filipino</span></p>
+              <p><strong>Contact:</strong> <span class="info-box">09984319585</span></p>
+              <p><strong>Location:</strong> <span class="info-box">Quezon City</span></p>
+              <p><strong>Github:</strong> <span class="info-box"><a href="https://github.com/yukki112" target="_blank">https://github.com/yukki112</a></span></p>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div id="bugGameContainer">
-        <div id="gameStats">
-          <div>Score: <span id="score">0</span></div>
-          <div>Time: <span id="time">30</span>s</div>
-        </div>
-        <div id="bugGame">
-          <div id="gameTitle">Whack a Danielle</div>
-        </div>
-        <button id="closeGame">Close Game</button>
-      </div>
-
-    <section id="footer">
-        <footer>
-          <div class="footerContainer">
-              <div class="socialIcons">
-                  <a href="mailto:yenajigumina12@gmail.com"target="_blank"><i class="fa-brands fa-google-plus"></i></a>
-                  <a href="https://www.instagram.com/wya.yukki/ "target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                  <a href="https://discord.com/users/904149441794170942"target="_blank"><i class="fa-brands fa-discord"></i></a>
-                  <a href="https://www.tiktok.com/@user17452816481"target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                  <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58?si=2130265f60404cab"target="_blank"><i class="fa-brands fa-spotify"></i></a>
-              </div>
-              <div class="footerBottom">
-                <p><span class="designer">Yukki &copy; 2025</span></p>
-            </div>
-      </footer>
-  
-</section>
-  </main>
+  <!-- Bug Game Container -->
+  <div id="bugGameContainer">
+    <div id="gameStats">
+      <div>Score: <span id="score">0</span></div>
+      <div>Time: <span id="time">30</span>s</div>
+    </div>
+    <div id="bugGame">
+      <div id="gameTitle">Whack a Danielle</div>
+    </div>
+    <button id="closeGame">Close Game</button>
+  </div>
 
   <script>
-    function toggleDropdown() {
-        const dropdown = document.querySelector(".dropdown-menu");
-        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-    document.addEventListener("click", function(event) {
-        if (!event.target.closest(".dropdown")) {
-            document.querySelector(".dropdown-menu").style.display = "none";
-        }
-    });
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const firstImage = document.querySelector(".product-card img");
-        
-        if (firstImage) {
-            firstImage.onload = function () {
-                let width = firstImage.clientWidth;
-                let height = firstImage.clientHeight;
-
-                document.querySelectorAll(".product-card img").forEach(img => {
-                    img.style.width = width + "px";
-                    img.style.height = height + "px";
-                    img.style.objectFit = "cover";
-                });
-            };
-        }
-    });
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-const productGrid = document.querySelector(".product-grid");
-const productCards = Array.from(document.querySelectorAll(".product-card"));
-const azButton = document.querySelector(".sorting .a-z");
-const defaultButton = document.querySelector(".sorting .default");
-const priceButton = document.querySelector(".sorting .list-view");
-
-
-const originalOrder = [...productCards];
-
-
-azButton.addEventListener("click", function () {
-    productCards.sort((a, b) => {
-        const nameA = a.querySelector("h2").textContent.toLowerCase();
-        const nameB = b.querySelector("h2").textContent.toLowerCase();
-        return nameA.localeCompare(nameB);
-    });
-
-    productGrid.innerHTML = "";
-    productCards.forEach(card => productGrid.appendChild(card));
-});
-
-
-defaultButton.addEventListener("click", function () {
-    productGrid.innerHTML = "";
-    originalOrder.forEach(card => productGrid.appendChild(card));
-});
-
-
-priceButton.addEventListener("click", function () {
-    productCards.sort((a, b) => {
-        const priceA = parseFloat(a.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
-        const priceB = parseFloat(b.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
-        return priceA - priceB;
-    });
-
-    productGrid.innerHTML = "";
-    productCards.forEach(card => productGrid.appendChild(card));
-});
-});
-</script>
-
-
-
-<script>
-document.querySelectorAll('.sorting button').forEach(button => {
-button.addEventListener('click', function() {
-document.querySelectorAll('.sorting button').forEach(btn => {
-    btn.style.backgroundColor = '#fff';
-    btn.style.color = 'black';
-});
-
-this.style.backgroundColor = '#000';
-this.style.color = '#fff';
-});
-});
-
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-const searchBar = document.querySelector(".search-bar");
-const productCards = document.querySelectorAll(".product-card");
-const productGrid = document.querySelector(".product-grid");
-
-// Create the "No products found" message
-let noResultsMessage = document.querySelector(".no-results");
-if (!noResultsMessage) {
-    noResultsMessage = document.createElement("div");
-    noResultsMessage.textContent = "No products found.";
-    noResultsMessage.classList.add("no-results");
-    noResultsMessage.style.cssText = "opacity: 0; visibility: hidden; transition: opacity 0.3s ease;";
-    productGrid.appendChild(noResultsMessage);
-}
-
-searchBar.addEventListener("input", function () {
-    const searchText = this.value.toLowerCase().trim();
-    let hasResults = false;
-
-    productCards.forEach(card => {
-        const productName = card.querySelector("h2").textContent.toLowerCase();
-        if (productName.includes(searchText)) {
-            card.style.display = "block";
-            setTimeout(() => {
-                card.style.opacity = "1";
-            }, 10);
-            hasResults = true;
-        } else {
-            card.style.opacity = "0";
-            setTimeout(() => {
-                card.style.display = "none";
-            }, 200);
-        }
-    });
-
-    // Show or hide the "No products found" message
-    if (hasResults) {
-        noResultsMessage.style.opacity = "0";
-        setTimeout(() => {
-            noResultsMessage.style.visibility = "hidden";
-        }, 200);
-    } else {
-        noResultsMessage.style.visibility = "visible";
-        setTimeout(() => {
-            noResultsMessage.style.opacity = "1";
-        }, 10);
-    }
-});
-});
-
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelectorAll(".hover-video");
-
-    if (videos.length === 0) {
-        console.warn("No videos found with class .hover-video");
-        return;
-    }
-
-    // Ensure videos play on hover
-    videos.forEach(video => {
-        video.muted = true; // Start muted to avoid autoplay restrictions
-
-        video.addEventListener("mouseenter", () => {
-            video.play().catch(err => console.warn("Autoplay failed:", err));
-        });
-
-        video.addEventListener("mouseleave", () => {
-            video.pause();
-            video.currentTime = 0;
-        });
-    });
-
-    // Allow unmuting on user interaction
-    document.addEventListener("click", () => {
-        videos.forEach(video => {
-            video.muted = false; // Unmute all videos after first click
-        });
-    }, { once: true }); // Runs only once
-});
-
-</script>
-
-<script>
-    // Get the modal and the link that opens it
-    const modal = document.getElementById("personalModal");
-    const heartLink = document.querySelector('a[href="#"] i.fa-heart').parentElement;
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
     
-    // Get the <span> element that closes the modal
-    const closeBtn = document.getElementsByClassName("close")[0];
-    
-    // When the user clicks the heart link, open the modal 
-    heartLink.onclick = function(event) {
-      event.preventDefault();
-      modal.style.display = "block";
+    // Check for saved theme preference or default to dark
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    if (currentTheme === 'light') {
+      document.body.classList.add('light-mode');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
     }
     
-    // When the user clicks on (x), close the modal
-    closeBtn.onclick = function() {
-      modal.style.display = "none";
-    }
-    
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      
+      if (document.body.classList.contains('light-mode')) {
+        localStorage.setItem('theme', 'light');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        localStorage.setItem('theme', 'dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
       }
-    }
-    </script>
-  
-   <script>
-  // Whack-a-Bug Game
-  document.addEventListener('DOMContentLoaded', function() {
-    const profileTrigger = document.getElementById('profileTrigger');
-    const bugGameContainer = document.getElementById('bugGameContainer');
-    const bugGame = document.getElementById('bugGame');
-    const scoreDisplay = document.getElementById('score');
-    const timeDisplay = document.getElementById('time');
-    const closeGameBtn = document.getElementById('closeGame');
+    });
     
-    let clickCount = 0;
-    let lastClickTime = 0;
-    let gameActive = false;
-    let score = 0;
-    let timeLeft = 30;
-    let gameTimer;
-    let bugTimer;
+    // Personal modal functionality
+    const personalTrigger = document.getElementById('personalTrigger');
+    const personalModal = document.getElementById('personalModal');
+    const closeModal = personalModal.querySelector('.close');
     
-    // Detect rapid clicks on profile link
-    profileTrigger.addEventListener('click', function(e) {
+    personalTrigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      personalModal.style.display = 'block';
+    });
+    
+    closeModal.addEventListener('click', function() {
+      personalModal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', function(e) {
+      if (e.target === personalModal) {
+        personalModal.style.display = 'none';
+      }
+    });
+    
+    // Form validation and submission
+    const contactForm = document.querySelector('.contact-form');
+    contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      const now = Date.now();
-      if (now - lastClickTime < 500) { // 500ms between clicks
-        clickCount++;
-        if (clickCount >= 4) { // 5 clicks (starts from 0)
-          startGame();
-          clickCount = 0;
-        }
-      } else {
-        clickCount = 1; // Reset if too slow
+      // Get form data
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const subject = formData.get('subject');
+      const message = formData.get('message');
+      
+      // Simple validation
+      if (!name || !email || !subject || !message) {
+        alert('Please fill in all fields');
+        return;
       }
-      lastClickTime = now;
+      
+      // In a real implementation, you would send this data to a server
+      // For now, we'll just show a success message
+      alert('Message sent successfully! (This is a demo - in a real site, this would actually send your message)');
+      this.reset();
+      
+      // Reset labels
+      const labels = this.querySelectorAll('label');
+      labels.forEach(label => {
+        label.style.top = '12px';
+        label.style.left = '16px';
+        label.style.fontSize = '14px';
+        label.style.backgroundColor = 'transparent';
+        label.style.color = '#8b949e';
+      });
     });
     
-    function startGame() {
-      if (gameActive) return;
+    // Whack-a-Bug Game
+    document.addEventListener('DOMContentLoaded', function() {
+      const profileTrigger = document.getElementById('profileTrigger');
+      const bugGameContainer = document.getElementById('bugGameContainer');
+      const bugGame = document.getElementById('bugGame');
+      const scoreDisplay = document.getElementById('score');
+      const timeDisplay = document.getElementById('time');
+      const closeGameBtn = document.getElementById('closeGame');
       
-      gameActive = true;
-      score = 0;
-      timeLeft = 30;
-      scoreDisplay.textContent = score;
-      timeDisplay.textContent = timeLeft;
-      bugGameContainer.style.display = 'flex';
-      bugGame.innerHTML = '<div id="gameTitle">Whack a Danielle</div>'; // Reset title when game starts
+      let clickCount = 0;
+      let lastClickTime = 0;
+      let gameActive = false;
+      let score = 0;
+      let timeLeft = 30;
+      let gameTimer;
+      let bugTimer;
       
-      // Start timer
-      gameTimer = setInterval(function() {
-        timeLeft--;
-        timeDisplay.textContent = timeLeft;
+      // Detect rapid clicks on profile link
+      profileTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
         
-        if (timeLeft <= 0) {
-          endGame();
+        const now = Date.now();
+        if (now - lastClickTime < 500) { // 500ms between clicks
+          clickCount++;
+          if (clickCount >= 4) { // 5 clicks (starts from 0)
+            startGame();
+            clickCount = 0;
+          }
+        } else {
+          clickCount = 1; // Reset if too slow
         }
-      }, 1000);
-      
-      // Start bug spawning
-      bugTimer = setInterval(spawnBug, 800);
-    }
-    
-    function spawnBug() {
-      if (!gameActive) return;
-      
-      const bug = document.createElement('div');
-      bug.className = 'bug';
-      
-      // Random position
-      const maxX = bugGame.clientWidth - 50;
-      const maxY = bugGame.clientHeight - 50;
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-      
-      bug.style.left = `${x}px`;
-      bug.style.top = `${y}px`;
-      
-      // Random size variation
-      const size = 30 + Math.random() * 40;
-      bug.style.width = `${size}px`;
-      bug.style.height = `${size}px`;
-      
-      // Click to squash
-      bug.addEventListener('click', function() {
-        if (!bug.classList.contains('squashed')) {
-          bug.classList.add('squashed');
-          score++;
-          scoreDisplay.textContent = score;
-          
-          // Remove after animation
-          setTimeout(() => {
-            bug.remove();
-          }, 300);
-        }
+        lastClickTime = now;
       });
       
-      // Remove after 1.5-3 seconds if not clicked
-      const lifeTime = 1500 + Math.random() * 1500;
-      setTimeout(() => {
-        if (bug.parentNode && !bug.classList.contains('squashed')) {
-          bug.remove();
-        }
-      }, lifeTime);
-      
-      bugGame.appendChild(bug);
-    }
-    
-    function endGame() {
-      gameActive = false;
-      clearInterval(gameTimer);
-      clearInterval(bugTimer);
-      
-      // Show final score
-      alert(`Game Over! Your score: ${score}`);
-    }
-    
-    closeGameBtn.addEventListener('click', function() {
-      bugGameContainer.style.display = 'none';
-      if (gameActive) {
-        endGame();
+      function startGame() {
+        if (gameActive) return;
+        
+        gameActive = true;
+        score = 0;
+        timeLeft = 30;
+        scoreDisplay.textContent = score;
+        timeDisplay.textContent = timeLeft;
+        bugGameContainer.style.display = 'flex';
+        bugGame.innerHTML = '<div id="gameTitle">Whack a Danielle</div>'; // Reset title when game starts
+        
+        // Start timer
+        gameTimer = setInterval(function() {
+          timeLeft--;
+          timeDisplay.textContent = timeLeft;
+          
+          if (timeLeft <= 0) {
+            endGame();
+          }
+        }, 1000);
+        
+        // Start bug spawning
+        bugTimer = setInterval(spawnBug, 800);
       }
+      
+      function spawnBug() {
+        if (!gameActive) return;
+        
+        const bug = document.createElement('div');
+        bug.className = 'bug';
+        
+        // Random position
+        const maxX = bugGame.clientWidth - 50;
+        const maxY = bugGame.clientHeight - 50;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        
+        bug.style.left = `${x}px`;
+        bug.style.top = `${y}px`;
+        
+        // Random size variation
+        const size = 30 + Math.random() * 40;
+        bug.style.width = `${size}px`;
+        bug.style.height = `${size}px`;
+        
+        // Click to squash
+        bug.addEventListener('click', function() {
+          if (!bug.classList.contains('squashed')) {
+            bug.classList.add('squashed');
+            score++;
+            scoreDisplay.textContent = score;
+            
+            // Remove after animation
+            setTimeout(() => {
+              bug.remove();
+            }, 300);
+          }
+        });
+        
+        // Remove after 1.5-3 seconds if not clicked
+        const lifeTime = 1500 + Math.random() * 1500;
+        setTimeout(() => {
+          if (bug.parentNode && !bug.classList.contains('squashed')) {
+            bug.remove();
+          }
+        }, lifeTime);
+        
+        bugGame.appendChild(bug);
+      }
+      
+      function endGame() {
+        gameActive = false;
+        clearInterval(gameTimer);
+        clearInterval(bugTimer);
+        
+        // Show final score
+        alert(`Game Over! Your score: ${score}`);
+      }
+      
+      closeGameBtn.addEventListener('click', function() {
+        bugGameContainer.style.display = 'none';
+        if (gameActive) {
+          endGame();
+        }
+      });
     });
-  });
-</script>
-
-<Script>
-  // Make game responsive
-function adjustGameSize() {
-  const bugGame = document.getElementById('bugGame');
-  const header = document.getElementById('gameHeader');
-  
-  // Adjust for mobile landscape
-  if (window.innerHeight < window.innerWidth && window.innerWidth < 768) {
-    bugGame.style.height = '70%';
-    header.style.width = '70%';
-  } else {
-    bugGame.style.height = '60%';
-    header.style.width = '90%';
-  }
-}
-
-// Call on load and resize
-window.addEventListener('load', adjustGameSize);
-window.addEventListener('resize', adjustGameSize);
-</Script>
-
+  </script>
 </body>
 </html>

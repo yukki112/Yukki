@@ -13,1034 +13,1379 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" type="Image/png" href="images/13.jpg" sizes="16x16">
-  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    :root {
+      --github-bg: #0d1117;
+      --github-header: #161b22;
+      --github-border: #30363d;
+      --github-text: #c9d1d9;
+      --github-link: #58a6ff;
+      --github-accent: #1f6feb;
+      --github-green: #238636;
+      --github-card: #161b22;
+    }
+    
+    .light-mode {
+      --github-bg: #ffffff;
+      --github-header: #f6f8fa;
+      --github-border: #d0d7de;
+      --github-text: #24292f;
+      --github-link: #0969da;
+      --github-accent: #0969da;
+      --github-green: #1a7f37;
+      --github-card: #f6f8fa;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background-color: var(--github-bg);
+      color: var(--github-text);
+      line-height: 1.5;
+    }
+    
+    /* Header/Nav */
+    .header {
+      background-color: var(--github-header);
+      border-bottom: 1px solid var(--github-border);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      font-weight: 600;
+      font-size: 30px;
+      color: var(--github-text);
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .nav-links a {
+      color: var(--github-text);
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .nav-links a:hover {
+      color: var(--github-link);
+    }
+    
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .search-bar {
+      background-color: var(--github-bg);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: var(--github-text);
+      width: 240px;
+    }
+    
+    .search-bar:focus {
+      outline: none;
+      border-color: var(--github-link);
+      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3);
+    }
+    
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--github-text);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 6px;
+      border-radius: 6px;
+    }
+    
+    .theme-toggle:hover {
+      background-color: var(--github-border);
+    }
+    
+    /* Main Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 16px;
+      display: flex;
+      gap: 32px;
+    }
+    
+    /* Profile Sidebar */
+    .profile-sidebar {
+      width: 296px;
+      flex-shrink: 0;
+    }
+    
+    .profile-avatar {
+      width: 100%;
+      border-radius: 50%;
+      margin-bottom: 16px;
+      border: 1px solid var(--github-border);
+    }
+    
+    .profile-name {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .profile-username {
+      font-size: 20px;
+      color: #8b949e;
+      margin-bottom: 16px;
+    }
+    
+    .profile-bio {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    .profile-stats {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    .profile-stats a {
+      color: var(--github-text);
+      text-decoration: none;
+    }
+    
+    .profile-stats a:hover {
+      color: var(--github-link);
+    }
+    
+    .profile-location, .profile-social {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    .profile-links {
+      margin-top: 16px;
+    }
+    
+    .profile-link {
+      display: block;
+      padding: 8px 0;
+      color: var(--github-link);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .profile-link:hover {
+      text-decoration: underline;
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+    }
+    
+    .nav-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--github-border);
+      margin-bottom: 16px;
+    }
+    
+    .nav-tab {
+      padding: 8px 16px;
+      font-size: 14px;
+      color: var(--github-text);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+    }
+    
+    .nav-tab.active {
+      background-color: var(--github-bg);
+      border-color: var(--github-border);
+      color: var(--github-text);
+    }
+    
+    /* Repository Cards */
+    .repo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .repo-card {
+      padding: 16px;
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      background-color: var(--github-card);
+    }
+    
+    .repo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    
+    .repo-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--github-link);
+      text-decoration: none;
+    }
+    
+    .repo-name:hover {
+      text-decoration: underline;
+    }
+    
+    .repo-visibility {
+      font-size: 12px;
+      padding: 2px 6px;
+      border: 1px solid var(--github-border);
+      border-radius: 12px;
+    }
+    
+    .repo-description {
+      font-size: 14px;
+      margin-bottom: 16px;
+      color: #8b949e;
+    }
+    
+    .repo-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: #8b949e;
+    }
+    
+    .repo-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    /* Skills Section */
+    .skills-section {
+      margin-top: 32px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--github-border);
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+    }
+    
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background-color: var(--github-card);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    
+    .skill-icon {
+      width: 16px;
+      height: 16px;
+    }
+    
+    /* Media Section */
+    .media-section {
+      margin-top: 32px;
+    }
+    
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    
+    .media-card {
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: var(--github-card);
+    }
+    
+    /* Modified video height for portrait rectangle */
+    .media-card video, .media-card img {
+      width: 100%;
+      height: 400px; /* Increased height for portrait rectangle */
+      object-fit: cover;
+    }
+    
+    .media-info {
+      padding: 16px;
+    }
+    
+    .media-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .media-description {
+      font-size: 14px;
+      color: #8b949e;
+      margin-bottom: 12px;
+    }
+    
+    .media-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #8b949e;
+    }
+    
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+      gap: 8px;
+    }
+    
+    .pagination button {
+      padding: 6px 12px;
+      background-color: var(--github-card);
+      border: 1px solid var(--github-border);
+      color: var(--github-text);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .pagination button:hover:not(:disabled) {
+      background-color: var(--github-border);
+    }
+    
+    .pagination button.active {
+      background-color: var(--github-accent);
+      color: white;
+      border-color: var(--github-accent);
+    }
+    
+    .pagination button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--github-border);
+      padding: 40px 0 20px;
+      margin-top: 32px;
+      background-color: var(--github-header);
+    }
+    
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
+    
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .footer-bio {
+      font-size: 14px;
+      color: #8b949e;
+      max-width: 300px;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: var(--github-text);
+    }
+    
+    .footer-column a {
+      display: block;
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .footer-column a:hover {
+      color: var(--github-link);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid var(--github-border);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .social-icons a {
+      color: var(--github-text);
+      font-size: 18px;
+    }
+    
+    .social-icons a:hover {
+      color: var(--github-link);
+    }
+    
+    .copyright {
+      font-size: 14px;
+      color: #8b949e;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .profile-sidebar {
+        width: 100%;
+      }
+      
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+      
+       .nav-links{
+        gap: 35px;
+      }
+       .logo {
+        margin-left: 135px;
+        font-family: 'Poppins', sans-serif;
+      }
+       .search-bar {
+        width: 180px;
+        margin-left: 80px;
+      }
+      .header-container {
+        flex-wrap: wrap;
+        gap: 25px;
+      }
+      
+      .search-bar {
+        width: 180px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .footer-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+      
+      /* Adjust video height for mobile */
+      .media-card video, .media-card img {
+        height: 300px; /* Slightly reduced height for mobile */
+      }
+    }
+  </style>
 
-  <title>Ilove Minji</title>
+  <title>Yukki - GitHub Profile</title>
 </head>
 <body>
-
-  <nav>
-    <div class="left">
-      <a href="index.html" id="profileTrigger">Yukki</a>
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo">Yukki</a>
+      <nav class="nav-links">
+        <a href="index.html">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+        <a href="About.html">
+          <i class="fa-solid fa-user"></i>
+          <span>About</span>
+        </a>
+        <a href="contact.html">
+          <i class="fa-solid fa-phone"></i>
+          <span>Contact</span>
+        </a>
+        <a href="project.html">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>Projects</span>
+        </a>
+        <a href="#" id="personalTrigger">
+         
+        </a>
+      </nav>
+      <div class="header-controls">
+        <input type="text" class="search-bar" placeholder="Search media..." id="searchInput">
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
     </div>
-    
+  </header>
 
-
-
-    <div class="right">
-      <a href="index.html" rel="noopener noreferrer">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-      </a>
-      <a href="About.html" rel="noopener noreferrer">
-        <i class="fa-solid fa-user"></i>
-        <span>About</span>
-      </a>
-      <a href="contact.html"  rel="noopener noreferrer">
-        <i class="fa-solid fa-phone"></i>
-        <span>Contacts</span>
-      </a>
-      <a href="project.html"  rel="noopener noreferrer">
-        <i class="fa-solid fa-folder-open"></i>
-        <span>Projects</span>
-      </a>
-
+  <div class="container">
+    <aside class="profile-sidebar">
+      <img src="images/13.jpg" alt="Profile Picture" class="profile-avatar">
+      <h1 class="profile-name">Yukki</h1>
+      <h2 class="profile-username">yukki112</h2>
+      <p class="profile-bio">Developer & NewJeans enthusiast. Learning web development and creating awesome projects</p>
       
-      <a href="#">
-        <i class="fa-solid fa-heart"></i>
-        <span>Personal</span>
-      </a>
+      <div class="profile-stats">
+        <a href="#">
+          <strong>24</strong> followers
+        </a>
+        <a href="#">
+          <strong>12</strong> following
+        </a>
+        <a href="#">
+          <strong>8</strong> repositories
+        </a>
+      </div>
       
+      <div class="profile-location">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Quezon City</span>
+      </div>
       
-    </div>
-  </nav>
-<hr>
-  <main>
+      <div class="profile-social">
+        <i class="fa-solid fa-envelope"></i>
+        <span>yenajigumina12@gmail.com</span>
+      </div>
+      
+      <div class="profile-links">
+        <a href="https://github.com/yukki112" class="profile-link" target="_blank">
+          <i class="fa-brands fa-github"></i>
+          yukki112
+        </a>
+        <a href="https://www.instagram.com/wya.yukki/" class="profile-link" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+          wya.yukki
+        </a>
+        <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58" class="profile-link" target="_blank">
+          <i class="fa-brands fa-spotify"></i>
+          Yukki
+        </a>
+        <a href="https://www.instagram.com/newjeans_official/" class="profile-link" target="_blank">
+          <i class="fa-solid fa-star"></i>
+          NewJeans
+        </a>
+        <a href="https://www.instagram.com/partynextdoor/" class="profile-link" target="_blank">
+          <i class="fa-solid fa-music"></i>
+          Partynextdoor
+        </a>
+      </div>
+    </aside>
 
-    <section class="hero-section">
-      <div class="circular-gallery">
-       
-        <div class="center-video">
-          <video autoplay loop playsinline controls>
-        <source src="videos/888.mp4" type="video/mp4">
-          </video>
-        </div>
+    <main class="main-content">
+      <nav class="nav-tabs">
+        <a href="#" class="nav-tab active">Projects</a>
+        <a href="#" class="nav-tab">Personal</a>
         
-        
-        <div class="gallery-item" style="--angle: 0deg">
-          <img src="images/z.jpg" alt="rei 1">
-        </div>
-        <div class="gallery-item" style="--angle: 36deg">
-          <img src="images/x.jpg" alt="rei 2">
-        </div>
-        <div class="gallery-item" style="--angle: 72deg">
-         <img src="images/c.jpg" alt="rei 3">
-        </div>
-        <div class="gallery-item" style="--angle: 108deg">
-          <img src="images/v.jpg" alt="rei 4">
-        </div>
-        <div class="gallery-item" style="--angle: 144deg">
-          <img src="images/b.jpg" alt="rei 5">
-        </div>
-        <div class="gallery-item" style="--angle: 180deg">
-          <img src="images/n.jpg" alt="rei 6">
-        </div>
-        <div class="gallery-item" style="--angle: 216deg">
-          <img src="images/m.jpg" alt="rei 7">
-        </div>
-        <div class="gallery-item" style="--angle: 252deg">
-          <img src="images/l.jpg" alt="rei 8">
-        </div>
-        <div class="gallery-item" style="--angle: 288deg">
-          <img src="images/k.jpg" alt="rei 9">
-        </div>
-        <div class="gallery-item" style="--angle: 324deg">
-          <img src="images/j.jpg" alt="rei 10">
-        </div>
+      </nav>
+
+      <div class="repo-grid" id="projectsGrid">
+        <!-- Projects will be populated by JavaScript -->
+      </div>
+      
+      <div class="pagination" id="projectsPagination">
+        <!-- Pagination for projects will be populated by JavaScript -->
       </div>
 
-      <div class="text">
-        <h2>I'm Yukki (or whatever you wanna call me)</h2> <br>
-        <p>I'm Yukki! A big fan of NewJeans and Partynextdoor, with my biases being Kim Minji and Danielle Marsh. I enjoy playing Roblox, League of Legends, Valorant, and Mobile Legends.</p>
+      <section class="skills-section">
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <img src="images/html-logo.webp" alt="HTML" class="skill-icon">
+            <span>HTML</span>
+          </div>
+          <div class="skill-item">
+            <img src="images/css-logo.webp" alt="CSS" class="skill-icon">
+            <span>CSS</span>
+          </div>
+          <div class="skill-item">
+            <img src="images/javascript-logo.webp" alt="JavaScript" class="skill-icon">
+            <span>JavaScript</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-node-js skill-icon" style="color: #68a063;"></i>
+            <span>Node.js</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-js-square skill-icon" style="color: #3178c6;"></i>
+            <span>TypeScript</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-solid fa-wind skill-icon" style="color: #38b2ac;"></i>
+            <span>Tailwind CSS</span>
+          </div>
+          <div class="skill-item">
+            <img src="images/java.png" alt="Java" class="skill-icon">
+            <span>Java</span>
+          </div>
+          <div class="skill-item">
+            <img src="images/PHP.png" alt="PHP" class="skill-icon">
+            <span>PHP</span>
+          </div>
+          <div class="skill-item">
+            <img src="images/SQL.png" alt="MySQL" class="skill-icon">
+            <span>MySQL</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-sass skill-icon" style="color: #c69;"></i>
+            <span>SCSS</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-docker skill-icon" style="color: #2496ed;"></i>
+            <span>Docker</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-git-alt skill-icon" style="color: #f05032;"></i>
+            <span>Git</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-laravel skill-icon" style="color: #ff2d20;"></i>
+            <span>Laravel</span>
+          </div>
+        </div>
+      </section>
 
-        <div class="links">
-          <a href="https://www.instagram.com/newjeans_official/"  target="_blank">
-            <span>Rei Naoi</span>
+      <section class="media-section">
+        <h2 class="section-title">Featured Media</h2>
+        <div class="media-grid" id="mediaGrid">
+          <!-- Media cards will be populated by JavaScript -->
+        </div>
+        <div class="pagination" id="pagination">
+          <!-- Pagination buttons will be populated by JavaScript -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <div class="footer-logo">Yukki</div>
+          <p class="footer-bio">Developer & NewJeans enthusiast. Learning web development and creating awesome projects.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h3>Explore</h3>
+            <a href="index.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="project.html">Projects</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-column">
+            <h3>Connect</h3>
+            <a href="https://github.com/yukki112" target="_blank">GitHub</a>
+            <a href="https://www.instagram.com/wya.yukki/" target="_blank">Instagram</a>
+            <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58" target="_blank">Spotify</a>
+            <a href="mailto:yenajigumina12@gmail.com">Email</a>
+          </div>
+          <div class="footer-column">
+            <h3>Favorites</h3>
+            <a href="https://www.instagram.com/newjeans_official/" target="_blank">NewJeans</a>
+            <a href="https://www.instagram.com/partynextdoor/" target="_blank">Partynextdoor</a>
+            <a href="#">League of Legends</a>
+            <a href="#">Valorant</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="social-icons">
+          <a href="mailto:yenajigumina12@gmail.com" target="_blank">
+            <i class="fa-brands fa-google-plus"></i>
           </a>
-          <a href="https://www.instagram.com/partynextdoor/" target="_blank">
-            <span>Partynextdoor</span>
+          <a href="https://www.instagram.com/wya.yukki/" target="_blank">
+            <i class="fa-brands fa-instagram"></i>
           </a>
-          <a href="https://www.instagram.com/newjeans_official/" target="_blank"> 
-            <span>Kim Minji</span>
+          <a href="https://discord.com/users/904149441794170942" target="_blank">
+            <i class="fa-brands fa-discord"></i>
           </a>
-          <a href="https://www.instagram.com/newjeans_official/"  target="_blank">
-            <span>Danielle Marsh</span>
+          <a href="https://www.tiktok.com/@user17452816481" target="_blank">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58" target="_blank">
+            <i class="fa-brands fa-spotify"></i>
           </a>
         </div>
-      </div>
-
-    </section>
-    <hr>
-    <br> <br> 
-   
-
-    <section id="skills" class="skills-section">
-      <h2>-`♡´- </h2>
-      <div class="text">
-        I'm not good and i'm still learing how to code in HTML, CSS, JavaScript, Java, PHP, and MySQL. I'm always looking to learn more and improve my skills!
-      </div>
-
-      <div class="cells">
-        <div class="cell">
-          <img src="images/html-logo.webp" alt="html logo">
-          <span>HTML</span>
-        </div>
-        
-        <div class="cell">
-          <img src="images/css-logo.webp" alt="css logo">
-          <span>CSS</span>
-        </div>
-        
-        <div class="cell">
-          <img src="images/javascript-logo.webp" alt="javascript logo">
-          <span>JavaScript</span>
-        </div>
-        
-        <div class="cell">
-          <img src="images/java.png" alt="java logo">
-          <span>Java</span>
-        </div>
-
-        <div class="cell">
-          <img src="images/PHP.png" alt="node logo">
-          <span>PHP</span>
-        </div>
-        
-        <div class="cell">
-          <img src="images/SQL.png" alt="react logo">
-          <span>MySQL</span>
+        <div class="copyright">
+          <span>© 2025 Yukki. All rights reserved.</span>
         </div>
       </div>
-    </section>
-
-    <br> 
-<hr>
-      <header class="recommended-header d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center gap-4">
-            <h1 class="mb-0">"Idols Edit and pics"</h1>
-        </div>
-    
-        <div class="sorting d-flex align-items-center gap-3">
-            <div class="search-container">
-                <i class="ri-search-line search-icon"></i>
-                <input type="text" class="search-bar" placeholder="Search...">
-            </div>
-            
-        </div>
-    </header>
-    
-            
-        <section id="minji" class="product-grid">
-        <div class="product-card">
-          <video class="hover-video" src="videos/Minji 1.mp4" loop playsinline style="cursor: pointer;"></video>
-          <div class="product-socials">
-            <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-        <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-          </div>
-          <div class="product-info">
-              <h2>Minjinextdoor</h2>
-              <p class="location">PARTYNEXTDOOR - MAKE IT TO THE MORNING</p>
-          </div>
-      </div>
-            
-      <div class="product-card">
-        <video class="hover-video" src="videos/Minji.mp4" loop playsinline style="cursor: pointer;"></video>
-      <div class="product-socials">
-        <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-        <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-      </div>
-      <div class="product-info">
-          <h2>Minji Flatline</h2>
-          <p class="location">Justin Bieber - Flatline</p>
-      </div>
-  </div>
-            
-
-      <div class="product-card">
-        <video class="hover-video" src="videos/minjishi.mp4" loop playsinline style="cursor: pointer;"></video>
-        <div class="product-socials">
-          <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-        <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-        </div>
-        <div class="product-info">
-            <h2>Minji be my GF</h2>
-            <p class="location">:P</p>
-        </div>
     </div>
-
-    <div class="product-card">
-      <video class="hover-video" src="videos/fantasy.mp4" loop playsinline style="cursor: pointer;"></video>
-      <div class="product-socials">
-        <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-        <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-      </div>
-      <div class="product-info">
-          <h2>Minji in her Fanstasy</h2>
-          <p class="location">Bazzi - Fantasy</p>
-      </div>
-  </div>
-
-  <div class="product-card">
-    <video class="hover-video" src="videos/pillowtalk.mp4" loop playsinline style="cursor: pointer;"></video>
-    <div class="product-socials">
-      <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-      <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-    </div>
-    <div class="product-info">
-        <h2>Minji x Zayn</h2>
-        <p class="location">ZAYN - PILLOWTALK</p>
-    </div>
-</div>
-
-<div class="product-card">
-  <video class="hover-video" src="videos/boo.mp4" loop playsinline style="cursor: pointer;"></video>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-        <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Minji boo</h2>
-      <p class="location">Usher - My boo (ft. Alicia Keys)</p>
-  </div>
-</div>
-
-<div class="product-card">
-  <video class="hover-video" src="videos/herway.mp4" loop playsinline style="cursor: pointer;"></video>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Minji in her way</h2>
-      <p class="location">PARTYNEXTDOOR - Her Way</p>
-  </div>
-</div>
-
-<div class="product-card">
-  <video class="hover-video" src="videos/tiredminji.mp4" loop playsinline style="cursor: pointer;"></video>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Tired minji</h2>
-      <p class="location">she's wants to sleep</p>
-  </div>
-</div>
-
-<div class="product-card">
-  <video class="hover-video" src="videos/spin.mp4" loop playsinline style="cursor: pointer;"></video>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Minji x Drake/21savage </h2>
-      <p class="location">Drake, 21 Savage - Spin Bout U</p>
-  </div>
-</div>
-
-<div class="product-card">
-  <video class="hover-video" src="videos/yeat.mp4" loop playsinline style="cursor: pointer;"></video>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Minji Luvs it</h2>
-      <p class="location">Yeat - ILUV</p>
-  </div>
-</div>
-
-
-<div class="product-card">
-  <video class="hover-video" src="videos/sigma.mp4" loop playsinline style="cursor: pointer;"></video>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Minji Sigma mode</h2>
-      <p class="location">🗿🗿🗿🗿</p>
-  </div>
-</div>
-
-<div class="product-card">
-  <video class="hover-video" src="videos/minha.mp4" loop playsinline style="cursor: pointer;"></video>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Minji x Hanni</h2>
-      <p class="location">🥵🥵</p>
-  </div>
-</div>
-
-
-    <div class="product-card">
-      <a href="#">
-      <img src="images/3.jpg" alt="Product Image"> </a>
-      <div class="product-socials">
-        <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-      </div>
-      <div class="product-info">
-          <h2>Minji na maganda</h2>
-          <p class="location">5k isang kurtina</p>
-      </div>
-    </div>  
-       
-
-<div class="product-card">
-  <a href="#">
-  <img src="images/4.jpg" alt="Product Image"> </a>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Minji na kumakamot ng ulo</h2>
-      <p class="location">I love Kim Minji</p>
-  </div>
-</div>
-
-<div class="product-card">
-  <a href="#">
-  <img src="images/10.jpg" alt="Product Image"> </a>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Minji na aso</h2>
-      <p class="location">+9999 aura</p>
-  </div>
-</div>
-
-<div class="product-card">
-  <a href="#"></a>
-  <img src="images/14.jpg" alt="Product Image"> </a>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Minji na galit 😡🤬</h2>
-      <p class="location">galit sa lahat</p>
-  </div>
-</div>
-
-
-<div class="product-card">
-  <video class="hover-video" src="videos/shit.mp4" loop playsinline style="cursor: pointer;"></video>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>New jeans</h2>
-      <p class="location">PARTYNEXTDOOR - Some Of Your Love</p>
-  </div>
-</div>
-
-<div class="product-card">
-  <video class="hover-video" src="videos/god.mp4" loop playsinline style="cursor: pointer;"></video>
-  <div class="product-socials">
-    <a href="https://www.tiktok.com/@newjeans_official" target="_blank" data-tooltip="Tiktok"> <i class="ri-tiktok-fill"></i></a>
-    <a href="https://www.instagram.com/newjeans_official/" target="_blank" data-tooltip="Instagram"><i class="ri-instagram-fill"></i></a>
-  </div>
-  <div class="product-info">
-      <h2>Partynextdoor</h2>
-      <p class="location">(Party for short)</p>
-  </div>
-</div>
-        </section>
-
-
-    
-        <br> <br> <br>
-        <hr>
-      <header class="skills-section">
-        <br> <br>
-          <h2>˶>⩊<˶</h2>
-          <div class="text">
-           "Music Gallery"
-          </div>
-        </div>
-      </header>
-
-        <section id="musics" class="product-grid">
-          <div class="product-card">
-            <a href="#" target="_blank">
-              <img src="images/pnd.png" alt="Product Image">
-            </a>
-            <div class="product-socials">
-              <a href="https://open.spotify.com/track/12VH4g5pTMZmrUVzfJq7F7?si=52a45b3c23ea45cf" target="_blank" data-tooltip="Spotify">
-                <i class="ri-spotify-fill"></i>
-              </a>
-              <a href="https://www.youtube.com/watch?v=Zzl20a6AmRE" target="_blank" data-tooltip="YouTube">
-                <i class="ri-youtube-fill"></i>
-              </a>
-            </div>
-            <div class="product-info">
-              <h1>Make it to the morning</h1>
-              <audio controls src="audios/Make.mp3"></audio>
-            </div>
-          </div>
-          
-          <div class="product-card">
-            <a href="#" target="_blank">
-              <img src="images/fatd.png" alt="Product Image">
-            </a>
-            <div class="product-socials">
-              <a href="https://open.spotify.com/track/1yeB8MUNeLo9Ek1UEpsyz6?si=3ee201475ac84f10" target="_blank" data-tooltip="Spotify">
-                <i class="ri-spotify-fill"></i>
-              </a>
-              <a href="https://www.youtube.com/watch?v=F7o0upORtCw" target="_blank" data-tooltip="YouTube">
-                <i class="ri-youtube-fill"></i>
-              </a>
-            </div>
-            <div class="product-info">
-              <h2>Rich baby daddy</h2>
-              <audio controls src="audios/rich.mp3"></audio>
-            </div>
-          </div>
-          
-          <div class="product-card">
-            <a href="#" target="_blank">
-              <img src="images/ldos.png" alt="Product Image">
-            </a>
-            <div class="product-socials">
-              <a href="https://open.spotify.com/track/14SaZBTjxlorHJQxXh01Hu?si=faeefba5f94e4bab" target="_blank" data-tooltip="Spotify">
-                <i class="ri-spotify-fill"></i>
-              </a>
-              <a href="https://www.youtube.com/watch?v=TP3moIiyZFI" target="_blank" data-tooltip="YouTube">
-                <i class="ri-youtube-fill"></i>
-              </a>
-            </div>
-            <div class="product-info">
-              <h2>Girls need love</h2>
-              <audio controls src="audios/girls.mp3"></audio>
-            </div>
-          </div>
-          
-            <div class="product-card">
-              <a href="#" target="_blank">
-                  <img src="images/njz.jpg" alt="Product Image">
-              </a>
-              <div class="product-socials">
-                  <a href="https://open.spotify.com/track/65FftemJ1DbbZ45DUfHJXE?si=89a38cbdec2f4bfd" target="_blank" data-tooltip="Spotify">
-                      <i class="ri-spotify-fill"></i>
-                  </a>
-                  <a href="https://www.youtube.com/watch?v=sVTy_wmn5SU" target="_blank" data-tooltip="YouTube">
-                    <i class="ri-youtube-fill"></i>
-                  </a>
-              </div>
-              <div class="product-info">
-                  <h2>OMG</h2>
-                  <audio controls>
-                      <source src="audios/omg.mp3" type="audio/mp3">
-                  </audio>
-              </div>
-            </div>
-
-            <div class="product-card">
-              <a href="#" target="_blank">
-                  <img src="images/PND1.jpg" alt="Product Image">
-              </a>
-              <div class="product-socials">
-                  <a href="https://open.spotify.com/track/5fEB6ZmVkg63GZg9qO86jh?si=1ff2ca5c733a43e4" target="_blank" data-tooltip="Spotify">
-                      <i class="ri-spotify-fill"></i>
-                  </a>
-                  <a href="https://www.youtube.com/watch?v=lXYq9ImJIN8" target="_blank" data-tooltip="YouTube">
-                    <i class="ri-youtube-fill"></i>
-                  </a>
-              </div>
-              <div class="product-info">
-                  <h2>Break from toronto</h2>
-                  <audio controls>
-                      <source src="audios/break.mp3" type="audio/mp3">
-                  </audio>
-              </div>
-            </div>
-
-
-            <div class="product-card">
-              <a href="#" target="_blank">
-                  <img src="images/post.png" alt="Product Image">
-              </a>
-              <div class="product-socials">
-                  <a href="https://open.spotify.com/track/0e7ipj03S05BNilyu5bRzt?si=bbf030df014641a0" target="_blank" data-tooltip="Spotify">
-                      <i class="ri-spotify-fill"></i>
-                  </a>
-                  <a href="https://www.youtube.com/watch?v=UceaB4D0jpo" target="_blank" data-tooltip="YouTube">
-                    <i class="ri-youtube-fill"></i>
-                  </a>
-              </div>
-              <div class="product-info">
-                  <h2>Rockstar</h2>
-                  <audio controls>
-                      <source src="audios/rock.mp3" type="audio/mp3">
-                  </audio>
-              </div>
-            </div>
-
-            <div class="product-card">
-              <a href="#" target="_blank">
-                  <img src="images/tecca.jpeg" alt="Product Image">
-              </a>
-              <div class="product-socials">
-                  <a href="https://open.spotify.com/track/1lOe9qE0vR9zwWQAOk6CoO?si=7214cf34f191485c" target="_blank" data-tooltip="Spotify">
-                      <i class="ri-spotify-fill"></i>
-                  </a>
-                  <a href="https://www.youtube.com/watch?v=1XzY2ij_vL4" target="_blank" data-tooltip="YouTube">
-                    <i class="ri-youtube-fill"></i>
-                  </a>
-              </div>
-              <div class="product-info">
-                  <h2>Ransom</h2>
-                  <audio controls>
-                      <source src="audios/ransom.mp3" type="audio/mp3">
-                  </audio>
-              </div>
-            </div>
-
-            <div class="product-card">
-              <a href="#" target="_blank">
-                  <img src="images/over.png" alt="Product Image">
-              </a>
-              <div class="product-socials">
-                  <a href="https://open.spotify.com/track/43IMaycr34ZR5kS8mlL5hH?si=5b58ff08a2244da5" target="_blank" data-tooltip="Spotify">
-                      <i class="ri-spotify-fill"></i>
-                  </a>
-                  <a href="https://www.youtube.com/watch?v=nw_CvBvQ9ZQ" target="_blank" data-tooltip="YouTube">
-                    <i class="ri-youtube-fill"></i>
-                  </a>
-              </div>
-              <div class="product-info">
-                  <h2>Just might</h2>
-                  <audio controls>
-                      <source src="audios/jm.mp3" type="audio/mp3">
-                  </audio>
-              </div>
-            </div>
-
-
-            <div class="product-card">
-              <a href="#" target="_blank">
-                  <img src="images/PND2.jpg" alt="Product Image">
-              </a>
-              <div class="product-socials">
-                  <a href="https://www.youtube.com/watch?v=YhanSA7Pm5A&list=RDYhanSA7Pm5A&start_radio=1" target="_blank" data-tooltip="Youtube">
-                    <i class="ri-youtube-fill"></i>
-
-                  </a>
-              </div>
-              <div class="product-info">
-                  <h2>Some Of Your Love</h2>
-                  <audio controls>
-                      <source src="audios/some.mp3" type="audio/mp3">
-                  </audio>
-              </div>
-            </div>
-            
-            
-          </section>
-        </section>
-        
-        
-          
-
-                    </section>
-
-                 
-                    <div id="personalModal" class="modal">
-                      <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div class="modal-body">
-                          <div class="modal-image">
-                            <img src="images/Dannnii.jpg" alt="Your Photo">
-                          </div>
-                          <div class="modal-info">
-                            <h2>this is so me fr</h2>
-                            <div class="info-columns">
-                              <div class="info-column">
-                                <p><strong>First Name:</strong> <span class="info-box">?</span></p>
-                                <p><strong>Last Name:</strong> <span class="info-box">?</span></p>
-                                <p><strong>Nickname:</strong> <span class="info-box">Yukki</span></p>
-                                <p><strong>Gender:</strong> <span class="info-box">Male</span></p>
-                                <p><strong>Birthday:</strong> <span class="info-box">Feburary 10 </span></p>
-                                <p><strong>Zodiac:</strong> <span class="info-box">Aquarius ♒️ </span></p>
-                                <p><strong>Age:</strong> <span class="info-box">SECRET!! 😛</span></p>
-                                <p><strong>Email:</strong> <span class="info-box">yenajigumina12gmail.com</span></p>
-                              </div>
-                              <div class="info-column">
-                                <p><strong>Course:</strong> <span class="info-box">Information Technology</span></p>
-                                <p><strong>School:</strong> <span class="info-box">BCP</span></p>
-                                <p><strong>Year Level:</strong> <span class="info-box">?</span></p>
-                                <p><strong>Languages:</strong> <span class="info-box">English, Filipino</span></p>
-                                <p><strong>Contact:</strong> <span class="info-box">09984319585</span></p>
-                                <p><strong>Location:</strong> <span class="info-box">Quezon City</span></p>
-                                <p><strong>Github:</strong> <span class="info-box"><a href="https://github.com/yukki112" target="_blank">https://github.com/yukki112</a></span></p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-
-
-                    <div id="bugGameContainer">
-                      <div id="gameStats">
-                        <div>Score: <span id="score">0</span></div>
-                        <div>Time: <span id="time">30</span>s</div>
-                      </div>
-                      <div id="bugGame">
-                        <div id="gameTitle">Whack a Danielle</div>
-                      </div>
-                      <button id="closeGame">Close Game</button>
-                    </div>
-
-
-    <section id="footer">
-    <footer>
-      <div class="footerContainer">
-          <div class="socialIcons">
-              <a href="mailto:yenajigumina12@gmail.com"target="_blank"><i class="fa-brands fa-google-plus"></i></a>
-              <a href="https://www.instagram.com/wya.yukki/ "target="_blank"><i class="fa-brands fa-instagram"></i></a>
-              <a href="https://discord.com/users/904149441794170942"target="_blank"><i class="fa-brands fa-discord"></i></a>
-              <a href="https://www.tiktok.com/@user17452816481"target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-              <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58?si=2130265f60404cab"target="_blank"><i class="fa-brands fa-spotify"></i></a>
-          </div>
-          <div class="footerBottom">
-            <p><span class="designer">Yukki &copy; 2025</span></p>
-        </div>
   </footer>
-  
-</section>
-  </main>
+
+  <!-- Personal Info Modal -->
+  <div id="personalModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-body">
+        <div class="modal-image">
+          <img src="images/Dannnii.jpg" alt="Your Photo">
+        </div>
+        <div class="modal-info">
+          <h2>this is so me fr</h2>
+          <div class="info-columns">
+            <div class="info-column">
+              <p><strong>First Name:</strong> <span class="info-box">?</span></p>
+              <p><strong>Last Name:</strong> <span class="info-box">?</span></p>
+              <p><strong>Nickname:</strong> <span class="info-box">Yukki</span></p>
+              <p><strong>Gender:</strong> <span class="info-box">Male</span></p>
+              <p><strong>Birthday:</strong> <span class="info-box">Feburary 10 </span></p>
+              <p><strong>Zodiac:</strong> <span class="info-box">Aquarius ♒️ </span></p>
+              <p><strong>Age:</strong> <span class="info-box">SECRET!! 😛</span></p>
+              <p><strong>Email:</strong> <span class="info-box">yenajigumina12gmail.com</span></p>
+            </div>
+            <div class="info-column">
+              <p><strong>Course:</strong> <span class="info-box">Information Technology</span></p>
+              <p><strong>School:</strong> <span class="info-box">BCP</span></p>
+              <p><strong>Year Level:</strong> <span class="info-box">?</span></p>
+              <p><strong>Languages:</strong> <span class="info-box">English, Filipino</span></p>
+              <p><strong>Contact:</strong> <span class="info-box">09984319585</span></p>
+              <p><strong>Location:</strong> <span class="info-box">Quezon City</span></p>
+              <p><strong>Github:</strong> <span class="info-box"><a href="https://github.com/yukki112" target="_blank">https://github.com/yukki112</a></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    function toggleDropdown() {
-        const dropdown = document.querySelector(".dropdown-menu");
-        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-    document.addEventListener("click", function(event) {
-        if (!event.target.closest(".dropdown")) {
-            document.querySelector(".dropdown-menu").style.display = "none";
-        }
-    });
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const firstImage = document.querySelector(".product-card img");
-
-        if (firstImage) {
-            firstImage.onload = function () {
-                let width = firstImage.clientWidth;
-                let height = firstImage.clientHeight;
-
-                document.querySelectorAll(".product-card img").forEach(img => {
-                    img.style.width = width + "px";
-                    img.style.height = height + "px";
-                    img.style.objectFit = "cover";
-                });
-            };
-        }
-    });
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const productGrid = document.querySelector(".product-grid");
-    const productCards = Array.from(document.querySelectorAll(".product-card"));
-    const azButton = document.querySelector(".sorting .a-z");
-    const defaultButton = document.querySelector(".sorting .default");
-    const priceButton = document.querySelector(".sorting .list-view");
-
-    const originalOrder = [...productCards];
-
-    azButton.addEventListener("click", function () {
-        productCards.sort((a, b) => {
-            const nameA = a.querySelector("h2").textContent.toLowerCase();
-            const nameB = b.querySelector("h2").textContent.toLowerCase();
-            return nameA.localeCompare(nameB);
-        });
-
-        productGrid.innerHTML = "";
-        productCards.forEach(card => productGrid.appendChild(card));
-    });
-
-    defaultButton.addEventListener("click", function () {
-        productGrid.innerHTML = "";
-        originalOrder.forEach(card => productGrid.appendChild(card));
-    });
-
-    priceButton.addEventListener("click", function () {
-        productCards.sort((a, b) => {
-            const priceA = parseFloat(a.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
-            const priceB = parseFloat(b.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
-            return priceA - priceB;
-        });
-
-        productGrid.innerHTML = "";
-        productCards.forEach(card => productGrid.appendChild(card));
-    });
-});
-</script>
-
-<script>
-document.querySelectorAll('.sorting button').forEach(button => {
-    button.addEventListener('click', function() {
-        document.querySelectorAll('.sorting button').forEach(btn => {
-            btn.style.backgroundColor = '#fff';
-            btn.style.color = 'black';
-        });
-
-        this.style.backgroundColor = '#000';
-        this.style.color = '#fff';
-    });
-});
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const searchBar = document.querySelector(".search-bar");
-    const productCards = document.querySelectorAll("#minji .product-card");
-    const productGrid = document.querySelector(".product-grid");
-
-
-    let noResultsMessage = document.querySelector(".no-results");
-    if (!noResultsMessage) {
-        noResultsMessage = document.createElement("div");
-        noResultsMessage.textContent = "No products found.";
-        noResultsMessage.classList.add("no-results");
-        noResultsMessage.style.cssText = "opacity: 0; visibility: hidden; transition: opacity 0.3s ease;";
-        productGrid.appendChild(noResultsMessage);
-    }
-
-    searchBar.addEventListener("input", function () {
-        const searchText = this.value.toLowerCase().trim();
-        let hasResults = false;
-
-        productCards.forEach(card => {
-            const productName = card.querySelector("h2").textContent.toLowerCase();
-            if (productName.includes(searchText)) {
-                card.style.display = "block";
-                setTimeout(() => {
-                    card.style.opacity = "1";
-                }, 10);
-                hasResults = true;
-            } else {
-                card.style.opacity = "0";
-                setTimeout(() => {
-                    card.style.display = "none";
-                }, 200);
-            }
-        });
-
- 
-        if (hasResults) {
-            noResultsMessage.style.opacity = "0";
-            setTimeout(() => {
-                noResultsMessage.style.visibility = "hidden";
-            }, 200);
-        } else {
-            noResultsMessage.style.visibility = "visible";
-            setTimeout(() => {
-                noResultsMessage.style.opacity = "1";
-            }, 10);
-        }
-    });
-});
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelectorAll(".hover-video");
-
-    if (videos.length === 0) {
-        console.warn("No videos found with class .hover-video");
-        return;
-    }
-
-    videos.forEach(video => {
-        video.muted = true; 
-
-        video.addEventListener("mouseenter", () => {
-            video.play().catch(err => console.warn("Autoplay failed:", err));
-        });
-
-        video.addEventListener("mouseleave", () => {
-            video.pause();
-            video.currentTime = 0;
-        });
-    });
-
-
-    document.addEventListener("click", () => {
-        videos.forEach(video => {
-            video.muted = false; 
-        });
-    }, { once: true }); 
-});
-</script>
-
-<script>
-  const modal = document.getElementById("personalModal");
-  const heartLink = document.querySelector('a[href="#"] i.fa-heart').parentElement;
-  
-
-  const closeBtn = document.getElementsByClassName("close")[0];
-  
-
-  heartLink.onclick = function(event) {
-    event.preventDefault();
-    modal.style.display = "block";
-  }
-  
-
-  closeBtn.onclick = function() {
-    modal.style.display = "none";
-  }
-  
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-  </script>
-
-<script>
-  // Whack-a-Bug Game
-  document.addEventListener('DOMContentLoaded', function() {
-    const profileTrigger = document.getElementById('profileTrigger');
-    const bugGameContainer = document.getElementById('bugGameContainer');
-    const bugGame = document.getElementById('bugGame');
-    const scoreDisplay = document.getElementById('score');
-    const timeDisplay = document.getElementById('time');
-    const closeGameBtn = document.getElementById('closeGame');
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
     
-    let clickCount = 0;
-    let lastClickTime = 0;
-    let gameActive = false;
-    let score = 0;
-    let timeLeft = 30;
-    let gameTimer;
-    let bugTimer;
+    // Check for saved theme preference or default to dark
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    if (currentTheme === 'light') {
+      document.body.classList.add('light-mode');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    }
     
-    // Detect rapid clicks on profile link
-    profileTrigger.addEventListener('click', function(e) {
-      e.preventDefault();
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
       
-      const now = Date.now();
-      if (now - lastClickTime < 500) { // 500ms between clicks
-        clickCount++;
-        if (clickCount >= 4) { // 5 clicks (starts from 0)
-          startGame();
-          clickCount = 0;
-        }
+      if (document.body.classList.contains('light-mode')) {
+        localStorage.setItem('theme', 'light');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
       } else {
-        clickCount = 1; // Reset if too slow
+        localStorage.setItem('theme', 'dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
       }
-      lastClickTime = now;
     });
     
-    function startGame() {
-      if (gameActive) return;
-      
-      gameActive = true;
-      score = 0;
-      timeLeft = 30;
-      scoreDisplay.textContent = score;
-      timeDisplay.textContent = timeLeft;
-      bugGameContainer.style.display = 'flex';
-      bugGame.innerHTML = '<div id="gameTitle">Whack a Danielle</div>'; // Reset title when game starts
-      
-      // Start timer
-      gameTimer = setInterval(function() {
-        timeLeft--;
-        timeDisplay.textContent = timeLeft;
+    // Tab functionality
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
         
-        if (timeLeft <= 0) {
-          endGame();
-        }
-      }, 1000);
-      
-      // Start bug spawning
-      bugTimer = setInterval(spawnBug, 800);
-    }
-    
-    function spawnBug() {
-      if (!gameActive) return;
-      
-      const bug = document.createElement('div');
-      bug.className = 'bug';
-      
-      // Random position
-      const maxX = bugGame.clientWidth - 50;
-      const maxY = bugGame.clientHeight - 50;
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-      
-      bug.style.left = `${x}px`;
-      bug.style.top = `${y}px`;
-      
-      // Random size variation
-      const size = 30 + Math.random() * 40;
-      bug.style.width = `${size}px`;
-      bug.style.height = `${size}px`;
-      
-      // Click to squash
-      bug.addEventListener('click', function() {
-        if (!bug.classList.contains('squashed')) {
-          bug.classList.add('squashed');
-          score++;
-          scoreDisplay.textContent = score;
-          
-          // Remove after animation
-          setTimeout(() => {
-            bug.remove();
-          }, 300);
+        // Show/hide content based on active tab
+        const tabName = this.textContent.toLowerCase();
+        if (tabName === 'projects') {
+          document.getElementById('projectsGrid').style.display = 'grid';
+          document.getElementById('projectsPagination').style.display = 'flex';
+          document.querySelector('.skills-section').style.display = 'block';
+          document.querySelector('.media-section').style.display = 'block';
+        } else if (tabName === 'personal') {
+          document.getElementById('projectsGrid').style.display = 'none';
+          document.getElementById('projectsPagination').style.display = 'none';
+          document.querySelector('.skills-section').style.display = 'none';
+          document.querySelector('.media-section').style.display = 'none';
+          // Show personal modal
+          personalModal.style.display = 'block';
+        } else if (tabName === 'contact') {
+          document.getElementById('projectsGrid').style.display = 'none';
+          document.getElementById('projectsPagination').style.display = 'none';
+          document.querySelector('.skills-section').style.display = 'none';
+          document.querySelector('.media-section').style.display = 'none';
+          // In a real implementation, you would show contact form here
+          alert('Contact form would appear here in a full implementation.');
         }
       });
+    });
+    
+    // Projects data - Updated with 7 new projects
+    const projects = [
+      { 
+        name: 'HR-Dashboard', 
+        description: 'This project is a web-based Human Resources Dashboard designed to help HR managers and executives track employee metrics, performance, and attendance in real-time.',
+        language: 'HTML/CSS/JavaScript',
+        stars: 8,
+        forks: 3,
+        updated: '2 days ago',
+        visibility: 'Public'
+      },
+      { 
+        name: 'Calculator With Splash Screen', 
+        description: 'This is a simple yet visually appealing calculator web app that includes a splash screen on launch.',
+        language: 'HTML/CSS/JavaScript',
+        stars: 5,
+        forks: 2,
+        updated: '1 week ago',
+        visibility: 'Public'
+      },
+      { 
+        name: 'Portfolio', 
+        description: 'This is my personal portfolio website built to showcase my projects, skills, and background as a developer.',
+        language: 'HTML/CSS',
+        stars: 12,
+        forks: 4,
+        updated: '3 weeks ago',
+        visibility: 'Public'
+      },
+      { 
+        name: 'E-commerce Dashboard (Buyer)', 
+        description: 'This project is a Buyer Dashboard for an E-commerce platform. It allows users to easily manage their shopping experience.',
+        language: 'JavaScript',
+        stars: 15,
+        forks: 6,
+        updated: '5 days ago',
+        visibility: 'Public'
+      },
+      { 
+        name: 'School Clinic Website', 
+        description: 'This project is a School Clinic Management Website designed to streamline the health monitoring and medical services for students and staff within a school.',
+        language: 'PHP/MySQL',
+        stars: 7,
+        forks: 2,
+        updated: '2 weeks ago',
+        visibility: 'Public'
+      },
+      { 
+        name: 'CRUD Website', 
+        description: 'This is a basic CRUD (Create, Read, Update, Delete) web application. It allows users to manage data efficiently through a user-friendly interface.',
+        language: 'PHP/MySQL',
+        stars: 9,
+        forks: 3,
+        updated: '3 days ago',
+        visibility: 'Public'
+      },
+      { 
+        name: 'Fragment', 
+        description: 'Added a new Fragment to enhance the modularity and navigation of the application.',
+        language: 'Java',
+        stars: 11,
+        forks: 2,
+        updated: '1 week ago',
+        visibility: 'Public'
+      },
+      { 
+        name: 'ILL UPLOAD MY OTHER PROJ SOON!!', 
+        description: 'DIFF LANGUAGE PROJECTS COMING SOON!!',
+        language: 'PHP/MYSQL/NODE/TYPESCRIPT/PHYTON/JAVA/HTML/CSS/JS/ETC',
+        stars: 12,
+        forks: 3,
+        updated: '2 days ago',
+        visibility: 'Public'
+      }
+    ];
+    
+    // Media data
+    const mediaItems = [
+      { 
+        type: 'video', 
+        src: 'videos/Minji 1.mp4', 
+        title: 'Minjinextdoor', 
+        description: 'PARTYNEXTDOOR - MAKE IT TO THE MORNING',
+        date: '2 days ago'
+      },
+      { 
+        type: 'video', 
+        src: 'videos/Minji.mp4', 
+        title: 'Minji Flatline', 
+        description: 'Justin Bieber - Flatline',
+        date: '1 week ago'
+      },
+      { 
+        type: 'video', 
+        src: 'videos/minjishi.mp4', 
+        title: 'Minji be my GF', 
+        description: ':P',
+        date: '3 days ago'
+      },
+      { 
+        type: 'video', 
+        src: 'videos/fantasy.mp4', 
+        title: 'Minji in her Fantasy', 
+        description: 'Bazzi - Fantasy',
+        date: '5 days ago'
+      },
+      { 
+        type: 'video', 
+        src: 'videos/pillowtalk.mp4', 
+        title: 'Minji x Zayn', 
+        description: 'ZAYN - PILLOWTALK',
+        date: '1 week ago'
+      },
+      { 
+        type: 'video', 
+        src: 'videos/boo.mp4', 
+        title: 'Minji boo', 
+        description: 'Usher - My boo (ft. Alicia Keys)',
+        date: '2 weeks ago'
+      },
+      { 
+        type: 'video', 
+        src: 'videos/herway.mp4', 
+        title: 'Minji in her way', 
+        description: 'PARTYNEXTDOOR - Her Way',
+        date: '4 days ago'
+      },
+      { 
+        type: 'video', 
+        src: 'videos/tiredminji.mp4', 
+        title: 'Tired minji', 
+        description: "she's wants to sleep",
+        date: '6 days ago'
+      }
+    ];
+    
+    // Pagination variables for projects
+    let currentProjectsPage = 1;
+    const projectsPerPage = 3;
+    
+    // Pagination variables for media
+    let currentMediaPage = 1;
+    const mediaPerPage = 2;
+    let filteredMedia = [...mediaItems];
+    
+    // Render projects
+    function renderProjects() {
+      const projectsGrid = document.getElementById('projectsGrid');
+      projectsGrid.innerHTML = '';
       
-      // Remove after 1.5-3 seconds if not clicked
-      const lifeTime = 1500 + Math.random() * 1500;
-      setTimeout(() => {
-        if (bug.parentNode && !bug.classList.contains('squashed')) {
-          bug.remove();
+      const startIndex = (currentProjectsPage - 1) * projectsPerPage;
+      const endIndex = startIndex + projectsPerPage;
+      const projectsToShow = projects.slice(startIndex, endIndex);
+      
+      if (projectsToShow.length === 0) {
+        projectsGrid.innerHTML = '<p>No projects found.</p>';
+        return;
+      }
+      
+      projectsToShow.forEach(project => {
+        const repoCard = document.createElement('div');
+        repoCard.className = 'repo-card';
+        
+        const repoHeader = document.createElement('div');
+        repoHeader.className = 'repo-header';
+        
+        const repoName = document.createElement('a');
+        repoName.className = 'repo-name';
+        repoName.href = '#';
+        repoName.textContent = project.name;
+        repoHeader.appendChild(repoName);
+        
+        const repoVisibility = document.createElement('span');
+        repoVisibility.className = 'repo-visibility';
+        repoVisibility.textContent = project.visibility;
+        repoHeader.appendChild(repoVisibility);
+        
+        repoCard.appendChild(repoHeader);
+        
+        const repoDescription = document.createElement('p');
+        repoDescription.className = 'repo-description';
+        repoDescription.textContent = project.description;
+        repoCard.appendChild(repoDescription);
+        
+        const repoMeta = document.createElement('div');
+        repoMeta.className = 'repo-meta';
+        
+        const language = document.createElement('span');
+        language.className = 'repo-meta-item';
+        language.innerHTML = `<i class="fa-solid fa-code"></i> ${project.language}`;
+        repoMeta.appendChild(language);
+        
+        const stars = document.createElement('span');
+        stars.className = 'repo-meta-item';
+        stars.innerHTML = `<i class="fa-regular fa-star"></i> ${project.stars}`;
+        repoMeta.appendChild(stars);
+        
+        const forks = document.createElement('span');
+        forks.className = 'repo-meta-item';
+        forks.innerHTML = `<i class="fa-solid fa-code-branch"></i> ${project.forks}`;
+        repoMeta.appendChild(forks);
+        
+        const updated = document.createElement('span');
+        updated.className = 'repo-meta-item';
+        updated.textContent = project.updated;
+        repoMeta.appendChild(updated);
+        
+        repoCard.appendChild(repoMeta);
+        projectsGrid.appendChild(repoCard);
+      });
+    }
+    
+    // Render projects pagination
+    function renderProjectsPagination() {
+      const pagination = document.getElementById('projectsPagination');
+      pagination.innerHTML = '';
+      
+      const totalPages = Math.ceil(projects.length / projectsPerPage);
+      
+      if (totalPages <= 1) return;
+      
+      // Previous button
+      const prevButton = document.createElement('button');
+      prevButton.innerHTML = '&laquo;';
+      prevButton.disabled = currentProjectsPage === 1;
+      prevButton.addEventListener('click', () => {
+        if (currentProjectsPage > 1) {
+          currentProjectsPage--;
+          renderProjects();
+          renderProjectsPagination();
         }
-      }, lifeTime);
+      });
+      pagination.appendChild(prevButton);
       
-      bugGame.appendChild(bug);
+      // Page buttons
+      for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.classList.toggle('active', i === currentProjectsPage);
+        pageButton.addEventListener('click', () => {
+          currentProjectsPage = i;
+          renderProjects();
+          renderProjectsPagination();
+        });
+        pagination.appendChild(pageButton);
+      }
+      
+      // Next button
+      const nextButton = document.createElement('button');
+      nextButton.innerHTML = '&raquo;';
+      nextButton.disabled = currentProjectsPage === totalPages;
+      nextButton.addEventListener('click', () => {
+        if (currentProjectsPage < totalPages) {
+          currentProjectsPage++;
+          renderProjects();
+          renderProjectsPagination();
+        }
+      });
+      pagination.appendChild(nextButton);
     }
     
-    function endGame() {
-      gameActive = false;
-      clearInterval(gameTimer);
-      clearInterval(bugTimer);
+    // Render media items
+    function renderMediaItems() {
+      const mediaGrid = document.getElementById('mediaGrid');
+      mediaGrid.innerHTML = '';
       
-      // Show final score
-      alert(`Game Over! Your score: ${score}`);
+      const startIndex = (currentMediaPage - 1) * mediaPerPage;
+      const endIndex = startIndex + mediaPerPage;
+      const itemsToShow = filteredMedia.slice(startIndex, endIndex);
+      
+      if (itemsToShow.length === 0) {
+        mediaGrid.innerHTML = '<p>No media found matching your search.</p>';
+        return;
+      }
+      
+      itemsToShow.forEach(item => {
+        const mediaCard = document.createElement('div');
+        mediaCard.className = 'media-card';
+        
+        let mediaElement;
+        if (item.type === 'video') {
+          mediaElement = document.createElement('video');
+          mediaElement.controls = true;
+        } else {
+          mediaElement = document.createElement('img');
+        }
+        
+        mediaElement.src = item.src;
+        mediaCard.appendChild(mediaElement);
+        
+        const mediaInfo = document.createElement('div');
+        mediaInfo.className = 'media-info';
+        
+        const title = document.createElement('h3');
+        title.className = 'media-title';
+        title.textContent = item.title;
+        mediaInfo.appendChild(title);
+        
+        const description = document.createElement('p');
+        description.className = 'media-description';
+        description.textContent = item.description;
+        mediaInfo.appendChild(description);
+        
+        const meta = document.createElement('div');
+        meta.className = 'media-meta';
+        
+        const type = document.createElement('span');
+        type.textContent = item.type === 'video' ? 'Video Edit' : 'Photo';
+        meta.appendChild(type);
+        
+        const date = document.createElement('span');
+        date.textContent = item.date;
+        meta.appendChild(date);
+        
+        mediaInfo.appendChild(meta);
+        mediaCard.appendChild(mediaInfo);
+        
+        mediaGrid.appendChild(mediaCard);
+      });
     }
     
-    closeGameBtn.addEventListener('click', function() {
-      bugGameContainer.style.display = 'none';
-      if (gameActive) {
-        endGame();
+    // Render media pagination
+    function renderMediaPagination() {
+      const pagination = document.getElementById('pagination');
+      pagination.innerHTML = '';
+      
+      const totalPages = Math.ceil(filteredMedia.length / mediaPerPage);
+      
+      if (totalPages <= 1) return;
+      
+      // Previous button
+      const prevButton = document.createElement('button');
+      prevButton.innerHTML = '&laquo;';
+      prevButton.disabled = currentMediaPage === 1;
+      prevButton.addEventListener('click', () => {
+        if (currentMediaPage > 1) {
+          currentMediaPage--;
+          renderMediaItems();
+          renderMediaPagination();
+        }
+      });
+      pagination.appendChild(prevButton);
+      
+      // Page buttons
+      for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.classList.toggle('active', i === currentMediaPage);
+        pageButton.addEventListener('click', () => {
+          currentMediaPage = i;
+          renderMediaItems();
+          renderMediaPagination();
+        });
+        pagination.appendChild(pageButton);
+      }
+      
+      // Next button
+      const nextButton = document.createElement('button');
+      nextButton.innerHTML = '&raquo;';
+      nextButton.disabled = currentMediaPage === totalPages;
+      nextButton.addEventListener('click', () => {
+        if (currentMediaPage < totalPages) {
+          currentMediaPage++;
+          renderMediaItems();
+          renderMediaPagination();
+        }
+      });
+      pagination.appendChild(nextButton);
+    }
+    
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      
+      if (searchTerm === '') {
+        filteredMedia = [...mediaItems];
+      } else {
+        filteredMedia = mediaItems.filter(item => 
+          item.title.toLowerCase().includes(searchTerm) || 
+          item.description.toLowerCase().includes(searchTerm)
+        );
+      }
+      
+      currentMediaPage = 1;
+      renderMediaItems();
+      renderMediaPagination();
+    });
+    
+    // Personal modal functionality
+    const personalTrigger = document.getElementById('personalTrigger');
+    const personalModal = document.getElementById('personalModal');
+    const closeModal = personalModal.querySelector('.close');
+    
+    personalTrigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      personalModal.style.display = 'block';
+    });
+    
+    closeModal.addEventListener('click', function() {
+      personalModal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', function(e) {
+      if (e.target === personalModal) {
+        personalModal.style.display = 'none';
       }
     });
-  });
-</script>
-
-<Script>
-  // Make game responsive
-function adjustGameSize() {
-  const bugGame = document.getElementById('bugGame');
-  const header = document.getElementById('gameHeader');
-  
-  // Adjust for mobile landscape
-  if (window.innerHeight < window.innerWidth && window.innerWidth < 768) {
-    bugGame.style.height = '70%';
-    header.style.width = '70%';
-  } else {
-    bugGame.style.height = '60%';
-    header.style.width = '90%';
-  }
-}
-
-// Call on load and resize
-window.addEventListener('load', adjustGameSize);
-window.addEventListener('resize', adjustGameSize);
-</Script>
-
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const gallery = document.querySelector('.circular-gallery');
-    const videos = document.querySelectorAll('.gallery-item video');
     
-    // Play center video (unmuted)
-    const centerVideo = document.querySelector('.center-video video');
-    centerVideo.controls = true; // Show controls for center video
-    
-    // Handle surrounding videos (muted)
-    gallery.addEventListener('mouseenter', function() {
-      videos.forEach(video => {
-        video.currentTime = 0;
-        video.play().catch(e => console.log("Video play prevented"));
-      });
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      renderProjects();
+      renderProjectsPagination();
+      renderMediaItems();
+      renderMediaPagination();
+      
+      // Add modal styles
+      const modalStyle = document.createElement('style');
+      modalStyle.textContent = `
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0,0,0,0.7);
+        }
+        
+        .modal-content {
+          background-color: var(--github-card);
+          margin: 5% auto;
+          padding: 20px;
+          border: 1px solid var(--github-border);
+          border-radius: 6px;
+          width: 80%;
+          max-width: 1000px;
+          position: relative;
+        }
+        
+        .close {
+          color: var(--github-text);
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        
+        .close:hover {
+          color: var(--github-link);
+        }
+        
+        .modal-body {
+          display: flex;
+          gap: 20px;
+        }
+        
+        .modal-image {
+          flex: 1;
+        }
+        
+        .modal-image img {
+          width: 100%;
+          border-radius: 6px;
+        }
+        
+        .modal-info {
+          flex: 2;
+        }
+        
+        .modal-info h2 {
+          margin-bottom: 16px;
+        }
+        
+        .info-columns {
+          display: flex;
+          gap: 20px;
+        }
+        
+        .info-column {
+          flex: 1;
+        }
+        
+        .info-column p {
+          margin-bottom: 8px;
+          display: flex;
+          justify-content: space-between;
+        }
+        
+        .info-box {
+          background-color: var(--github-bg);
+          padding: 4px 8px;
+          border-radius: 4px;
+          border: 1px solid var(--github-border);
+        }
+        
+        @media (max-width: 768px) {
+          .modal-body {
+            flex-direction: column;
+          }
+          
+          .info-columns {
+            flex-direction: column;
+            gap: 0;
+          }
+        }
+      `;
+      document.head.appendChild(modalStyle);
     });
-    
-    gallery.addEventListener('mouseleave', function() {
-      videos.forEach(video => {
-        video.pause();
-        video.currentTime = 0;
-      });
-    });
-    
-    // Enable sound on click for center video
-    centerVideo.addEventListener('click', function(e) {
-      e.stopPropagation(); // Prevent bubbling
-      this.muted = !this.muted; // Toggle mute on click
-    });
-  });
-</script>
+  </script>
 </body>
 </html>

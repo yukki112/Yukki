@@ -12,590 +12,1144 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" type="Image/png" href="images/13.jpg" sizes="16x16">
+  
+  <style>
+    :root {
+      --github-bg: #0d1117;
+      --github-header: #161b22;
+      --github-border: #30363d;
+      --github-text: #c9d1d9;
+      --github-link: #58a6ff;
+      --github-accent: #1f6feb;
+      --github-green: #238636;
+      --github-card: #161b22;
+    }
+    
+    .light-mode {
+      --github-bg: #ffffff;
+      --github-header: #f6f8fa;
+      --github-border: #d0d7de;
+      --github-text: #24292f;
+      --github-link: #0969da;
+      --github-accent: #0969da;
+      --github-green: #1a7f37;
+      --github-card: #f6f8fa;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background-color: var(--github-bg);
+      color: var(--github-text);
+      line-height: 1.5;
+    }
+    
+    /* Header/Nav */
+    .header {
+      background-color: var(--github-header);
+      border-bottom: 1px solid var(--github-border);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      font-weight: 600;
+      font-size: 30px;
+      color: var(--github-text);
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+    
+    .nav-links a {
+      color: var(--github-text);
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .nav-links a:hover {
+      color: var(--github-link);
+    }
+    
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .search-bar {
+      background-color: var(--github-bg);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: var(--github-text);
+      width: 240px;
+    }
+    
+    .search-bar:focus {
+      outline: none;
+      border-color: var(--github-link);
+      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3);
+    }
+    
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--github-text);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 6px;
+      border-radius: 6px;
+    }
+    
+    .theme-toggle:hover {
+      background-color: var(--github-border);
+    }
+    
+    /* Main Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 16px;
+      display: flex;
+      gap: 32px;
+    }
+    
+    /* Profile Sidebar */
+    .profile-sidebar {
+      width: 296px;
+      flex-shrink: 0;
+    }
+    
+    .profile-avatar {
+      width: 100%;
+      border-radius: 50%;
+      margin-bottom: 16px;
+      border: 1px solid var(--github-border);
+    }
+    
+    .profile-name {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .profile-username {
+      font-size: 20px;
+      color: #8b949e;
+      margin-bottom: 16px;
+    }
+    
+    .profile-bio {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    .profile-stats {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    
+    .profile-stats a {
+      color: var(--github-text);
+      text-decoration: none;
+    }
+    
+    .profile-stats a:hover {
+      color: var(--github-link);
+    }
+    
+    .profile-location, .profile-social {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    .profile-links {
+      margin-top: 16px;
+    }
+    
+    .profile-link {
+      display: block;
+      padding: 8px 0;
+      color: var(--github-link);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .profile-link:hover {
+      text-decoration: underline;
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+    }
+    
+    .nav-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--github-border);
+      margin-bottom: 16px;
+    }
+    
+    .nav-tab {
+      padding: 8px 16px;
+      font-size: 14px;
+      color: var(--github-text);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+    }
+    
+    .nav-tab.active {
+      background-color: var(--github-bg);
+      border-color: var(--github-border);
+      color: var(--github-text);
+    }
+    
+    /* About Content */
+    .about-section {
+      margin-bottom: 32px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--github-border);
+    }
+    
+    .about-content {
+      background-color: var(--github-card);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      padding: 24px;
+    }
+    
+    .about-hero {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    
+    .about-image {
+      flex: 1;
+      max-width: 300px;
+    }
+    
+    .about-image img {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid var(--github-border);
+    }
+    
+    .about-text {
+      flex: 2;
+    }
+    
+    .about-text h2 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: var(--github-link);
+    }
+    
+    .about-text p {
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    
+    /* Interests Section */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    
+    .interest-card {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      background-color: var(--github-card);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+    }
+    
+    .interest-image {
+      flex: 1;
+      max-width: 200px;
+    }
+    
+    .interest-image img {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid var(--github-border);
+    }
+    
+    .interest-content {
+      flex: 2;
+    }
+    
+    .interest-content h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--github-link);
+    }
+    
+    .interest-content h5 {
+      font-size: 16px;
+      margin: 16px 0 8px;
+      color: var(--github-text);
+    }
+    
+    .interest-content p {
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+    }
+    
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background-color: var(--github-card);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    
+    .skill-icon {
+      width: 16px;
+      height: 16px;
+    }
+    
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--github-border);
+      padding: 40px 0 20px;
+      margin-top: 32px;
+      background-color: var(--github-header);
+    }
+    
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
+    
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .footer-bio {
+      font-size: 14px;
+      color: #8b949e;
+      max-width: 300px;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: var(--github-text);
+    }
+    
+    .footer-column a {
+      display: block;
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .footer-column a:hover {
+      color: var(--github-link);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid var(--github-border);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .social-icons a {
+      color: var(--github-text);
+      font-size: 18px;
+    }
+    
+    .social-icons a:hover {
+      color: var(--github-link);
+    }
+    
+    .copyright {
+      font-size: 14px;
+      color: #8b949e;
+    }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+    }
+    
+    .modal-content {
+      background-color: var(--github-card);
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      width: 80%;
+      max-width: 600px;
+      position: relative;
+    }
+    
+    .close {
+      color: var(--github-text);
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close:hover {
+      color: var(--github-link);
+    }
+    
+    .modal-body {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .modal-image {
+      flex: 1;
+    }
+    
+    .modal-image img {
+      width: 100%;
+      border-radius: 6px;
+    }
+    
+    .modal-info {
+      flex: 2;
+    }
+    
+    .modal-info h2 {
+      margin-bottom: 16px;
+    }
+    
+    .info-columns {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .info-column {
+      flex: 1;
+    }
+    
+    .info-column p {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .info-box {
+      background-color: var(--github-bg);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--github-border);
+    }
+    
+    /* Bug Game */
+    #bugGameContainer {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--github-card);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      padding: 20px;
+      z-index: 1001;
+      width: 80%;
+      max-width: 500px;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    #gameStats {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    
+    #bugGame {
+      width: 100%;
+      height: 300px;
+      background-color: var(--github-bg);
+      border: 1px solid var(--github-border);
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #gameTitle {
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+    
+    .bug {
+      position: absolute;
+      background-color: #ff6b6b;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    
+    .bug.squashed {
+      transform: scale(0.1);
+      opacity: 0.5;
+    }
+    
+    #closeGame {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background-color: var(--github-accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+   
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .profile-sidebar {
+        width: 100%;
+      }
+     .logo {
+        margin-left: 135px;
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      .about-hero {
+        flex-direction: column;
+      }
+      
+      .about-image {
+        max-width: 100%;
+      }
+      
+      .interest-card {
+        flex-direction: column;
+      }
+      
+      .interest-image {
+        max-width: 100%;
+      }
+      
+      .header-container {
+        flex-wrap: wrap;
+        gap: 25px;
+      }
+      .nav-links{
+        gap: 35px;
+      }
+      
+      .search-bar {
+        width: 180px;
+        margin-left: 80px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .footer-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+      
+      .modal-body {
+        flex-direction: column;
+      }
+      
+      .info-columns {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
 
-  <link rel="stylesheet" href="about.css">
-<link rel="icon" type="Image/png" href="images/13.jpg" sizes="16x16">
-<title>Ilove Minji</title>
+  <title>Yukki - About</title>
 </head>
 <body>
-
-  <nav>
-    <div class="left">
-      <a href="index.html" id="profileTrigger">Yukki</a>
-    </div>
-    
-
-
-
-    <div class="right">
-      <a href="index.html" rel="noopener noreferrer">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-      </a>
-      <a href="About.html"rel="noopener noreferrer">
-        <i class="fa-solid fa-user"></i>
-        <span>About</span>
-      </a>
-      <a href="contact.html"  rel="noopener noreferrer">
-        <i class="fa-solid fa-phone"></i>
-        <span>Contacts</span>
-      </a>
-      <a href="project.html" rel="noopener noreferrer">
-        <i class="fa-solid fa-folder-open"></i>
-        <span>Projects</span>
-      </a>
-      
-      
-      <a href="#">
-        <i class="fa-solid fa-heart"></i>
-        <span>Personal</span>
-      </a>
-      
-    </div>
-  </nav>
-<hr>
-  <main>
-    <section id="skills" class="skills-section">
-        <h2>🌟 About Me</h2>
-    </section>
-  
-    <section class="hero-section">
-
-        <div class="headshot">
-            <img src="images/l.jpg" alt="Danielle">
-          </div>
-
-      <div class="text">
-        <h2>I'm Yukki (or whatever you wanna call me)</h2> <br>
-        <p>Hey! I'm Yukki (or whatever you wanna call me). I’m someone who lives at the intersection of tech and gaming—balancing my time between writing clean code and queuing up with friends in my favorite games.
-
-            I’m a huge fan of NewJeans, and my biases are Kim Minji and Danielle Marsh. Their music is always on repeat while I’m coding or gaming. When I’m not diving into web development, you’ll probably find me playing Roblox, League of Legends, Valorant, or Mobile Legends. Whether it’s grinding ranked, stacking with the squad, or just having fun solo, gaming is a huge part of who I am.
-            
-            On the tech side, I’m passionate about building cool things using HTML, CSS, JavaScript, PHP, and MySQL. I love the feeling of bringing ideas to life through code, whether that’s a full-on website, a dynamic system, or a backend-powered project. I’m always learning, always experimenting, and always looking to sharpen my skills and explore new tech.
-            
-            Outside of coding and gaming, I’m all about good vibes, good music, and good food (rice is a must, always). I enjoy connecting with like-minded people, exchanging ideas, and creating something meaningful—whether it’s for fun or for the future.
-            
-            Let’s build, play, and vibe.
-            
-            </p>
-            
-     
-          
-          
-        </div>
-      </div>
-    </section>
-
-    <hr>
-
-
-    <section id="skills" class="skills-section">
-        <h2>Things i Like (optional)</h2>
-    </section>
-    <!-- SECTION 1: Hero -->
-    <section class="hero-section">
-      <div class="text">
-        <h2>1. NewJeans</h2> <br>
-        <h5>✨ Minji Moments</h5>
-        <p>* That leadership aura? Insane. She’s so composed and elegant but will randomly drop a dad joke and have the whole group wheezing. <br>
-           * Her stage presence in “Hype Boy” and “Super Shy”? Chef’s kiss. <br>
-           * That deep, husky voice? It lives rent-free in everyone’s mind. <br>
-           * Watch her Vogue Korea photoshoot if you haven’t yet. Straight model behavior.
-        </p>
-        <br> <br>
-        <h5>🌸 Danielle Slayage</h5>
-        <p>* Her duality?? The cutest sunshine off-stage, total femme fatale on-stage. <br>
-            * Her English-speaking confidence is so charming—girl’s just naturally charismatic. <br>
-            * Check out her behind-the-scenes takes in “Ditto” MV. She just gets the camera. <br>
-            * Also: her smile? Illegal. The way she lights up the room? Not fair.
-         </p>
-        </div>
-      </div>
-      <div class="headshots">
-        <img src="images/MinjiDani.jpg" alt="Minji Danielle">
-      </div>
-    </section>
-
-    <!-- SECTION 1: Hero -->
-    <section class="hero-section">
-        <div class="headshots">
-            <img src="images/Partynextdrr.jpg" alt="Partynextdoor">
-          </div>
-        <div class="text">
-            
-          <h2>2. Partynextdoor</h2> <br>
-          <p>I like PARTYNEXTDOOR 'cause his music is straight vibes—no skips, just smooth energy all the way through. Break from Toronto? That’s my anthem. It's like a whole mood packed into a minute and a half. That beat hits and suddenly I’m in a rooftop party in the city, drink in hand, no worries. He’s got that late-night, cool-but-slightly-toxic energy down to a science I don’t just listen to PND—I experience him.
-          </p>
-          </div>
-        </div>
-      </section>
-
-
-       <!-- SECTION 1: Hero -->
-    <section class="hero-section">
-        <div class="text">
-          <h2>3. League of Legends</h2> <br>
-          <p>Irelia, Yasuo, Gwen... I'm cracked, what can I 
-          </p>
-          </div>
-        </div>
-        <div class="headshots">
-            <img src="images/irelia.jpg" alt="irelia">
-          </div>
-      </section>
-
-         <!-- SECTION 1: Hero -->
-    <section class="hero-section">
-        <div class="headshots">
-            <img src="images/robi.jpg" alt="irelia">
-          </div>
-        <div class="text">
-          <h2>4. Roblox</h2> <br>
-          <p>from chill hangouts to chaos, Roblox is my jam. Whether I’m building, exploring, or just vibing with friends, it’s all about the fun. I love the creativity and the endless possibilities. It’s like a playground where I can be whoever I want and do whatever I want. Plus, the memes? Iconic. Roblox is more than just a game; it’s a whole culture that I’m proud to be part of.
-          </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 1: Hero -->
-    <section class="hero-section">
-        <div class="text">
-          <h2>5. Coke</h2> <br>
-          <p>cold, fizzy, and necessary. I’m not picky, but Coke is my go-to. It’s like the ultimate sidekick to any meal or chill sesh. Whether I’m gaming, coding, or just vibing with friends, a cold Coke is always there to keep the energy up and the good times rolling. It’s not just a drink; it’s a whole mood. <br> <br>
-          </p>
-          </div>
-        </div>
-        <div class="headshots">
-            <img src="images/ekoc.png" alt="irelia">
-          </div>
-      </section>
-
-
-
-<div id="personalModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div class="modal-body">
-      <div class="modal-image">
-        <img src="images/Dannnii.jpg" alt="Your Photo">
-      </div>
-      <div class="modal-info">
-        <h2>this is so me fr</h2>
-        <div class="info-columns">
-          <div class="info-column">
-            <p><strong>First Name:</strong> <span class="info-box">?</span></p>
-            <p><strong>Last Name:</strong> <span class="info-box">?</span></p>
-            <p><strong>Nickname:</strong> <span class="info-box">Yukki</span></p>
-            <p><strong>Gender:</strong> <span class="info-box">Male</span></p>
-            <p><strong>Birthday:</strong> <span class="info-box">Feburary 10 </span></p>
-            <p><strong>Zodiac:</strong> <span class="info-box">Aquarius ♒️ </span></p>
-            <p><strong>Age:</strong> <span class="info-box">SECRET!! 😛</span></p>
-            <p><strong>Email:</strong> <span class="info-box">yenajigumina12@gmail.com</span></p>
-          </div>
-          <div class="info-column">
-            <p><strong>Course:</strong> <span class="info-box">Information Technology</span></p>
-            <p><strong>School:</strong> <span class="info-box">BCP</span></p>
-            <p><strong>Year Level:</strong> <span class="info-box">?</span></p>
-            <p><strong>Languages:</strong> <span class="info-box">English, Filipino</span></p>
-            <p><strong>Contact:</strong> <span class="info-box">09984319585</span></p>
-            <p><strong>Location:</strong> <span class="info-box">Quezon City</span></p>
-            <p><strong>Github:</strong> <span class="info-box"><a href="https://github.com/yukki112" target="_blank">https://github.com/yukki112</a></span></p>
-          </div>
-        </div>
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo" id="profileTrigger">Yukki</a>
+      <nav class="nav-links">
+        <a href="index.html">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+        <a href="About.html">
+          <i class="fa-solid fa-user"></i>
+          <span>About</span>
+        </a>
+        <a href="contact.html">
+          <i class="fa-solid fa-phone"></i>
+          <span>Contact</span>
+        </a>
+        <a href="project.html">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>Projects</span>
+        </a>
+       
+      </nav>
+      <div class="header-controls">
+        <input type="text" class="search-bar" placeholder="Search...">
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fa-solid fa-moon"></i>
+        </button>
       </div>
     </div>
-  </div>
-</div>
+  </header>
 
+  <div class="container">
+    <aside class="profile-sidebar">
+      <img src="images/13.jpg" alt="Profile Picture" class="profile-avatar">
+      <h1 class="profile-name">Yukki</h1>
+      <h2 class="profile-username">yukki112</h2>
+      <p class="profile-bio">Developer & NewJeans enthusiast. Learning web development and creating awesome projects</p>
+      
+      <div class="profile-stats">
+        <a href="#">
+          <strong>24</strong> followers
+        </a>
+        <a href="#">
+          <strong>12</strong> following
+        </a>
+        <a href="#">
+          <strong>8</strong> repositories
+        </a>
+      </div>
+      
+      <div class="profile-location">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Quezon City</span>
+      </div>
+      
+      <div class="profile-social">
+        <i class="fa-solid fa-envelope"></i>
+        <span>yenajigumina12@gmail.com</span>
+      </div>
+      
+      <div class="profile-links">
+        <a href="https://github.com/yukki112" class="profile-link" target="_blank">
+          <i class="fa-brands fa-github"></i>
+          yukki112
+        </a>
+        <a href="https://www.instagram.com/wya.yukki/" class="profile-link" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+          wya.yukki
+        </a>
+        <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58" class="profile-link" target="_blank">
+          <i class="fa-brands fa-spotify"></i>
+          Yukki
+        </a>
+        <a href="https://www.instagram.com/newjeans_official/" class="profile-link" target="_blank">
+          <i class="fa-solid fa-star"></i>
+          NewJeans
+        </a>
+        <a href="https://www.instagram.com/partynextdoor/" class="profile-link" target="_blank">
+          <i class="fa-solid fa-music"></i>
+          Partynextdoor
+        </a>
+      </div>
+    </aside>
 
+    <main class="main-content">
+      <nav class="nav-tabs">
+        <a href="#" class="nav-tab active">About</a>
+      </nav>
 
-
-
-
-
-
-
-
-<div id="bugGameContainer">
-  <div id="gameStats">
-    <div>Score: <span id="score">0</span></div>
-    <div>Time: <span id="time">30</span>s</div>
-  </div>
-  <div id="bugGame">
-    <div id="gameTitle">Whack a Danielle</div>
-  </div>
-  <button id="closeGame">Close Game</button>
-</div>
-
-
-
-
-
-    <section id="footer">
-        <footer>
-          <div class="footerContainer">
-              <div class="socialIcons">
-                  <a href="mailto:yenajigumina12@gmail.com"target="_blank"><i class="fa-brands fa-google-plus"></i></a>
-                  <a href="https://www.instagram.com/wya.yukki/ "target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                  <a href="https://discord.com/users/904149441794170942"target="_blank"><i class="fa-brands fa-discord"></i></a>
-                  <a href="https://www.tiktok.com/@user17452816481"target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                  <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58?si=2130265f60404cab"target="_blank"><i class="fa-brands fa-spotify"></i></a>
-              </div>
-              <div class="footerBottom">
-                <p><span class="designer">Yukki &copy; 2025</span></p>
+      <section class="about-section">
+        
+        <div class="about-content">
+          <div class="about-hero">
+            <div class="about-image">
+              <img src="images/l.jpg" alt="Danielle">
             </div>
-      </footer>
-  
-</section>
-  </main>
+            <div class="about-text">
+              <h2>I'm Yukki (or whatever you wanna call me)</h2>
+              <p>Hey! I'm Yukki (or whatever you wanna call me). I'm someone who lives at the intersection of tech and gaming—balancing my time between writing clean code and queuing up with friends in my favorite games.</p>
+              <p>I'm a huge fan of NewJeans, and my biases are Kim Minji and Danielle Marsh. Their music is always on repeat while I'm coding or gaming. When I'm not diving into web development, you'll probably find me playing Roblox, League of Legends, Valorant, or Mobile Legends. Whether it's grinding ranked, stacking with the squad, or just having fun solo, gaming is a huge part of who I am.</p>
+              <p>On the tech side, I'm passionate about building cool things using HTML, CSS, JavaScript, PHP, and MySQL. I love the feeling of bringing ideas to life through code, whether that's a full-on website, a dynamic system, or a backend-powered project. I'm always learning, always experimenting, and always looking to sharpen my skills and explore new tech.</p>
+              <p>Outside of coding and gaming, I'm all about good vibes, good music, and good food (rice is a must, always). I enjoy connecting with like-minded people, exchanging ideas, and creating something meaningful—whether it's for fun or for the future.</p>
+              <p>Let's build, play, and vibe.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <h2 class="section-title">Things I Like (optional)</h2>
+        <div class="interests-grid">
+          <div class="interest-card">
+            <div class="interest-content">
+              <h3>1. NewJeans</h3>
+              <h5>✨ Minji Moments</h5>
+              <p>* That leadership aura? Insane. She's so composed and elegant but will randomly drop a dad joke and have the whole group wheezing.</p>
+              <p>* Her stage presence in "Hype Boy" and "Super Shy"? Chef's kiss.</p>
+              <p>* That deep, husky voice? It lives rent-free in everyone's mind.</p>
+              <p>* Watch her Vogue Korea photoshoot if you haven't yet. Straight model behavior.</p>
+              <h5>🌸 Danielle Slayage</h5>
+              <p>* Her duality?? The cutest sunshine off-stage, total femme fatale on-stage.</p>
+              <p>* Her English-speaking confidence is so charming—girl's just naturally charismatic.</p>
+              <p>* Check out her behind-the-scenes takes in "Ditto" MV. She just gets the camera.</p>
+              <p>* Also: her smile? Illegal. The way she lights up the room? Not fair.</p>
+            </div>
+            <div class="interest-image">
+              <img src="images/MinjiDani.jpg" alt="Minji Danielle">
+            </div>
+          </div>
+
+          <div class="interest-card">
+            <div class="interest-image">
+              <img src="images/Partynextdrr.jpg" alt="Partynextdoor">
+            </div>
+            <div class="interest-content">
+              <h3>2. Partynextdoor</h3>
+              <p>I like PARTYNEXTDOOR 'cause his music is straight vibes—no skips, just smooth energy all the way through. Break from Toronto? That's my anthem. It's like a whole mood packed into a minute and a half. That beat hits and suddenly I'm in a rooftop party in the city, drink in hand, no worries. He's got that late-night, cool-but-slightly-toxic energy down to a science I don't just listen to PND—I experience him.</p>
+            </div>
+          </div>
+
+          <div class="interest-card">
+            <div class="interest-content">
+              <h3>3. League of Legends</h3>
+              <p>Irelia, Yasuo, Gwen... I'm cracked, what can I say?</p>
+            </div>
+            <div class="interest-image">
+              <img src="images/irelia.jpg" alt="irelia">
+            </div>
+          </div>
+
+          <div class="interest-card">
+            <div class="interest-image">
+              <img src="images/robi.jpg" alt="Roblox">
+            </div>
+            <div class="interest-content">
+              <h3>4. Roblox</h3>
+              <p>from chill hangouts to chaos, Roblox is my jam. Whether I'm building, exploring, or just vibing with friends, it's all about the fun. I love the creativity and the endless possibilities. It's like a playground where I can be whoever I want and do whatever I want. Plus, the memes? Iconic. Roblox is more than just a game; it's a whole culture that I'm proud to be part of.</p>
+            </div>
+          </div>
+
+          <div class="interest-card">
+            <div class="interest-content">
+              <h3>5. Coke</h3>
+              <p>cold, fizzy, and necessary. I'm not picky, but Coke is my go-to. It's like the ultimate sidekick to any meal or chill sesh. Whether I'm gaming, coding, or just vibing with friends, a cold Coke is always there to keep the energy up and the good times rolling. It's not just a drink; it's a whole mood.</p>
+            </div>
+            <div class="interest-image">
+              <img src="images/ekoc.png" alt="Coke">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <img src="images/html-logo.webp" alt="HTML" class="skill-icon">
+            <span>HTML</span>
+          </div>
+          <div class="skill-item">
+            <img src="images/css-logo.webp" alt="CSS" class="skill-icon">
+            <span>CSS</span>
+          </div>
+          <div class="skill-item">
+            <img src="images/javascript-logo.webp" alt="JavaScript" class="skill-icon">
+            <span>JavaScript</span>
+          </div>
+          <div class="skill-item">
+            <img src="images/java.png" alt="Java" class="skill-icon">
+            <span>Java</span>
+          </div>
+          <div class="skill-item">
+            <img src="images/PHP.png" alt="PHP" class="skill-icon">
+            <span>PHP</span>
+          </div>
+          <div class="skill-item">
+            <img src="images/SQL.png" alt="MySQL" class="skill-icon">
+            <span>MySQL</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-sass skill-icon" style="color: #c69;"></i>
+            <span>SCSS</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-docker skill-icon" style="color: #2496ed;"></i>
+            <span>Docker</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-git-alt skill-icon" style="color: #f05032;"></i>
+            <span>Git</span>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-laravel skill-icon" style="color: #ff2d20;"></i>
+            <span>Laravel</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <div class="footer-logo">Yukki</div>
+          <p class="footer-bio">Developer & NewJeans enthusiast. Learning web development and creating awesome projects.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h3>Explore</h3>
+            <a href="index.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="project.html">Projects</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-column">
+            <h3>Connect</h3>
+            <a href="https://github.com/yukki112" target="_blank">GitHub</a>
+            <a href="https://www.instagram.com/wya.yukki/" target="_blank">Instagram</a>
+            <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58" target="_blank">Spotify</a>
+            <a href="mailto:yenajigumina12@gmail.com">Email</a>
+          </div>
+          <div class="footer-column">
+            <h3>Favorites</h3>
+            <a href="https://www.instagram.com/newjeans_official/" target="_blank">NewJeans</a>
+            <a href="https://www.instagram.com/partynextdoor/" target="_blank">Partynextdoor</a>
+            <a href="#">League of Legends</a>
+            <a href="#">Valorant</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="social-icons">
+          <a href="mailto:yenajigumina12@gmail.com" target="_blank">
+            <i class="fa-brands fa-google-plus"></i>
+          </a>
+          <a href="https://www.instagram.com/wya.yukki/" target="_blank">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://discord.com/users/904149441794170942" target="_blank">
+            <i class="fa-brands fa-discord"></i>
+          </a>
+          <a href="https://www.tiktok.com/@user17452816481" target="_blank">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://open.spotify.com/user/8di00h5pwpftyq8ctiiup1b58" target="_blank">
+            <i class="fa-brands fa-spotify"></i>
+          </a>
+        </div>
+        <div class="copyright">
+          <span>© 2025 Yukki. All rights reserved.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Personal Info Modal -->
+  <div id="personalModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-body">
+        <div class="modal-image">
+          <img src="images/Dannnii.jpg" alt="Your Photo">
+        </div>
+        <div class="modal-info">
+          <h2>this is so me fr</h2>
+          <div class="info-columns">
+            <div class="info-column">
+              <p><strong>First Name:</strong> <span class="info-box">?</span></p>
+              <p><strong>Last Name:</strong> <span class="info-box">?</span></p>
+              <p><strong>Nickname:</strong> <span class="info-box">Yukki</span></p>
+              <p><strong>Gender:</strong> <span class="info-box">Male</span></p>
+              <p><strong>Birthday:</strong> <span class="info-box">Feburary 10 </span></p>
+              <p><strong>Zodiac:</strong> <span class="info-box">Aquarius ♒️ </span></p>
+              <p><strong>Age:</strong> <span class="info-box">SECRET!! 😛</span></p>
+              <p><strong>Email:</strong> <span class="info-box">yenajigumina12@gmail.com</span></p>
+            </div>
+            <div class="info-column">
+              <p><strong>Course:</strong> <span class="info-box">Information Technology</span></p>
+              <p><strong>School:</strong> <span class="info-box">BCP</span></p>
+              <p><strong>Year Level:</strong> <span class="info-box">?</span></p>
+              <p><strong>Languages:</strong> <span class="info-box">English, Filipino</span></p>
+              <p><strong>Contact:</strong> <span class="info-box">09984319585</span></p>
+              <p><strong>Location:</strong> <span class="info-box">Quezon City</span></p>
+              <p><strong>Github:</strong> <span class="info-box"><a href="https://github.com/yukki112" target="_blank">https://github.com/yukki112</a></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bug Game Container -->
+  <div id="bugGameContainer">
+    <div id="gameStats">
+      <div>Score: <span id="score">0</span></div>
+      <div>Time: <span id="time">30</span>s</div>
+    </div>
+    <div id="bugGame">
+      <div id="gameTitle">Whack a Danielle</div>
+    </div>
+    <button id="closeGame">Close Game</button>
+  </div>
 
   <script>
-    function toggleDropdown() {
-        const dropdown = document.querySelector(".dropdown-menu");
-        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-    document.addEventListener("click", function(event) {
-        if (!event.target.closest(".dropdown")) {
-            document.querySelector(".dropdown-menu").style.display = "none";
-        }
-    });
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const firstImage = document.querySelector(".product-card img");
-        
-        if (firstImage) {
-            firstImage.onload = function () {
-                let width = firstImage.clientWidth;
-                let height = firstImage.clientHeight;
-
-                document.querySelectorAll(".product-card img").forEach(img => {
-                    img.style.width = width + "px";
-                    img.style.height = height + "px";
-                    img.style.objectFit = "cover";
-                });
-            };
-        }
-    });
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-const productGrid = document.querySelector(".product-grid");
-const productCards = Array.from(document.querySelectorAll(".product-card"));
-const azButton = document.querySelector(".sorting .a-z");
-const defaultButton = document.querySelector(".sorting .default");
-const priceButton = document.querySelector(".sorting .list-view");
-
-
-const originalOrder = [...productCards];
-
-
-azButton.addEventListener("click", function () {
-    productCards.sort((a, b) => {
-        const nameA = a.querySelector("h2").textContent.toLowerCase();
-        const nameB = b.querySelector("h2").textContent.toLowerCase();
-        return nameA.localeCompare(nameB);
-    });
-
-    productGrid.innerHTML = "";
-    productCards.forEach(card => productGrid.appendChild(card));
-});
-
-
-defaultButton.addEventListener("click", function () {
-    productGrid.innerHTML = "";
-    originalOrder.forEach(card => productGrid.appendChild(card));
-});
-
-
-priceButton.addEventListener("click", function () {
-    productCards.sort((a, b) => {
-        const priceA = parseFloat(a.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
-        const priceB = parseFloat(b.querySelector(".price").textContent.replace(/[^\d.]/g, ""));
-        return priceA - priceB;
-    });
-
-    productGrid.innerHTML = "";
-    productCards.forEach(card => productGrid.appendChild(card));
-});
-});
-</script>
-
-
-
-<script>
-document.querySelectorAll('.sorting button').forEach(button => {
-button.addEventListener('click', function() {
-document.querySelectorAll('.sorting button').forEach(btn => {
-    btn.style.backgroundColor = '#fff';
-    btn.style.color = 'black';
-});
-
-this.style.backgroundColor = '#000';
-this.style.color = '#fff';
-});
-});
-
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-const searchBar = document.querySelector(".search-bar");
-const productCards = document.querySelectorAll(".product-card");
-const productGrid = document.querySelector(".product-grid");
-
-// Create the "No products found" message
-let noResultsMessage = document.querySelector(".no-results");
-if (!noResultsMessage) {
-    noResultsMessage = document.createElement("div");
-    noResultsMessage.textContent = "No products found.";
-    noResultsMessage.classList.add("no-results");
-    noResultsMessage.style.cssText = "opacity: 0; visibility: hidden; transition: opacity 0.3s ease;";
-    productGrid.appendChild(noResultsMessage);
-}
-
-searchBar.addEventListener("input", function () {
-    const searchText = this.value.toLowerCase().trim();
-    let hasResults = false;
-
-    productCards.forEach(card => {
-        const productName = card.querySelector("h2").textContent.toLowerCase();
-        if (productName.includes(searchText)) {
-            card.style.display = "block";
-            setTimeout(() => {
-                card.style.opacity = "1";
-            }, 10);
-            hasResults = true;
-        } else {
-            card.style.opacity = "0";
-            setTimeout(() => {
-                card.style.display = "none";
-            }, 200);
-        }
-    });
-
-    // Show or hide the "No products found" message
-    if (hasResults) {
-        noResultsMessage.style.opacity = "0";
-        setTimeout(() => {
-            noResultsMessage.style.visibility = "hidden";
-        }, 200);
-    } else {
-        noResultsMessage.style.visibility = "visible";
-        setTimeout(() => {
-            noResultsMessage.style.opacity = "1";
-        }, 10);
-    }
-});
-});
-
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelectorAll(".hover-video");
-
-    if (videos.length === 0) {
-        console.warn("No videos found with class .hover-video");
-        return;
-    }
-
-    // Ensure videos play on hover
-    videos.forEach(video => {
-        video.muted = true; // Start muted to avoid autoplay restrictions
-
-        video.addEventListener("mouseenter", () => {
-            video.play().catch(err => console.warn("Autoplay failed:", err));
-        });
-
-        video.addEventListener("mouseleave", () => {
-            video.pause();
-            video.currentTime = 0;
-        });
-    });
-
-    // Allow unmuting on user interaction
-    document.addEventListener("click", () => {
-        videos.forEach(video => {
-            video.muted = false; // Unmute all videos after first click
-        });
-    }, { once: true }); // Runs only once
-});
-
-</script>
-
-
-<script>
-  // Get the modal and the link that opens it
-  const modal = document.getElementById("personalModal");
-  const heartLink = document.querySelector('a[href="#"] i.fa-heart').parentElement;
-  
-  // Get the <span> element that closes the modal
-  const closeBtn = document.getElementsByClassName("close")[0];
-  
-  // When the user clicks the heart link, open the modal 
-  heartLink.onclick = function(event) {
-    event.preventDefault();
-    modal.style.display = "block";
-  }
-  
-  // When the user clicks on (x), close the modal
-  closeBtn.onclick = function() {
-    modal.style.display = "none";
-  }
-  
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-  </script>
-
-<script>
-  // Whack-a-Bug Game
-  document.addEventListener('DOMContentLoaded', function() {
-    const profileTrigger = document.getElementById('profileTrigger');
-    const bugGameContainer = document.getElementById('bugGameContainer');
-    const bugGame = document.getElementById('bugGame');
-    const scoreDisplay = document.getElementById('score');
-    const timeDisplay = document.getElementById('time');
-    const closeGameBtn = document.getElementById('closeGame');
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
     
-    let clickCount = 0;
-    let lastClickTime = 0;
-    let gameActive = false;
-    let score = 0;
-    let timeLeft = 30;
-    let gameTimer;
-    let bugTimer;
+    // Check for saved theme preference or default to dark
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    if (currentTheme === 'light') {
+      document.body.classList.add('light-mode');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    }
     
-    // Detect rapid clicks on profile link
-    profileTrigger.addEventListener('click', function(e) {
-      e.preventDefault();
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
       
-      const now = Date.now();
-      if (now - lastClickTime < 500) { // 500ms between clicks
-        clickCount++;
-        if (clickCount >= 4) { // 5 clicks (starts from 0)
-          startGame();
-          clickCount = 0;
-        }
+      if (document.body.classList.contains('light-mode')) {
+        localStorage.setItem('theme', 'light');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
       } else {
-        clickCount = 1; // Reset if too slow
+        localStorage.setItem('theme', 'dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
       }
-      lastClickTime = now;
     });
     
-    function startGame() {
-      if (gameActive) return;
-      
-      gameActive = true;
-      score = 0;
-      timeLeft = 30;
-      scoreDisplay.textContent = score;
-      timeDisplay.textContent = timeLeft;
-      bugGameContainer.style.display = 'flex';
-      bugGame.innerHTML = '<div id="gameTitle">Whack a Danielle</div>'; // Reset title when game starts
-      
-      // Start timer
-      gameTimer = setInterval(function() {
-        timeLeft--;
-        timeDisplay.textContent = timeLeft;
-        
-        if (timeLeft <= 0) {
-          endGame();
-        }
-      }, 1000);
-      
-      // Start bug spawning
-      bugTimer = setInterval(spawnBug, 800);
-    }
+    // Personal modal functionality
+    const personalTrigger = document.getElementById('personalTrigger');
+    const personalModal = document.getElementById('personalModal');
+    const closeModal = personalModal.querySelector('.close');
     
-    function spawnBug() {
-      if (!gameActive) return;
+    personalTrigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      personalModal.style.display = 'block';
+    });
+    
+    closeModal.addEventListener('click', function() {
+      personalModal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', function(e) {
+      if (e.target === personalModal) {
+        personalModal.style.display = 'none';
+      }
+    });
+    
+    // Whack-a-Bug Game
+    document.addEventListener('DOMContentLoaded', function() {
+      const profileTrigger = document.getElementById('profileTrigger');
+      const bugGameContainer = document.getElementById('bugGameContainer');
+      const bugGame = document.getElementById('bugGame');
+      const scoreDisplay = document.getElementById('score');
+      const timeDisplay = document.getElementById('time');
+      const closeGameBtn = document.getElementById('closeGame');
       
-      const bug = document.createElement('div');
-      bug.className = 'bug';
+      let clickCount = 0;
+      let lastClickTime = 0;
+      let gameActive = false;
+      let score = 0;
+      let timeLeft = 30;
+      let gameTimer;
+      let bugTimer;
       
-      // Random position
-      const maxX = bugGame.clientWidth - 50;
-      const maxY = bugGame.clientHeight - 50;
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-      
-      bug.style.left = `${x}px`;
-      bug.style.top = `${y}px`;
-      
-      // Random size variation
-      const size = 30 + Math.random() * 40;
-      bug.style.width = `${size}px`;
-      bug.style.height = `${size}px`;
-      
-      // Click to squash
-      bug.addEventListener('click', function() {
-        if (!bug.classList.contains('squashed')) {
-          bug.classList.add('squashed');
-          score++;
-          scoreDisplay.textContent = score;
-          
-          // Remove after animation
-          setTimeout(() => {
-            bug.remove();
-          }, 300);
+      // Detect rapid clicks on profile link
+      profileTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const now = Date.now();
+        if (now - lastClickTime < 500) { // 500ms between clicks
+          clickCount++;
+          if (clickCount >= 4) { // 5 clicks (starts from 0)
+            startGame();
+            clickCount = 0;
+          }
+        } else {
+          clickCount = 1; // Reset if too slow
         }
+        lastClickTime = now;
       });
       
-      // Remove after 1.5-3 seconds if not clicked
-      const lifeTime = 1500 + Math.random() * 1500;
-      setTimeout(() => {
-        if (bug.parentNode && !bug.classList.contains('squashed')) {
-          bug.remove();
-        }
-      }, lifeTime);
-      
-      bugGame.appendChild(bug);
-    }
-    
-    function endGame() {
-      gameActive = false;
-      clearInterval(gameTimer);
-      clearInterval(bugTimer);
-      
-      // Show final score
-      alert(`Game Over! Your score: ${score}`);
-    }
-    
-    closeGameBtn.addEventListener('click', function() {
-      bugGameContainer.style.display = 'none';
-      if (gameActive) {
-        endGame();
+      function startGame() {
+        if (gameActive) return;
+        
+        gameActive = true;
+        score = 0;
+        timeLeft = 30;
+        scoreDisplay.textContent = score;
+        timeDisplay.textContent = timeLeft;
+        bugGameContainer.style.display = 'flex';
+        bugGame.innerHTML = '<div id="gameTitle">Whack a Danielle</div>'; // Reset title when game starts
+        
+        // Start timer
+        gameTimer = setInterval(function() {
+          timeLeft--;
+          timeDisplay.textContent = timeLeft;
+          
+          if (timeLeft <= 0) {
+            endGame();
+          }
+        }, 1000);
+        
+        // Start bug spawning
+        bugTimer = setInterval(spawnBug, 800);
       }
+      
+      function spawnBug() {
+        if (!gameActive) return;
+        
+        const bug = document.createElement('div');
+        bug.className = 'bug';
+        
+        // Random position
+        const maxX = bugGame.clientWidth - 50;
+        const maxY = bugGame.clientHeight - 50;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        
+        bug.style.left = `${x}px`;
+        bug.style.top = `${y}px`;
+        
+        // Random size variation
+        const size = 30 + Math.random() * 40;
+        bug.style.width = `${size}px`;
+        bug.style.height = `${size}px`;
+        
+        // Click to squash
+        bug.addEventListener('click', function() {
+          if (!bug.classList.contains('squashed')) {
+            bug.classList.add('squashed');
+            score++;
+            scoreDisplay.textContent = score;
+            
+            // Remove after animation
+            setTimeout(() => {
+              bug.remove();
+            }, 300);
+          }
+        });
+        
+        // Remove after 1.5-3 seconds if not clicked
+        const lifeTime = 1500 + Math.random() * 1500;
+        setTimeout(() => {
+          if (bug.parentNode && !bug.classList.contains('squashed')) {
+            bug.remove();
+          }
+        }, lifeTime);
+        
+        bugGame.appendChild(bug);
+      }
+      
+      function endGame() {
+        gameActive = false;
+        clearInterval(gameTimer);
+        clearInterval(bugTimer);
+        
+        // Show final score
+        alert(`Game Over! Your score: ${score}`);
+      }
+      
+      closeGameBtn.addEventListener('click', function() {
+        bugGameContainer.style.display = 'none';
+        if (gameActive) {
+          endGame();
+        }
+      });
     });
-  });
-</script>
-
-<Script>
-  // Make game responsive
-function adjustGameSize() {
-  const bugGame = document.getElementById('bugGame');
-  const header = document.getElementById('gameHeader');
-  
-  // Adjust for mobile landscape
-  if (window.innerHeight < window.innerWidth && window.innerWidth < 768) {
-    bugGame.style.height = '70%';
-    header.style.width = '70%';
-  } else {
-    bugGame.style.height = '60%';
-    header.style.width = '90%';
-  }
-}
-
-// Call on load and resize
-window.addEventListener('load', adjustGameSize);
-window.addEventListener('resize', adjustGameSize);
-</Script>
-
-  
+  </script>
 </body>
 </html>
